@@ -1,0 +1,1 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5efc8b4a92e54bc9b5389c2959a5c791)](https://www.codacy.com/gh/klaxurit/JuncaHugo_5_24012022/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=klaxurit/JuncaHugo_5_24012022&amp;utm_campaign=Badge_Grade)
