@@ -1,0 +1,2 @@
+# JuncaHugo_5_24012022
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ae91ead6e1c74ce9918768b5fa561ab5)](https://app.codacy.com/gh/klaxurit/JuncaHugo_5_24012022?utm_source=github.com&utm_medium=referral&utm_content=klaxurit/JuncaHugo_5_24012022&utm_campaign=Badge_Grade_Settings)
