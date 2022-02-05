@@ -1,5 +1,6 @@
 <?php
 // phpinfo();
+error_reporting(-1);
 require '../vendor/autoload.php';
 
 // die($_GET['url']);
