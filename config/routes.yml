@@ -1,0 +1,5 @@
+home:
+  uri: /
+  controller: indexController
+  action: showHome
+  parameters: []
