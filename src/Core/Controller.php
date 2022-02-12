@@ -14,4 +14,6 @@ class Controller {
         $method = $this->action;
         $this->method;
     }
+
+    
 }

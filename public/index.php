@@ -11,6 +11,7 @@ try {
 
     $router = new Router;
     $controller = $router->getController;
+    var_dump($controller);
     if (is_null($controller)) {
         // throw new ControllerNotFound();
     }
