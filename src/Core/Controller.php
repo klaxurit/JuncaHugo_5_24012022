@@ -12,8 +12,8 @@ class Controller {
 
     public function execute() {
         $method = $this->action;
-        $this->method;
+        $this->$method();
     }
 
-    
+
 }

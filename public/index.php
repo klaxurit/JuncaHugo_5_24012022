@@ -10,7 +10,7 @@ use App\Core\Router;
 try {
 
     $router = new Router;
-    $controller = $router->getController;
+    $controller = $router->getController();
     var_dump($controller);
     if (is_null($controller)) {
         // throw new ControllerNotFound();
