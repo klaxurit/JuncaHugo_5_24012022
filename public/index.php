@@ -5,19 +5,23 @@ define("ROOT_DIR", realPath(dirname(__DIR__)));
 define("CONF_DIR", ROOT_DIR. "/config");
 
 require ROOT_DIR. "/vendor/autoload.php";
+
+use App\Controllers\ErrorController;
 use App\Core\Router;
+use App\Exceptions\ControllerNotFound;
 
 try {
 
     $router = new Router;
     $controller = $router->getController();
-    var_dump($controller);
+    var_dump($controller, "CONTROLLER");
     if (is_null($controller)) {
-        // throw new ControllerNotFound();
+        throw new ControllerNotFound();
     }
     // Execute method
     $controller->execute();
     
-} catch(Error $error) {
-    die($error);
+} catch(ControllerNotFound $e) {
+    $controller = new ErrorController("show404");
+    $controller->execute();
 }

@@ -1,5 +1,10 @@
 home:
   uri: /
-  controller: indexController
+  controller: IndexController
   action: showHome
   parameters: []
+post:
+  uri: /blog/([a-zA-Z-9-]+)
+  controller: BlogController
+  action: showPost
+  parameters: ["slug"]
