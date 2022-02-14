@@ -1,0 +1,40 @@
+home:
+  uri: /
+  controller: IndexController
+  action: showHome
+  parameters: []
+login:
+  uri: /login
+  controller: IndexController
+  action: login
+  parameters: []
+register:
+  uri: /register
+  controller: IndexController
+  action: register
+  parameters: []
+post:
+  uri: /blog/post/([a-zA-Z-9-]+)
+  controller: BlogController
+  action: showPost
+  parameters: ["slug"]
+posts:
+  uri: /blog/posts
+  controller: BlogController
+  action: listPosts
+  parameters: []
+create:
+  uri: /blog/create
+  controller: BlogController
+  action: createPost
+  parameters: []
+update:
+  uri: /blog/update/([a-zA-Z-9-]+)
+  controller: BlogController
+  action: updatePost
+  parameters: ["slug"]
+delete:
+  uri: /blog/delete/([a-zA-Z-9-]+)
+  controller: BlogController
+  action: deletePost
+  parameters: ["slug"]
