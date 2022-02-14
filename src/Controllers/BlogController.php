@@ -12,18 +12,18 @@ class BlogController extends Controller {
     }
 
     public function listPosts() {
-        var_dump("Bienvenu sur la liste des posts");
+        $this->twig->display('admin/pages/index.html.twig');
     }
 
     public function createPost() {
-        var_dump("Bienvenu sur la page de creation d'un post");
+        $this->twig->display('admin/pages/create.html.twig');
     }
 
     public function updatePost() {
-        var_dump("Bienvenu sur la page de modification d'un post");
+        $this->twig->display('admin/pages/update.html.twig');
     }
 
     public function deletePost(){
-        var_dump("Bienvenu sur la page de suppression d'un post");
+        $this->twig->display('admin/pages/delete.html.twig');
     }
 }
