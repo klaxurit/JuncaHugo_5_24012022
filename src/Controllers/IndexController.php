@@ -7,15 +7,14 @@ use App\Core\Controller;
 class IndexController extends Controller {
 
     public function showHome() {
-        var_dump("Bienvenu sur la Home");
-        die;
+        $this->twig->display('admin/pages/home.html.twig');
     }
 
     public function login() {
-        var_dump("Bienvenu sur la page de Log In");
+        $this->twig->display('admin/pages/login.html.twig');
     }
 
     public function register() {
-        var_dump("Bienvenu sur la page d'inscription");
+        $this->twig->display('admin/pages/register.html.twig');
     }
 }

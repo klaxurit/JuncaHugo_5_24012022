@@ -13,7 +13,7 @@ use App\Exceptions\ControllerNotFound;
 try {
     $router = new Router;
     $controller = $router->getController();
-    var_dump($controller, "CONTROLLER");
+    // var_dump($controller, "CONTROLLER");
     if (is_null($controller)) {
         throw new ControllerNotFound();
     }
