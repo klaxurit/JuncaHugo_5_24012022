@@ -14,27 +14,27 @@ register:
   action: register
   parameters: []
 post:
-  uri: /blog/post/([a-zA-Z-9-]+)
+  uri: /blog/([a-zA-Z-9-]+)
   controller: BlogController
   action: showPost
   parameters: ["slug"]
 posts:
-  uri: /blog/posts
+  uri: /blog
   controller: BlogController
   action: listPosts
   parameters: []
 create:
-  uri: /blog/create
+  uri: /admin/blog/create
   controller: BlogController
   action: createPost
   parameters: []
 update:
-  uri: /blog/update/([a-zA-Z-9-]+)
+  uri: /admin/blog/update/([a-zA-Z-9-]+)
   controller: BlogController
   action: updatePost
   parameters: ["slug"]
 delete:
-  uri: /blog/delete/([a-zA-Z-9-]+)
+  uri: /admin/blog/delete/([a-zA-Z-9-]+)
   controller: BlogController
   action: deletePost
   parameters: ["slug"]
