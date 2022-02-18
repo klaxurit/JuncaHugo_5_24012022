@@ -69,3 +69,26 @@ body.dark {
     color: #aaaaaa;
     font-weight: 800;
 }
+
+footer {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    --gray: #4c4c4c;
+    --background: #000;
+    --color: #fff;
+    font: 400 14px/18px Roboto Mono;
+    position: relative;
+    margin: 4rem 0 0;
+    padding-bottom: 4em;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 1400px;
+    color: white;
+    margin: auto;
+    border-top: 2px solid;
+    font-size: 14px;
+}
+
