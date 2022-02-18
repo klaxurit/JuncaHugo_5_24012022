@@ -79,11 +79,16 @@ footer {
   padding-bottom: 4em;
   font-size: 1.3rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   position: fixed;
   bottom: 0;
   width: 1400px;
   margin: auto;
   border-top: 2px solid;
   font-size: 14px;
+}
+
+footer, a {
+  text-decoration: none;
+  color: inherit;
 }
