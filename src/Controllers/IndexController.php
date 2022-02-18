@@ -11,14 +11,4 @@ class IndexController extends Controller
     {
         $this->twig->display('client/pages/home.html.twig');
     }
-
-    public function login()
-    {
-        $this->twig->display('client/pages/login.html.twig');
-    }
-
-    public function register()
-    {
-        $this->twig->display('client/pages/register.html.twig');
-    }
 }

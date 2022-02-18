@@ -9,7 +9,7 @@ class BlogController extends Controller
 
     public function showPost()
     {
-        var_dump("Bienvenu sur le post");
+        $this->twig->display('client/pages/posts/view.html.twig', $this->params);
         var_dump($this->params);
     }
 

@@ -5,12 +5,12 @@ home:
   parameters: []
 login:
   uri: /login
-  controller: IndexController
+  controller: SecurityController
   action: login
   parameters: []
 register:
   uri: /register
-  controller: IndexController
+  controller: SecurityController
   action: register
   parameters: []
 post:

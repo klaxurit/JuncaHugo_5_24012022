@@ -1,6 +1,6 @@
 body {
   background-color: #000;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   color: white;
   width: 1400px;
   margin: auto;
@@ -21,7 +21,9 @@ body.dark {
   text-decoration: none;
   color: inherit;
   font-size: 28px;
-  font-family: "VT323", monospace;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  font-family: 'Crimson Pro', serif;
 }
 
 .header__brand:hover {
@@ -91,4 +93,17 @@ footer {
 footer, a {
   text-decoration: none;
   color: inherit;
+}
+
+.footer__social-icon__link:hover {
+  color: #aaaaaa;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 767px) {
+/* smartphone */
+}
+
+@media only screen and (max-width: 1024px) and (orientation: portrait) {
+/* smartphone en mode portait */
 }
