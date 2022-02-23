@@ -70,6 +70,51 @@ body.dark {
   font-weight: 800;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 10em;
+  width: 1400px;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+      
+.nav__pagination {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+      
+.nav__pagination li {
+  margin: 0 1px;
+}
+
+.nav__pagination a {
+  display: block;
+  padding: .5em 1em;
+  border: 1px solid #999;
+  border-radius: .2em;
+  text-decoration: none;
+}
+
+.nav__pagination a:hover:not(.active) {background-color: rgb(163, 163, 163);}
+
+.nav__pagination a[aria-current="page"] {
+  color: #fff;
+}
+
 footer {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
