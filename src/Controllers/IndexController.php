@@ -11,4 +11,9 @@ class IndexController extends Controller
     {
         $this->twig->display('client/pages/home.html.twig');
     }
+    
+    public function contact()
+    {
+        $this->twig->display('client/pages/contact.html.twig');
+    }
 }
