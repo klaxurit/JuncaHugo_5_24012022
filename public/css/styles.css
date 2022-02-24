@@ -1,6 +1,6 @@
 body {
   background-color: #000;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   color: white;
   width: 1400px;
   margin: auto;
@@ -23,7 +23,7 @@ body.dark {
   font-size: 28px;
   letter-spacing: 0.1em;
   font-weight: 500;
-  font-family: 'Crimson Pro', serif;
+  font-family: "Crimson Pro", serif;
 }
 
 .header__brand:hover {
@@ -82,7 +82,7 @@ footer {
   font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 1400px;
   margin: auto;
@@ -90,7 +90,8 @@ footer {
   font-size: 14px;
 }
 
-footer, a {
+footer,
+a {
   text-decoration: none;
   color: inherit;
 }
@@ -100,10 +101,137 @@ footer, a {
   font-weight: 800;
 }
 
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__infos {
+  margin-bottom: 2em;
+}
+
+.form__button {
+  padding: 0.8em;
+  border: 1px solid white;
+  background-color: #000;
+  color: white;
+  margin-top: 2em;
+  font-size: 14px;
+}
+
+.form__message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article__head {
+  word-break: break-word;
+  hyphens: auto;
+  letter-spacing: -0.4px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  padding: 60px 0 30px;
+}
+
+.article__head-separator {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  --color: #fff;
+  text-align: center;
+  box-sizing: content-box;
+  display: block;
+  height: 2px;
+  border: 0;
+  margin: 0 auto;
+  padding: 0;
+  background: var(--color);
+  width: 10%;
+  min-width: 50px;
+}
+
+.article__head-separator:after {
+  content: "§";
+  display: inline-block;
+  position: relative;
+  top: -14px;
+  padding: 0 10px;
+  background: #f0f0f0;
+  color: #424242;
+  font-size: 20px;
+  -webkit-transform: rotate(60deg);
+  -moz-transform: rotate(60deg);
+  transform: rotate(60deg);
+}
+
+.article__head-title {
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  font-size: 3.5rem;
+  text-indent: -3px;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+
+.article__head-date {
+  font-weight: 600;
+  font-size: 0.8em;
+}
+
+.article__head-author {
+  letter-spacing: -0.04em;
+  padding: 0;
+  font-size: 14px;
+  margin-top: -0.8em;
+}
+
+.article__content {
+  font-size: 14px;
+  word-break: break-word;
+  hyphens: auto;
+  text-align: justify;
+  letter-spacing: -0.4px;
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.article__content-firstwords {
+  font-weight: 600;
+}
+
+.article__content > p {
+  hyphens: auto;
+  text-align: justify;
+  letter-spacing: -.4px;
+  margin-top: 1.6em;
+}
+
+.article__content-axurit-separator > .iconify {
+  margin-top: 0;
+}
+
+.article__content-axurit-separator {
+  margin-left: 0.2em;
+}
+
+.article__footer {
+  margin-top: 4em;
+  margin-bottom: 4em;
+  text-align: center;
+}
+
+
 @media only screen and (max-width: 767px) {
-/* smartphone */
+  /* smartphone */
 }
 
 @media only screen and (max-width: 1024px) and (orientation: portrait) {
-/* smartphone en mode portait */
+  /* smartphone en mode portait */
 }

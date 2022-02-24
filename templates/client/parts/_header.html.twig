@@ -1,7 +1,7 @@
 <header class="header__nav">
 	<span class="header__brand" href="/">
 		<span class="iconify" data-icon="healthicons:animal-donkey" data-width="30"></span>
-		<p>axurit dev blog</p>
+		<p>Axurit</p>
 	</span>
 	<nav>
 		<a class="header__nav-item" href="/">Home</a>
@@ -12,19 +12,10 @@
 		<span class="header__nav-item__divider">|</span>
 		<a class="header__nav-item" href="/register">Register</a>
 		<span class="header__nav-item__divider">|</span>
-		<label onclick="toggleTheme('light')" class="header__nav-item" for="themeSwitch">Light</label>
+		<a class="header__nav-item" href="/contact">Contact</a>
 		<span class="header__nav-item__divider">|</span>
-		<label onclick="toggleTheme('dark')" class="header__nav-item" for="themeSwitch">Dark</label>
+		<label onclick="toggleTheme('light')" id="light" class="header__nav-item" for="themeSwitch">Light</label>
+		<span class="header__nav-item__divider">|</span>
+		<label onclick="toggleTheme('dark')" id="dark" class="header__nav-item" for="themeSwitch">Dark</label>
 	</nav>
 </header>
-<script>
-	function toggleTheme(theme) {
-const body = document.body;
-body.classList.remove('dark', 'light')
-if (theme == 'dark') {
-body.classList.add('dark')
-} else {
-body.classList.add('light')
-}
-}
-</script>

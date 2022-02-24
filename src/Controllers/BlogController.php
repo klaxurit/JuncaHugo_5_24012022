@@ -10,7 +10,7 @@ class BlogController extends Controller
     public function showPost()
     {
         $this->twig->display('client/pages/posts/view.html.twig', $this->params);
-        var_dump($this->params);
+        // var_dump($this->params);
     }
 
     public function listPosts()
