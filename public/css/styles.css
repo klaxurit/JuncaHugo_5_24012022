@@ -73,7 +73,7 @@ body.dark {
 .pagination {
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: relative;
   bottom: 10em;
   width: 1400px;
 }

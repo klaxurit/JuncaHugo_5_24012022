@@ -29,7 +29,7 @@ class Router
         // Get and parse url params and path
         $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
         foreach ($routes as $route) {
-            // Search in route config file if we have match between requested URI and Controller
+            // Search in route config file if we have match between requested URI and Routes in routes.yml
             if (preg_match("#^" . $route["uri"] . "$#", $uri, $matches)) {
                 // Build controller path
                 $controller = "\\App\\Controllers\\" . $route["controller"];

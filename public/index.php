@@ -10,6 +10,7 @@ use App\Controllers\ErrorController;
 use App\Core\Router;
 use App\Exceptions\ControllerNotFound;
 
+//comment this and all controllers
 try {
     $router = new Router;
     $controller = $router->getController();
