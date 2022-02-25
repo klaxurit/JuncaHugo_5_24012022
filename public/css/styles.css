@@ -7,7 +7,7 @@ body {
 }
 
 body.light {
-  background-color: #e6e6e6;
+  background-color: #fff;
   color: #222222;
 }
 
@@ -98,6 +98,31 @@ footer, a {
 .footer__social-icon__link:hover {
   color: #aaaaaa;
   font-weight: 800;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__infos {
+  margin-bottom: 2em;
+}
+
+.form__button {
+  padding: 0.8em;
+  border: 1px solid white;
+  background-color: #000;
+  color: white;
+  margin-top: 2em;
+  font-size: 14px;
+}
+
+.form__message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media only screen and (max-width: 767px) {
