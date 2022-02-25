@@ -1,64 +1,33 @@
-// VOir pour utilisation de local storage
-// document.localStorage.getItem("theme");
-// document.localStorage.setItem("theme", "light");
-
-theme = window.localStorage.getItem("theme") ?? "dark"
 
 function toggleTheme(theme) {
-  const body = document.body;
-  body.classList.remove("dark", "light");
-  if (theme == "dark") {
-    document.body.classList.remove("light");
-    document.body.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.body.classList.add("light");
-    document.body.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-  }
+  document.body.classList.remove("dark", "light");
+  document.body.classList.add(theme);
+  window.localStorage.setItem("theme", theme)
 }
 
-window.onload = checkTheme();
-
-function checkTheme() {
-    const localStorageTheme = localStorage.getItem("theme");
-    console.log(localStorageTheme, "THEME STORED")
-
-    if (localStorageTheme !== null && localStorageTheme === "dark") {
-        // set the theme of body
-        document.body.className = localStorageTheme;
-    }
-}
-
-
-// const themeSwitcher = document.getElementById("theme-switch");
-
-// themeSwitcher.checked = false;
-// function clickHandler() {
-//     if (this.checked) {
-//         document.body.classList.remove("light");
-//         document.body.classList.add("dark");
-//         localStorage.setItem("theme", "dark");
-//     } else {
-        // document.body.classList.add("light");
-        // document.body.classList.remove("dark");
-//         localStorage.setItem("theme", "light");
-//     }
-// }
-// themeSwitcher.addEventListener("click", clickHandler);
-
-// window.onload = checkTheme();
+// window.onload = checkTheme(); 
 
 // function checkTheme() {
-//     const localStorageTheme = localStorage.getItem("theme");
+  const localStoredTheme = localStorage.getItem("theme");
+  console.log(localStoredTheme, "THEME STORED")
+  if(localStoredTheme){
+    toggleTheme(localStoredTheme)
+  }
 
-//     if (localStorageTheme !== null && localStorageTheme === "dark") {
-//         // set the theme of body
-//         document.body.className = localStorageTheme;
-
-//         // adjust the slider position
-//         const themeSwitch = document.getElementById("theme-switch");
-//         themeSwitch.checked = true;
-//     }
+//   if (localStorageTheme !== null && localStorageTheme === "dark") {
+//       document.body.className = localStorageTheme;
+//   }
 // }
+
+const switchLightEl = document.getElementsByClassName("switchLight")[0];
+const switchDarkEl = document.getElementsByClassName("switchDark")[0];
+// console.log("ici", switchLightEl)
+switchDarkEl.addEventListener("click", function(event) {
+  event.preventDefault()
+  toggleTheme("dark")
+});
+switchLightEl.addEventListener("click", function(event) {
+  event.preventDefault()
+  toggleTheme("light")
+});
 

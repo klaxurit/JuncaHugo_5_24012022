@@ -12,19 +12,8 @@
 		<span class="header__nav-item__divider">|</span>
 		<a class="header__nav-item" href="/register">Register</a>
 		<span class="header__nav-item__divider">|</span>
-		<label onclick="toggleTheme('light')" class="header__nav-item" for="themeSwitch">Light</label>
+		<a class="switchLight header__nav-item" href="#">Light</a>
 		<span class="header__nav-item__divider">|</span>
-		<label onclick="toggleTheme('dark')" class="header__nav-item" for="themeSwitch">Dark</label>
+		<a class="switchDark header__nav-item" href="#">Dark</a>
 	</nav>
 </header>
-<script>
-	function toggleTheme(theme) {
-const body = document.body;
-body.classList.remove('dark', 'light')
-if (theme == 'dark') {
-body.classList.add('dark')
-} else {
-body.classList.add('light')
-}
-}
-</script>
