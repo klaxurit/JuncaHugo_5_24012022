@@ -1,8 +1,60 @@
 {% extends "client/base.html.twig" %}
 
 {% block title %}
-	Blog - Article 
+	Blog - Article
 {% endblock %}
 {% block body %}
-	<h1>BLOG POST VIEW</h1>
+	<article>
+		<section class="article__head">
+			<h1 class="article__head-title">POST TITLE</h1>
+			<hr class="article__head-separator">
+			<p class="article__head-date">jeudi 10 février 2022</p>
+			<p class="article__head-author">Axurit - Post - Chapo</p>
+			<hr class="article__head-separator">
+		</section>
+		<section class="article__illustration"></section>
+		<section class="article__content">
+			<p class="article__content-firstwords">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			<p>Mauris at nibh eget nisi condimentum tempus vel non massa. Proin massa dui, ornare vitae dignissim sed, varius vel dolor. Morbi hendrerit quis velit vel dignissim.</p>
+			<p>Praesent sollicitudin dui et lorem tristique, id pretium odio vulputate. Pellentesque mi nibh, pulvinar vitae urna vel, ultrices gravida augue.</p>
+			<p>
+				<i>Proin luctus congue bibendum?</i>
+			</p>
+			<p>
+				<b>Aenean justo velit, condimentum et dictum ut, sagittis sit amet enim. Maecenas quis rutrum purus. Donec at dictum nisl, quis luctus mauris. Sed sagittis nibh et molestie consequat.</b>
+			</p>
+			<p class="article__content-axurit-separator">
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="90deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="180deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="270deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="90deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="180deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="270deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="90deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="180deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="270deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="90deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="180deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="270deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="90deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="180deg" data-width="20"></span>
+				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="270deg" data-width="20"></span>
+			</p>
+			<p>Nunc viverra tellus non elit rutrum tincidunt.</p>
+			<p><b>Nullam quis neque at sem molestie porttitor sit amet et urna.</b></p>
+			<p>Praesent sollicitudin dui et lorem tristique, id pretium odio vulputate. Pellentesque mi nibh, pulvinar vitae urna vel, ultrices gravida augue.</p>
+			<p><i>Aenean tristique velit vel nisi vestibulum congue.</i></p>
+			<p>Aliquam ullamcorper fermentum ipsum sed <u>volutpat</u>.</p>
+		</section>
+			
+		<section class="article__footer">
+			<h2>vous pourriez aussi aimer...</h2>
+		</section>
+	</article>
+
 {% endblock %}
