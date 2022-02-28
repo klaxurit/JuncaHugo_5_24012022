@@ -7,6 +7,11 @@ use App\Core\Controller;
 class IndexController extends Controller
 {
 
+    /**
+     * Return the home page
+     *
+     * @return void
+     */
     public function showHome()
     {
         $this->twig->display('client/pages/home.html.twig');

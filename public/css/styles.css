@@ -1,3 +1,4 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 body {
   background-color: #000;
   font-family: "Roboto Mono", monospace;
@@ -15,7 +16,9 @@ body.dark {
   background-color: #000;
   color: #ffffff;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .header__brand {
   display: flex;
   text-decoration: none;
@@ -69,7 +72,9 @@ body.dark {
   color: #aaaaaa;
   font-weight: 800;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF PAGINATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .pagination {
   display: flex;
   justify-content: center;
@@ -114,7 +119,9 @@ body.dark {
 .nav__pagination a[aria-current="page"] {
   color: #fff;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF PAGINATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 footer {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -145,7 +152,9 @@ a {
   color: #aaaaaa;
   font-weight: 800;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 form {
   align-items: center;
   display: flex;
@@ -170,7 +179,9 @@ form {
   flex-direction: column;
   align-items: center;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .article__head {
   word-break: break-word;
   hyphens: auto;
@@ -247,8 +258,11 @@ form {
   margin: 0 auto;
 }
 
-.article__content-firstwords {
+.article__content-chapo {
+  font-size: 16px;
   font-weight: 600;
+  background-color: #8d8d8d;
+  padding: 0.5em;
 }
 
 .article__content > p {
@@ -271,6 +285,7 @@ form {
   margin-bottom: 4em;
   text-align: center;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 @media only screen and (max-width: 767px) {
   /* smartphone */
