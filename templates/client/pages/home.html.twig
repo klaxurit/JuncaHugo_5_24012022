@@ -1,44 +1,60 @@
 {% extends "client/base.html.twig" %}
 
 {% block title %}
-	Blog - Home
+	Home -
+	{{parent()}}
 {% endblock %}
 {% block body %}
 	<div class="home" id="home">
-	<h1>BLOG HOME</h1>
-	<button id="open">Contactez moi!</button>
-	<div class="modal-container" id="modal_container">
-		<div class="modal">
-			<h1>BLOG CONTACT FORM</h1>
-			<form method="post" action="">
-				<fieldset>
-					<!-- Titre du fieldset -->
-					<legend>Vos coordonnées</legend>
-					<div class="form__infos">
-						<p>
-							<label for="nom">Nom</label>
-							<input type="text" name="nom" id="nom"/>
-						</p>
-						<p>
-							<label for="prenom">Prénom</label>
-							<input type="text" name="prenom" id="prenom"/>
-						</p>
-						<p>
-							<label for="email">E-mail</label>
-							<input type="email" name="email" id="email"/>
-						</p>
-					</div>
+		<section class="modal-container" id="modal_container">
+			<div class="modal">
+				<h1>BLOG CONTACT FORM</h1>
+				<form method="post" action="">
+					<fieldset>
+						<!-- Titre du fieldset -->
+						<legend>Vos coordonnées</legend>
+						<div class="form__infos">
+							<p>
+								<label for="nom">Nom</label>
+								<input type="text" name="nom" id="nom"/>
+							</p>
+							<p>
+								<label for="prenom">Prénom</label>
+								<input type="text" name="prenom" id="prenom"/>
+							</p>
+							<p>
+								<label for="email">E-mail</label>
+								<input type="email" name="email" id="email"/>
+							</p>
+						</div>
 
-					<div class="form__message">
-						<label for="message">Laisser votre message ci-dessous :</label>
-						<textarea name="message" id="message" cols="40" rows="6"></textarea>
-						<button class="form__button">Envoyer</button>
-					</div>
-				</fieldset>
-			</form>
-			<button id="close" class="form__button">Fermer</button>
-		</div>
+						<div class="form__message">
+							<label for="message">Laisser votre message ci-dessous :</label>
+							<textarea name="message" id="message" cols="40" rows="6"></textarea>
+							<button class="form__button">Envoyer</button>
+						</div>
+					</fieldset>
+				</form>
+				<button id="close" class="form__button">Fermer</button>
+			</div>
+		</section>
+		<section class="home__profil">
+			<h1 class="home__profile-identity">JUNCA "Axurit" Hugo</h1>
+			<span class="iconify" data-icon="healthicons:animal-donkey" data-width="80"></span>
+			<p>
+				<b>"Nullam quis neque at sem molestie porttitor sit amet et urna."</b>
+			</p>
+			<p>
+				<i>juncahugo@gmail.com</i>
+			</p>
+			<p>Mon CV:
+				<span class="iconify" data-icon="ant-design:folder-open-twotone"></span>
+			</p>
+			<button id="open" class="home__button-contact">Contactez moi!</button>
+		</section>
 	</div>
-	</div>
-	
+{% endblock %}
+{% block javascripts %}
+	<script type="text/javascript" src="/js/toggleModal.js"></script>
+	{{ parent() }}
 {% endblock %}
