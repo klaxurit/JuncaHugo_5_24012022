@@ -1,3 +1,4 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 body {
   background-color: #000;
   font-family: "Roboto Mono", monospace;
@@ -17,7 +18,9 @@ body.dark {
   background-color: #000;
   color: #ffffff;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .header__brand {
   display: flex;
   text-decoration: none;
@@ -54,8 +57,8 @@ body.dark {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .header__nav-item__divider {
@@ -71,7 +74,9 @@ body.dark {
   color: #aaaaaa;
   font-weight: 800;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF PAGINATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .pagination {
   display: flex;
   justify-content: center;
@@ -116,7 +121,9 @@ body.dark {
 .nav__pagination a[aria-current="page"] {
   color: #fff;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF PAGINATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 footer {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -145,7 +152,9 @@ a {
   color: #aaaaaa;
   font-weight: 800;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 form {
   align-items: center;
   display: flex;
@@ -169,7 +178,9 @@ form {
   display: flex;
   flex-direction: column;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .article__head {
   word-break: break-word;
   hyphens: auto;
@@ -184,7 +195,7 @@ form {
 .article__head-separator {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
-  --color: #fff;
+  --color: white;
   text-align: center;
   box-sizing: content-box;
   display: block;
@@ -198,12 +209,12 @@ form {
 }
 
 .article__head-separator:after {
-  content: "§";
+  content: "|";
   display: inline-block;
   position: relative;
   top: -14px;
   padding: 0 10px;
-  background: #f0f0f0;
+  /* background: #f0f0f0; */
   color: #424242;
   font-size: 20px;
   -webkit-transform: rotate(60deg);
@@ -246,8 +257,11 @@ form {
   margin: 0 auto;
 }
 
-.article__content-firstwords {
+.article__content-chapo {
+  font-size: 16px;
   font-weight: 600;
+  background-color: #8d8d8d;
+  padding: 0.5em;
 }
 
 .article__content > p {
@@ -255,6 +269,13 @@ form {
   text-align: justify;
   letter-spacing: -.4px;
   margin-top: 1.6em;
+}
+
+.article__blockquote {
+  box-sizing: border-box;
+  margin: 1.6em 0 1.6em -2.2em;
+  padding: 0 0 0 1.6em;
+  border-left: 0.4em solid white;
 }
 
 .article__content-axurit-separator > .iconify {
@@ -265,11 +286,85 @@ form {
   margin-left: 0.2em;
 }
 
+.article__comment-form {
+  font-size: 14px;
+  word-break: break-word;
+  hyphens: auto;
+  /* text-align: justify; */
+  letter-spacing: -0.4px;
+  display: block;
+  max-width: 600px;
+  margin: 3em auto;
+}
+
+.form__comment {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.article__comments {
+  word-break: break-word;
+  hyphens: auto;
+  /* text-align: justify; */
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 12px;
+}
+
+.article__user-comment {
+  border-bottom: 1px solid ;
+}
+
+.artcile__comment-author {
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.article__comment-content {
+  hyphens: auto;
+  letter-spacing: -.4px;
+  border-right: 0.4em solid ;
+}
+
+.article__foot-separator {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  box-sizing: content-box;
+  display: block;
+  height: 2px;
+  border: 0;
+  margin: 2em auto;
+  padding: 0;
+  background: var(--color);
+  width: 10%;
+  min-width: 50px;
+}
+
+.article__foot-separator:after {
+  content: "|";
+  display: inline-block;
+  position: relative;
+  top: -14px;
+  padding: 0 10px;
+  /* background: #f0f0f0; */
+  color: #424242;
+  font-size: 20px;
+  -webkit-transform: rotate(60deg);
+  -moz-transform: rotate(60deg);
+  transform: rotate(60deg);
+}
+
 .article__footer {
   margin-top: 4em;
   margin-bottom: 4em;
   text-align: center;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .modal-container {
   display: flex;

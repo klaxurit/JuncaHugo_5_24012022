@@ -1,7 +1,7 @@
 {% extends "client/base.html.twig" %}
 
 {% block title %}
-	Blog - Contact
+	Contact - {{parent()}}
 {% endblock %}
 {% block body %}
 	<h1>BLOG CONTACT FORM</h1>
@@ -23,7 +23,6 @@
 					<input type="email" name="email" id="email"/>
 				</p>
 			</div>
-
 			<div class="form__message">
 				<label for="message">Laisser votre message ci-dessous :</label>
 				<textarea name="message" id="message" cols="40" rows="6"></textarea>

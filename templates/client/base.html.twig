@@ -4,11 +4,10 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="keywords" content="HTML, CSS, JavaScript, PHP"/>
 		<meta name="description" content="Blog d'un développeur PHP"/>
 		<meta name="author" content="Axurit"/>
 		<title>
-			{% block title %}Mon blog PHP
+			{% block title %}Axurit
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
@@ -22,12 +21,12 @@
 	<body>
 		{% include('/client/parts/_header.html.twig') %}
 		{% block body %}{% endblock %}
+		{% block javascripts %}
+			<script type="text/javascript" src="/js/toggleTheme.js"></script>
+			<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+		{% endblock %}
 		<div id="footer">
 			{% include('/client/parts/_footer.html.twig') %}
 		</div>
-		<script type="text/javascript" src="/js/toggleTheme.js"></script>
-		<script type="text/javascript" src="/js/toggleModal.js"></script>
-		<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
-		{% block javascripts %}{% endblock %}
 	</body>
 </html>

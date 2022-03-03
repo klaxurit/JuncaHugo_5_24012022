@@ -10,6 +10,7 @@ use App\Controllers\ErrorController;
 use App\Core\Router;
 use App\Exceptions\ControllerNotFound;
 
+// Create a new instance of router if controller exist, else, return an error
 try {
     $router = new Router;
     $controller = $router->getController();
