@@ -5,6 +5,8 @@ body {
   color: white;
   width: 1400px;
   margin: auto;
+  position: relative;
+  min-height: 100vh;
 }
 
 body.light {
@@ -78,8 +80,8 @@ body.dark {
 .pagination {
   display: flex;
   justify-content: center;
-  position: relative;
-  bottom: 10em;
+  margin-top: 65vh;
+  height: 2.5rem;
   width: 1400px;
 }
 
@@ -129,17 +131,15 @@ footer {
   --background: #000;
   --color: #fff;
   font: 400 14px/18px Roboto Mono;
-  margin: 4rem 0 0;
   padding-bottom: 4em;
   font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
-  position: relative;
-  bottom: 0;
   width: 1400px;
-  margin: auto;
   border-top: 2px solid;
   font-size: 14px;
+  position: absolute;
+  bottom: 0;
 }
 
 footer,
@@ -177,7 +177,6 @@ form {
 .form__message {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -366,6 +365,33 @@ form {
   text-align: center;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.modal-container.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+
+
+.modal {
+  padding: 30px 50px;
+  width: 600px;
+  max-width: 100%;
+  text-align: center;
+}
 
 @media only screen and (max-width: 767px) {
   /* smartphone */

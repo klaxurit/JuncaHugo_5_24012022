@@ -4,5 +4,41 @@
 	Blog - Home
 {% endblock %}
 {% block body %}
+	<div class="home" id="home">
 	<h1>BLOG HOME</h1>
+	<button id="open">Contactez moi!</button>
+	<div class="modal-container" id="modal_container">
+		<div class="modal">
+			<h1>BLOG CONTACT FORM</h1>
+			<form method="post" action="">
+				<fieldset>
+					<!-- Titre du fieldset -->
+					<legend>Vos coordonnées</legend>
+					<div class="form__infos">
+						<p>
+							<label for="nom">Nom</label>
+							<input type="text" name="nom" id="nom"/>
+						</p>
+						<p>
+							<label for="prenom">Prénom</label>
+							<input type="text" name="prenom" id="prenom"/>
+						</p>
+						<p>
+							<label for="email">E-mail</label>
+							<input type="email" name="email" id="email"/>
+						</p>
+					</div>
+
+					<div class="form__message">
+						<label for="message">Laisser votre message ci-dessous :</label>
+						<textarea name="message" id="message" cols="40" rows="6"></textarea>
+						<button class="form__button">Envoyer</button>
+					</div>
+				</fieldset>
+			</form>
+			<button id="close" class="form__button">Fermer</button>
+		</div>
+	</div>
+	</div>
+	
 {% endblock %}

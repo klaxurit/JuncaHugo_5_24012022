@@ -21,12 +21,12 @@
 	<body>
 		{% include('/client/parts/_header.html.twig') %}
 		{% block body %}{% endblock %}
-		{# {% include('/client/parts/_pagination.html.twig') %} #}
-		{% include('/client/parts/_footer.html.twig') %}
-
 		{% block javascripts %}
 			<script type="text/javascript" src="/js/toggleTheme.js"></script>
 			<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 		{% endblock %}
+		<div id="footer">
+			{% include('/client/parts/_footer.html.twig') %}
+		</div>
 	</body>
 </html>
