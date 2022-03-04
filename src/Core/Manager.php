@@ -1,14 +1,16 @@
-<?php 
+<?php
 
 namespace App\Core;
 
 use PDO;
 
-class Manager {
+class Manager
+{
 
   protected PDO $pdo;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->pdo = (new PDOFactory())->getSQLConnexion();
   }
 }
