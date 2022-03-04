@@ -1,10 +1,93 @@
 {% extends "client/base.html.twig" %}
 
 {% block title %}
-	Liste des articles - {{parent()}}
+	Liste des articles -
+	{{parent()}}
 {% endblock %}
 {% block body %}
-	<h1>POSTS LIST</h1>
+	<div class="article__preview-index">
+		<section class="article__preview">
+			<p class="article__preview-title">Lorem ipsum dolor</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Aliquam vitae elementum lectus. Mauris purus nisl, semper et feugiat id, semper nec eros. Maecenas faucibus ullamcorper ultrices. Sed mi odio, pulvinar non placerat in, gravida eget odio. Aliquam vitae elementum lectus. Mauris purus nisl, semper et feugiat id, semper nec eros.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+		<section class="article__preview">
+			<p class="article__preview-title">Nunc viverra tellus</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Praesent sollicitudin dui et lorem tristique, id pretium odio vulputate. Maecenas faucibus ullamcorper ultrices. Sed mi odio, pulvinar non placerat in, gravida eget odio.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+		<section class="article__preview">
+			<p class="article__preview-title">Aenean tristique</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Aliquam vitae elementum lectus. Mauris purus nisl, semper et feugiat id, semper nec eros. Praesent sollicitudin dui et lorem tristique, id pretium odio vulputate. gravida eget odio.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+		<section class="article__preview">
+			<p class="article__preview-title">Maecenas faucibus ullamcorper</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Maecenas faucibus ullamcorper ultrices. Sed mi odio, pulvinar non placerat in, gravida eget odio.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+		<section class="article__preview">
+			<p class="article__preview-title">Maecenas quis rutrum purus</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Maecenas faucibus ullamcorper ultrices. Sed mi odio, pulvinar non placerat in, gravida eget odio.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+		<section class="article__preview">
+			<p class="article__preview-title">Lorem ipsum dolor</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Aliquam vitae elementum lectus. Mauris purus nisl, semper et feugiat id, semper nec eros. Maecenas faucibus ullamcorper ultrices. Sed mi odio, pulvinar non placerat in, gravida eget odio.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+		<section class="article__preview">
+			<p class="article__preview-title">Morbi hendrerit</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Aliquam vitae elementum lectus. Mauris purus nisl, semper et feugiat id, semper nec eros. Maecenas faucibus ullamcorper ultrices.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+		<section class="article__preview">
+			<p class="article__preview-title">Praesent sollicitudin</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<hr class="article__preview-separator">
+			<p class="article__preview-chapo">Mauris purus nisl, semper et feugiat id, semper nec eros. Maecenas faucibus ullamcorper ultrices.</p>
+			<hr class="article__preview-separator">
+			<button href="#" class="article__preview-button">plus</button>
+		</section>
+	</div>
+
+
 	{% include('/client/parts/_pagination.html.twig') %}
 {% endblock %}
-

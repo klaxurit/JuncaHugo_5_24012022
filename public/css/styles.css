@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -110,8 +111,8 @@ body.dark {
 .pagination {
   display: flex;
   justify-content: center;
-  position: relative;
-  bottom: 10em;
+  position: fixed;
+  bottom: 6em;/* SALE */
   width: 1400px;
 }
 
@@ -126,27 +127,29 @@ body.dark {
   width: 1px;
   white-space: nowrap;
 }
-      
+
 .nav__pagination {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
-      
+
 .nav__pagination li {
   margin: 0 1px;
 }
 
 .nav__pagination a {
   display: block;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border: 1px solid #999;
-  border-radius: .2em;
+  border-radius: 0.2em;
   text-decoration: none;
 }
 
-.nav__pagination a:hover:not(.active) {background-color: rgb(163, 163, 163);}
+.nav__pagination a:hover:not(.active) {
+  background-color: rgb(163, 163, 163);
+}
 
 .nav__pagination a[aria-current="page"] {
   color: #fff;
@@ -298,7 +301,7 @@ form {
 .article__content > p {
   hyphens: auto;
   text-align: justify;
-  letter-spacing: -.4px;
+  letter-spacing: -0.4px;
   margin-top: 1.6em;
 }
 
@@ -334,7 +337,6 @@ form {
   flex-direction: column;
 }
 
-
 .article__comments {
   word-break: break-word;
   hyphens: auto;
@@ -346,7 +348,7 @@ form {
 }
 
 .article__user-comment {
-  border-bottom: 1px solid ;
+  border-bottom: 1px solid;
 }
 
 .artcile__comment-author {
@@ -357,8 +359,8 @@ form {
 
 .article__comment-content {
   hyphens: auto;
-  letter-spacing: -.4px;
-  border-right: 0.4em solid ;
+  letter-spacing: -0.4px;
+  border-right: 0.4em solid;
 }
 
 .article__foot-separator {
@@ -397,6 +399,62 @@ form {
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.article__preview {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 2em;
+  /* margin-bottom: 2em; */
+  width: 20%;
+}
+
+.article__preview-title {
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.article__preview-date {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.article__preview-author {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.article__preview-chapo {
+  font-size: 12px;
+  letter-spacing: -.02em;
+}
+
+.article__preview-button {
+  text-transform: uppercase;
+  background: none;
+  color: white;
+  border-left: none;
+  border-right: none;
+  font-size: 12px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  letter-spacing: .2em;
+}
+
+.article__preview-index {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 5em;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .modal-container {
   display: flex;
   align-items: center;
@@ -415,8 +473,6 @@ form {
   opacity: 1;
 }
 
-
-
 .modal {
   padding: 30px 50px;
   width: 600px;
@@ -431,4 +487,3 @@ form {
 @media only screen and (max-width: 1024px) and (orientation: portrait) {
   /* smartphone en mode portait */
 }
-
