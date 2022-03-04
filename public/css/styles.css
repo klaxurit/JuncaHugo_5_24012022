@@ -112,7 +112,7 @@ body.dark {
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 10em;
+  bottom: 6em;/* SALE */
   width: 1400px;
 }
 
@@ -405,7 +405,7 @@ form {
   margin-left: 0.5em;
   margin-right: 0.5em;
   margin-top: 2em;
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
   width: 20%;
 }
 
@@ -413,6 +413,8 @@ form {
   font-size: 24px;
   letter-spacing: -0.02em;
   text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .article__preview-date {
@@ -448,6 +450,7 @@ form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 5em;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
