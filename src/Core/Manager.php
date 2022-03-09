@@ -13,6 +13,5 @@ class Manager
   public function __construct()
   {
     $this->pdo = (new PDOFactory())->getSQLConnexion();
-    // var_dump($this->pdo, "dump de this->pdo dans managerphp");
   }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Managers;
 
+use PDO;
 use App\Core\Manager;
-use App\Model\User;
 
 class UserManager extends Manager
 {
@@ -16,7 +16,7 @@ class UserManager extends Manager
     $sql = "SELECT * FROM user";
     $req = $this->pdo->prepare($sql);
     $req->execute();
-    $datas = $req->fetchAll();
+    $datas = $req->fetchAll(PDO::FETCH_COLUMN, 2);
     return $datas;
   }
 }

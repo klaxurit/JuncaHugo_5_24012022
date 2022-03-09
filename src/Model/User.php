@@ -12,8 +12,6 @@ class User extends Entity
   private string $email;
   private string $password;
 
-
-
   /**
    * Get the value of firstname
    *
