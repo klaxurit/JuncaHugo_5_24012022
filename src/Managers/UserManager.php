@@ -14,7 +14,7 @@ class UserManager extends Manager
   public function findUsers()
   {
     $sql = "SELECT * FROM user";
-    $req = $this->pdo()->prepare($sql);
+    $req = $this->pdo->prepare($sql);
     $req->execute();
     $datas = $req->fetchAll();
     return $datas;
