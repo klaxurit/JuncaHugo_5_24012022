@@ -47,9 +47,71 @@ body.dark {
   margin-top: 2em;
   margin-bottom: 2em;
   font-size: 14px;
+  text-transform: uppercase;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF LOGIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.login {
+  height: calc(100% - 76px - 48px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__button {
+  padding: 0.8em;
+  border: 1px solid white;
+  background-color: #000;
+  color: white;
+  margin-top: 2em;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 100%;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF LOGIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF REGISTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.register {
+  height: calc(100% - 76px - 48px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__field-nom {
+  margin-right: 1em;
+}
+
+.register__field-surnom {
+  margin-right: 1em;
+}
+
+.register__field-password {
+  margin-bottom: 2em;
+}
+
+.register__nom-prenom {
+  display: flex;
+  margin-top: 1em;
+}
+
+.register__surnom-email {
+  display: flex;
+}
+
+.register__button {
+  padding: 0.8em;
+  border: 1px solid white;
+  background-color: #000;
+  color: white;
+  margin-top: 2em;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 100%;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF REGISTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .header__brand {
@@ -206,6 +268,7 @@ form {
   color: white;
   margin-top: 2em;
   font-size: 14px;
+  text-transform: uppercase;
 }
 
 .form__message {

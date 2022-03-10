@@ -1,8 +1,28 @@
 {% extends "client/base.html.twig" %}
 
 {% block title %}
-	Login - {{parent()}}
+	Login -
+	{{parent()}}
 {% endblock %}
 {% block body %}
-	<h1>LOGIN PAGE</h1>
+	<section class="login">
+		<form method="post" action="">
+			<fieldset>
+				<!-- Titre du fieldset -->
+				<legend>Entrez vos identifiants:
+				</legend>
+				<div class="form__infos">
+					<p>
+						<label for="email">E-mail</label>
+						<input type="email" name="email" id="email"/>
+					</p>
+					<p>
+						<label for="password">Mot de passe</label>
+						<input type="text" name="password" id="password"/>
+					</p>
+				</div>
+			<button class="login__button">Se connecter</button>
+			</fieldset>
+		</form>
+	</section>
 {% endblock %}
