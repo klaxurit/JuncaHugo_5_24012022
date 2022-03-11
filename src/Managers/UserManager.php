@@ -11,6 +11,12 @@ class UserManager extends Manager
     parent::__construct();
   }
 
+    
+  /**
+   * find all users in db
+   *
+   * @return void
+   */
   public function findUsers()
   {
     $sql = "SELECT * FROM user";

@@ -17,7 +17,7 @@ class Entity
   }
   
   /**
-   * hydrate
+   * hydrate each element in data table with $method
    *
    * @return void
    */

@@ -4,6 +4,7 @@ namespace App\Managers;
 
 use PDO;
 use App\Core\Manager;
+use App\Model\Admin;
 
 class AdminManager extends Manager
 {
@@ -16,7 +17,8 @@ class AdminManager extends Manager
     $sql = "SELECT * FROM admin";
     $req = $this->pdo->prepare($sql);
     $req->execute();
-    $datas = $req->fetchAll(PDO::FETCH_COLUMN, 2);
-    return $datas;
+    $datas = $req->fetchAll();
+    $admin = new Admin($datas);
+    return $admin;
   }
 }
