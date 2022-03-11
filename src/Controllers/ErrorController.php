@@ -16,4 +16,9 @@ class ErrorController extends Controller
     {
         $this->twig->display('client/errors/404.html.twig');
     }
+
+    public function showError()
+    {
+        $this->twig->display('client/errors/error.html.twig.', $this->params);
+    }
 }

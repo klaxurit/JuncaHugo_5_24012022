@@ -2,6 +2,9 @@
 
 namespace App\Core;
 
+use App\Exceptions\ConfigNotFound;
+use App\Controllers\ErrorController;
+
 // use PDO;
 
 class PDOFactory
@@ -16,9 +19,19 @@ class PDOFactory
 
   private function getConfig()
   {
-    $dir = CONF_DIR . "/db-config.yml";
-    $config = yaml_parse_file($dir);
-    return $config;
+    try {
+      $dir = CONF_DIR . "/db-config.yml";
+      if (!file_exists($dir)) {
+        throw new ConfigNotFound();
+      }
+      $config = yaml_parse_file($dir);
+      return $config;
+    } catch (ConfigNotFound $e) {
+      $controller = new ErrorController("showError", [
+        "message"->$e
+      ]);
+      $controller->execute();
+    }
   }
 
   public function getSQLConnexion()
