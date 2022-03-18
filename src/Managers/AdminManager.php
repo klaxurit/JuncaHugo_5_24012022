@@ -8,7 +8,8 @@ use App\Model\Admin;
 
 class AdminManager extends Manager
 {
-  public function __construct(){
+  public function __construct()
+  {
     parent::__construct();
   }
 

@@ -7,7 +7,7 @@ use App\Core\Controller;
 class BlogController extends Controller
 {
 
-    
+
     /**
      * Return one post
      *
@@ -18,7 +18,7 @@ class BlogController extends Controller
         $this->twig->display('client/pages/posts/view.html.twig', $this->params);
         // var_dump($this->params);
     }
-    
+
     /**
      * Return index of posts
      *
@@ -28,7 +28,7 @@ class BlogController extends Controller
     {
         $this->twig->display('client/pages/index.html.twig');
     }
-    
+
     /**
      * Create a post
      *
@@ -38,7 +38,7 @@ class BlogController extends Controller
     {
         $this->twig->display('admin/pages/posts/create.html.twig');
     }
-    
+
     /**
      * Update a post
      *
@@ -48,7 +48,7 @@ class BlogController extends Controller
     {
         $this->twig->display('admin/pages/posts/update.html.twig');
     }
-    
+
     /**
      * Delete a post
      *
