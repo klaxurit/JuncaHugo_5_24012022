@@ -39,13 +39,13 @@
 			</div>
 		</section>
 		<section class="home__profil">
-			<h1 class="home__profile-identity">JUNCA "Axurit" Hugo</h1>
+			<h1 class="home__profile-identity">{{ admin.user.firstname }} "{{ admin.user.username }}" {{ admin.user.lastname }}</h1>
 			<span class="iconify" data-icon="healthicons:animal-donkey" data-width="80"></span>
 			<p>
-				<b>"Nullam quis neque at sem molestie porttitor sit amet et urna."</b>
+				<b>{{ admin.description }}</b>
 			</p>
 			<p>
-				<i>juncahugo@gmail.com</i>
+				<i>{{ admin.user.email }}</i>
 			</p>
 			<p>Mon CV:
 				<span class="iconify" data-icon="ant-design:folder-open-twotone"></span>

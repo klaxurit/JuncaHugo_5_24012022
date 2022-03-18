@@ -11,8 +11,10 @@ class Admin extends User
   private string $avatarUrl;
   private string $avatarAlt;
   private string $cvUrl;
+  private int $user_id;
+  private User $user;
 
-  
+
 
   /**
    * Get the value of description
@@ -130,6 +132,54 @@ class Admin extends User
   public function setCvUrl(string $cvUrl)
   {
     $this->cvUrl = $cvUrl;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of user
+   *
+   * @return  User
+   */
+  public function getUser()
+  {
+    return $this->user;
+  }
+
+  /**
+   * Set the value of user
+   *
+   * @param  User  $user
+   *
+   * @return  self
+   */
+  public function setUser(User $user)
+  {
+    $this->user = $user;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of user_id
+   *
+   * @return  int
+   */
+  public function getUserId()
+  {
+    return $this->user_id;
+  }
+
+  /**
+   * Set the value of user_id
+   *
+   * @param  int  $user_id
+   *
+   * @return  self
+   */
+  public function setUserId(int $user_id)
+  {
+    $this->user_id = $user_id;
 
     return $this;
   }

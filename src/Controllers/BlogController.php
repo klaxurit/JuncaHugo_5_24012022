@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Managers\PostManager;
 
 class BlogController extends Controller
 {
@@ -16,7 +17,7 @@ class BlogController extends Controller
     public function showPost()
     {
         $this->twig->display('client/pages/posts/view.html.twig', $this->params);
-        // var_dump($this->params);
+        // var_dump();
     }
 
     /**
@@ -26,7 +27,11 @@ class BlogController extends Controller
      */
     public function listPosts()
     {
-        $this->twig->display('client/pages/index.html.twig');
+        $posts = (new PostManager())->findPost();
+
+        $this->twig->display('client/pages/index.html.twig', [
+            'posts' => $posts
+        ]);
     }
 
     /**
