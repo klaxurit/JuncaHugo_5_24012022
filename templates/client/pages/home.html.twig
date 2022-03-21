@@ -6,7 +6,21 @@
 {% endblock %}
 {% block body %}
 	<div class="home" id="home">
-		<section class="modal-container" id="modal_container">
+		<section class="home__profil">
+			<h1 class="home__profile-identity">{{ admin.user.firstname }} "{{ admin.user.username }}" {{ admin.user.lastname }}</h1>
+			<span class="iconify" data-icon="healthicons:animal-donkey" data-width="80"></span>
+			<p>
+				<b>{{ admin.description }}</b>
+			</p>
+			<p>
+				<i>{{ admin.user.email }}</i>
+			</p>
+			<p>Mon CV:
+				<span class="iconify" data-icon="ant-design:folder-open-twotone"></span>
+			</p>
+			<button id="open" class="home__button-contact">Contactez moi!</button>
+		</section>
+				<section class="modal-container" id="modal_container">
 			<div class="modal">
 				<h1>BLOG CONTACT FORM</h1>
 				<form method="post" action="">
@@ -37,20 +51,6 @@
 				</form>
 				<button id="close" class="form__button">Fermer</button>
 			</div>
-		</section>
-		<section class="home__profil">
-			<h1 class="home__profile-identity">{{ admin.user.firstname }} "{{ admin.user.username }}" {{ admin.user.lastname }}</h1>
-			<span class="iconify" data-icon="healthicons:animal-donkey" data-width="80"></span>
-			<p>
-				<b>{{ admin.description }}</b>
-			</p>
-			<p>
-				<i>{{ admin.user.email }}</i>
-			</p>
-			<p>Mon CV:
-				<span class="iconify" data-icon="ant-design:folder-open-twotone"></span>
-			</p>
-			<button id="open" class="home__button-contact">Contactez moi!</button>
 		</section>
 	</div>
 {% endblock %}

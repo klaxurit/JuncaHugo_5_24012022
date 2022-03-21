@@ -25,7 +25,7 @@ class PostManager extends Manager
     $req = $this->pdo->prepare($sql);
     $req->execute();
     $datas = $req->fetchAll();
-    var_dump($datas);
+    // var_dump($datas);
 
     $posts = [];
 
@@ -34,9 +34,9 @@ class PostManager extends Manager
       array_push($posts, $post);
     }
 
-    echo '<pre>';
-    var_dump($posts);
-    echo "</pre>";
+    // echo '<pre>';
+    // var_dump($posts);
+    // echo "</pre>";
     return $posts;
   }
 }
