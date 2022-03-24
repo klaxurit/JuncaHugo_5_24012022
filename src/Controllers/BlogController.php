@@ -3,11 +3,12 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Managers\PostManager;
 
 class BlogController extends Controller
 {
 
-    
+
     /**
      * Return one post
      *
@@ -16,9 +17,9 @@ class BlogController extends Controller
     public function showPost()
     {
         $this->twig->display('client/pages/posts/view.html.twig', $this->params);
-        // var_dump($this->params);
+        // var_dump();
     }
-    
+
     /**
      * Return index of posts
      *
@@ -26,9 +27,13 @@ class BlogController extends Controller
      */
     public function listPosts()
     {
-        $this->twig->display('client/pages/index.html.twig');
+        $posts = (new PostManager())->findPost();
+
+        $this->twig->display('client/pages/index.html.twig', [
+            'posts' => $posts
+        ]);
     }
-    
+
     /**
      * Create a post
      *
@@ -38,7 +43,7 @@ class BlogController extends Controller
     {
         $this->twig->display('admin/pages/posts/create.html.twig');
     }
-    
+
     /**
      * Update a post
      *
@@ -48,7 +53,7 @@ class BlogController extends Controller
     {
         $this->twig->display('admin/pages/posts/update.html.twig');
     }
-    
+
     /**
      * Delete a post
      *

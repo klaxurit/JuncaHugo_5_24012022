@@ -1,8 +1,48 @@
 {% extends "client/base.html.twig" %}
 
 {% block title %}
-	Inscription - {{parent()}}
+	Inscription -
+	{{parent()}}
 {% endblock %}
 {% block body %}
-	<h1>REGISTER PAGE</h1>
+	<section class="register">
+		<form method="post" action="">
+			<fieldset>
+				<!-- Titre du fieldset -->
+				<legend>Entrez vos identifiants:
+				</legend>
+				<div class="form__infos">
+					<div class="register__nom-prenom">
+						<p class="register__field-nom">
+							<label for="nom">Nom</label>
+							<input type="nom" name="nom" id="nom"/>
+						</p>
+						<p class="register__field-prenom">
+							<label for="prenom">Prénom</label>
+							<input type="prenom" name="prenom" id="prenom"/>
+						</p>
+					</div>
+					<div class="register__surnom-email">
+						<p class="register__field-surnom">
+							<label for="surnom">Surnom</label>
+							<input type="surnom" name="surnom" id="surnom"/>
+						</p>
+						<p class="register__field-email">
+							<label for="email">E-mail</label>
+							<input type="email" name="email" id="email"/>
+						</p>
+					</div>
+					<p class="register__field-password">
+						<label for="password">Mot de passe</label>
+						<input type="text" name="password" id="password"/>
+					</p>
+					<p>
+						<label for="password">Confirmez le mot de passe</label>
+						<input type="text" name="password" id="password"/>
+					</p>
+				</div>
+				<button class="register__button">S'enregistrer</button>
+			</fieldset>
+		</form>
+	</section>
 {% endblock %}

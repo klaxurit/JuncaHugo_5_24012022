@@ -2,5 +2,5 @@
 .php_cs.cache
 .vscode/
 /vendor/
-/config/db-config.yaml
-/config/mail.yaml
+/config/db-config.yml
+/config/mail.yml
