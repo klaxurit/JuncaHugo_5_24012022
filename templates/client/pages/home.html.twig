@@ -9,19 +9,19 @@
 		<section class="home__profil">
 			<h1 class="home__profile-identity">{{ admin.user.firstname }} "{{ admin.user.username }}" {{ admin.user.lastname }}</h1>
 			<span class="iconify" data-icon="healthicons:animal-donkey" data-width="80"></span>
-			<p>
-				<b>{{ admin.description }}</b>
+			<p class="home__profile-description">
+				<span class="iconify" data-icon="fa6-solid:quote-left"></span> {{ admin.description }} <span class="iconify" data-icon="fa6-solid:quote-right"></span>
 			</p>
-			<p>
-				<i>{{ admin.user.email }}</i>
+			<p class="home__profile-email">
+				{{ admin.user.email }}
 			</p>
-			<p>Mon CV:
-				<span class="iconify" data-icon="ant-design:folder-open-twotone"></span>
+			<p class="home__profile-cv">Mon CV:
+				<a href="../../../public/img/cv.pdf" download="AxuritCV.pdf"><span class="iconify" data-icon="ant-design:folder-open-twotone"></span></a>
 			</p>
 			<button id="open" class="home__button-contact">Contactez moi!</button>
 		</section>
-				<section class="modal-container" id="modal_container">
-			<div class="modal">
+		<section class="modal-container" id="modal_container">
+			<div class="modal" id="modal">
 				<h1>BLOG CONTACT FORM</h1>
 				<form method="post" action="">
 					<fieldset>

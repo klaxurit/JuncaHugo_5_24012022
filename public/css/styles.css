@@ -22,8 +22,8 @@ body.dark {
 }
 
 body.is_blurred {
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -44,6 +44,20 @@ body.is_blurred {
   margin-bottom: 0px;
 }
 
+.home__profile-description {
+  font-weight: 500;
+  line-height: 1.5em;
+  width: 50%;
+  hyphens: auto;
+  letter-spacing: 0.4px;
+  border-right: 0.4em solid;
+  padding-right: 1em;
+}
+
+.home__profile-cv {
+  font-weight: 500;
+}
+
 .home__button-contact {
   padding: 0.8em;
   border: 1px solid white;
@@ -53,6 +67,20 @@ body.is_blurred {
   margin-bottom: 2em;
   font-size: 14px;
   text-transform: uppercase;
+}
+
+.home__profile-email {
+  font-style: italic;
+  letter-spacing: 0.4px;
+
+}
+
+p.home__profile-description > svg:nth-child(1) {
+  margin: 0;
+}
+
+p.home__profile-description > svg:nth-child(2) {
+  margin: 0;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -235,8 +263,6 @@ footer {
   font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
-  position: relative;
-  bottom: 0;
   width: 1400px;
   margin: auto;
   border-top: 2px solid;
@@ -472,7 +498,7 @@ form {
 .article__preview {
   margin-left: 0.5em;
   margin-right: 0.5em;
-  margin-top: 2em;
+  margin-top: 1em;
   /* margin-bottom: 2em; */
   width: 30%;
 }
@@ -504,6 +530,7 @@ form {
 
 .article__preview-button {
   text-transform: uppercase;
+  font-weight: 700;
   background: none;
   color: inherit;
   border-left: none;
@@ -524,30 +551,27 @@ form {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .modal-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
-  opacity: 0;
-  pointer-events: none;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
+
+.form__button {
+  display: flex;
+  margin: auto;
+  margin-top: 1em;
+}
+
 
 .modal-container.show {
-  overflow: hidden;
-  z-index: 9999;
-  pointer-events: auto;
-  opacity: 1;
-}
-
-.modal {
-  padding: 30px 50px;
-  width: 600px;
-  max-width: 100%;
-  text-align: center;
+  display: flex;
 }
 
 @media only screen and (max-width: 767px) {
