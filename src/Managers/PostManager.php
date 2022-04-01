@@ -21,13 +21,18 @@ class PostManager extends Manager
    */
   public function findPost()
   {
-    $sql = "SELECT * FROM post";
+
+    $sql = "SELECT * FROM post INNER JOIN user ON post.user_id = user.id";
     $req = $this->pdo->prepare($sql);
     $req->execute();
     $datas = $req->fetchAll();
-    // var_dump($datas);
+    echo '<pre>';
+    var_dump($datas);
+    echo "</pre>";
 
     $posts = [];
+
+
 
     foreach ($datas as $data) {
       $post = new Post($data);

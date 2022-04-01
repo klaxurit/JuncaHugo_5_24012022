@@ -10,7 +10,7 @@
 		<section class="article__preview">
 			<p class="article__preview-title">{{ post.title }}</p>
 			<hr class="article__preview-separator">
-			<p class="article__preview-date">mise à jour le jeudi 10 février 2022</p>
+			<p class="article__preview-date">mise à jour le {{ post.updatedAt | date("d/m/Y") }}</p>
 			<p class="article__preview-author">Axurit - Title - Tag</p>
 			<hr class="article__preview-separator">
 			<p class="article__preview-chapo">{{ post.content }}</p>
