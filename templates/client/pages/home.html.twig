@@ -16,7 +16,7 @@
 				{{ admin.user.email }}
 			</p>
 			<p class="home__profile-cv">Mon CV:
-				<a href="../../../public/img/cv.pdf" download="AxuritCV.pdf"><span class="iconify" data-icon="ant-design:folder-open-twotone"></span></a>
+				<a href="{{ uri ~ "uploads/" ~ admin.cvUrl }}" download><span class="iconify" data-icon="ant-design:folder-open-twotone"></span></a>
 			</p>
 			<button id="open" class="home__button-contact">Contactez moi!</button>
 		</section>

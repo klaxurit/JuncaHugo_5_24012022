@@ -14,6 +14,7 @@ class Post extends Entity
   private $cover_image;
   private $alt_cover_image;
   private $slug;
+  private User $author;
 
 
 
@@ -153,6 +154,24 @@ class Post extends Entity
   public function setSlug($slug)
   {
     $this->slug = $slug;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of author
+   */
+  public function getAuthor(): User
+  {
+    return $this->author;
+  }
+
+  /**
+   * Set the value of author
+   */
+  public function setAuthor(User $author): self
+  {
+    $this->author = $author;
 
     return $this;
   }

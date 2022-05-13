@@ -4,6 +4,7 @@ namespace App\Managers;
 
 use PDO;
 use App\Model\Post;
+use App\Model\User;
 use App\Core\Manager;
 
 class PostManager extends Manager
@@ -22,26 +23,34 @@ class PostManager extends Manager
   public function findPost()
   {
 
-    $sql = "SELECT * FROM post INNER JOIN user ON post.user_id = user.id";
+    $sql = "SELECT *, 
+    p.created_at as post_created_at, u.created_at as user_created_at, 
+    p.updated_at as post_updated_at, u.updated_at as user_updated_at
+    FROM post as p
+    LEFT OUTER JOIN user as u
+    ON p.user_id = u.id
+    ";
     $req = $this->pdo->prepare($sql);
     $req->execute();
     $datas = $req->fetchAll();
-    echo '<pre>';
-    var_dump($datas);
-    echo "</pre>";
 
     $posts = [];
 
 
 
     foreach ($datas as $data) {
+      $data['createdAt'] = $data['post_created_at'];
+      $data['updatedAt'] = $data['post_updated_at'];
       $post = new Post($data);
+
+      $data['createdAt'] = $data['user_created_at'];
+      $data['updatedAt'] = $data['user_updated_at'];
+      $author = new User($data);
+
+      $post->setAuthor($author);
       array_push($posts, $post);
     }
 
-    // echo '<pre>';
-    // var_dump($posts);
-    // echo "</pre>";
     return $posts;
   }
 }

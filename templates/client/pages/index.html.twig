@@ -11,7 +11,7 @@
 			<p class="article__preview-title">{{ post.title }}</p>
 			<hr class="article__preview-separator">
 			<p class="article__preview-date">mise à jour le {{ post.updatedAt | date("d/m/Y") }}</p>
-			<p class="article__preview-author">Axurit - Title - Tag</p>
+			<p class="article__preview-author">{{ post.author.username }}</p>
 			<hr class="article__preview-separator">
 			<p class="article__preview-chapo">{{ post.content }}</p>
 			<hr class="article__preview-separator">
