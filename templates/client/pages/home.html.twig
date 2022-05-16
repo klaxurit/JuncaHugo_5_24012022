@@ -8,7 +8,7 @@
 	<div class="home" id="home">
 		<section class="home__profil">
 			<h1 class="home__profile-identity">{{ admin.user.firstname }} "{{ admin.user.username }}" {{ admin.user.lastname }}</h1>
-			<span class="iconify" data-icon="healthicons:animal-donkey" data-width="80"></span>
+			<img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ admin.avatarUrl }}" alt="">
 			<p class="home__profile-description">
 				<span class="iconify" data-icon="fa6-solid:quote-left"></span> {{ admin.description }} <span class="iconify" data-icon="fa6-solid:quote-right"></span>
 			</p>

@@ -35,6 +35,12 @@ body.dark {
   justify-content: center;
 }
 
+.home__profile-logo {
+  margin: 1em;
+  max-width: 100px;
+  padding: 0;
+}
+
 .home__profile-identity {
   margin-bottom: 0px;
 }
@@ -518,6 +524,16 @@ form {
   font-weight: 600;
 }
 
+.article__illustration { 
+  height: 250px; 
+  overflow: hidden; 
+}
+
+.article__illustration, img {
+  margin: auto;
+  width: 600px;
+}
+
 .article__preview-chapo {
   font-size: 12px;
   letter-spacing: -.02em;
@@ -542,6 +558,8 @@ form {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {

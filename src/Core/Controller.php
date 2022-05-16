@@ -18,7 +18,10 @@ class Controller
         $this->action = $action;
         $this->params = $params;
         $this->loader = new FilesystemLoader(ROOT_DIR . '/templates');
-        $this->twig = new Environment($this->loader);
+        $this->twig = new Environment($this->loader, [
+            'debug' => true,
+        ]);
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
         $this->setGlobals();
     }
 

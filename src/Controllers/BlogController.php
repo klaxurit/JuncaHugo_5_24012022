@@ -16,8 +16,10 @@ class BlogController extends Controller
      */
     public function showPost()
     {
-        $this->twig->display('client/pages/posts/view.html.twig', $this->params);
-        // var_dump();
+        $post = (new PostManager())->getPostBySlug($this->params['slug']);
+        $this->twig->display('client/pages/posts/view.html.twig', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -28,7 +30,6 @@ class BlogController extends Controller
     public function listPosts()
     {
         $posts = (new PostManager())->findPost();
-
         $this->twig->display('client/pages/index.html.twig', [
             'posts' => $posts
         ]);

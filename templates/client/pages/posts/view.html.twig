@@ -6,24 +6,20 @@
 {% block body %}
 	<article>
 		<section class="article__head">
-			<h1 class="article__head-title">POST TITLE</h1>
+		{# {{ dump(post) }} #}
+			<h1 class="article__head-title">{{ post.title }}</h1>
 			<hr class="article__head-separator">
 			<p class="article__head-date">mise à jour le jeudi 10 février 2022</p>
-			<p class="article__head-author">Axurit - Title - Tag</p>
+			<p class="article__head-author">{{ post.author.username }} - {{ post.title }}</p>
 			<hr class="article__head-separator">
 		</section>
-		<section class="article__illustration"></section>
+		<section class="article__illustration">
+			<img src="{{ uri ~ "uploads/" ~ post.coverImage }}" alt="">
+		</section>
 		<section class="article__content">
-			<p class="article__content-chapo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sollicitudin dui et lorem tristique, id pretium odio vulputate. Pellentesque mi nibh, pulvinar vitae urna vel, ultrices gravida augue.</p>
+			<p class="article__content-chapo">{{ post.caption }}</p>
 			<p class="article__blockquote">
-				<i>Mauris at nibh eget nisi condimentum tempus vel non massa. Proin massa dui, ornare vitae dignissim sed, varius vel dolor. Morbi hendrerit quis velit vel dignissim.</i>
-			</p>
-			<p>Praesent sollicitudin dui et lorem tristique, id pretium odio vulputate. Pellentesque mi nibh, pulvinar vitae urna vel, ultrices gravida augue.</p>
-			<p class="article__blockquote">
-				<i>Proin luctus congue bibendum?</i>
-			</p>
-			<p>
-				<b>Aenean justo velit, condimentum et dictum ut, sagittis sit amet enim. Maecenas quis rutrum purus. Donec at dictum nisl, quis luctus mauris. Sed sagittis nibh et molestie consequat.</b>
+				<i>{{ post.content }}</i>
 			</p>
 			<p class="article__content-axurit-separator">
 				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-width="20"></span>
@@ -47,16 +43,6 @@
 				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="180deg" data-width="20"></span>
 				<span class="iconify" data-icon="healthicons:animal-donkey-outline" data-rotate="270deg" data-width="20"></span>
 			</p>
-			<p>Nunc viverra tellus non elit rutrum tincidunt.</p>
-			<p>
-				<b>Nullam quis neque at sem molestie porttitor sit amet et urna.</b>
-			</p>
-			<p>Praesent sollicitudin dui et lorem tristique, id pretium odio vulputate. Pellentesque mi nibh, pulvinar vitae urna vel, ultrices gravida augue.</p>
-			<p>
-				<i>Aenean tristique velit vel nisi vestibulum congue.</i>
-			</p>
-			<p>Aliquam ullamcorper fermentum ipsum sed
-				<u>volutpat</u>.</p>
 			<hr class="article__foot-separator">
 		</section>
 
@@ -92,7 +78,7 @@
 		</section>
 
 		<section class="article__footer">
-			<h2>vous pourriez aussi aimer...</h2>
+			<h2>Merci d'avoir lu !</h2>
 		</section>
 	</article>
 
