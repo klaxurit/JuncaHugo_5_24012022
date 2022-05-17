@@ -6,12 +6,14 @@ use PDO;
 use App\Model\Post;
 use App\Model\User;
 use App\Core\Manager;
+use App\Service\PaginationService;
 
 class PostManager extends Manager
 {
   public function __construct()
   {
     parent::__construct();
+    $this->paginate = new PaginationService();
   }
 
 
