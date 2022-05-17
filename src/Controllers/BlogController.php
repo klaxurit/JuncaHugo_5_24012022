@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Managers\PostManager;
+use App\Service\PaginationService;
 
 class BlogController extends Controller
 {
@@ -29,9 +30,11 @@ class BlogController extends Controller
      */
     public function listPosts()
     {
+        $paginate = (new PaginationService())->paginate();
         $posts = (new PostManager())->findPost();
         $this->twig->display('client/pages/index.html.twig', [
-            'posts' => $posts
+            'posts' => $posts,
+            'paginate' => $paginate
         ]);
     }
 

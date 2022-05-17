@@ -29,6 +29,7 @@ class PostManager extends Manager
     FROM post as p
     LEFT OUTER JOIN user as u
     ON p.user_id = u.id
+    LIMIT 0,4
     ";
     $req = $this->pdo->prepare($sql);
     $req->execute();
