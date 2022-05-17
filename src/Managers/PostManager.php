@@ -22,7 +22,7 @@ class PostManager extends Manager
    *
    * @return void
    */
-  public function findPost()
+  public function findAllPosts()
   {
 
     $sql = "SELECT *, 
@@ -65,21 +65,16 @@ class PostManager extends Manager
   public function getPostBySlug(string $slug)
   {
     // using slug to find the post
-    $sql = "SELECT * FROM post WHERE slug = :slug";
-    $req = $this->pdo->prepare($sql);
-    $req->bindParam(':slug', $slug);
-    $req->execute();
-    $datas = $req->fetch();
-
     $sql = "SELECT *, 
     p.created_at as post_created_at, u.created_at as user_created_at, 
     p.updated_at as post_updated_at, u.updated_at as user_updated_at
     FROM post as p
     LEFT OUTER JOIN user as u
-    ON p.user_id = u.id
+    ON p.user_id = u.id WHERE p.slug = :slug
     ";
 
     $req = $this->pdo->prepare($sql);
+    $req->bindParam(':slug', $slug);
     $req->execute();
     $datas = $req->fetch();
 
