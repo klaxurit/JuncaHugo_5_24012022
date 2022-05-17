@@ -61,7 +61,7 @@ class PostManager extends Manager
    */
   public function getPostBySlug(string $slug)
   {
-    // using slug to fidn the post
+    // using slug to find the post
     $sql = "SELECT * FROM post WHERE slug = :slug";
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':slug', $slug);

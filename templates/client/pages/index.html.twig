@@ -15,7 +15,7 @@
 			<hr class="article__preview-separator">
 			<p class="article__preview-chapo">{{ post.content }}</p>
 			<hr class="article__preview-separator">
-			<a type="button" href="/blog/posts" class="article__preview-button">plus</a>
+			<a type="button" href="{{ uri ~ "blog/" ~ post.slug }}" class="article__preview-button">plus</a>
 		</section>
 	{% endfor %}
 	</div>
