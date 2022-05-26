@@ -71,9 +71,9 @@ class Entity
    *
    * @return  self
    */
-  public function setCreatedAt(DateTime $createdAt)
+  public function setCreatedAt(string $createdAt)
   {
-    $this->createdAt = $createdAt;
+    $this->createdAt = new DateTime($createdAt);
 
     return $this;
   }
@@ -95,9 +95,9 @@ class Entity
    *
    * @return  self
    */
-  public function setUpdatedAt(DateTime $updatedAt)
+  public function setUpdatedAt(string $updatedAt)
   {
-    $this->updatedAt = $updatedAt;
+    $this->updatedAt = new DateTime($updatedAt);
 
     return $this;
   }

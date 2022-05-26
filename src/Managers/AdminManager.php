@@ -30,9 +30,6 @@ class AdminManager extends Manager
     $user = new User($dataUser);
     $admin->setUser($user);
 
-    // echo '<pre>';
-    // var_dump($admin);
-    // echo "</pre>";
     return $admin;
   }
 }

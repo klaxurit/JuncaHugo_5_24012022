@@ -2,11 +2,14 @@
 
 namespace App\Controllers;
 
+use PDO;
+use App\Model\User;
 use App\Core\Controller;
+use App\Managers\UserManager;
 
 class SecurityController extends Controller
 {
-  
+
   /**
    * Return the login page
    *
@@ -14,9 +17,15 @@ class SecurityController extends Controller
    */
   public function login()
   {
-      $this->twig->display('client/pages/login.html.twig');
+    $user = (new UserManager())->loginUser();
+    $this->twig->display(
+      'client/pages/login.html.twig',
+      [
+        'user' => $user
+      ]
+    );
   }
-  
+
   /**
    * return the register page
    *
@@ -24,6 +33,17 @@ class SecurityController extends Controller
    */
   public function register()
   {
-      $this->twig->display('client/pages/register.html.twig');
+    $user = (new UserManager())->createUser();
+    $this->twig->display(
+      'client/pages/register.html.twig',
+      [
+        'user' => $user
+      ]
+    );
+  }
+
+  public function logout()
+  {
+    $user = (new UserManager())->logoutUser();
   }
 }

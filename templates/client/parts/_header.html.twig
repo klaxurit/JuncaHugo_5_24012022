@@ -1,17 +1,22 @@
 <header class="header__nav">
-	<span class="header__brand" href="/">
+	<a class="header__brand" href="/">
 		<span class="iconify" data-icon="healthicons:animal-donkey" data-width="30"></span>
 		<p>Axurit</p>
-	</span>
+	</a>
 	<nav>
 		<a class="header__nav-item" href="/">Home</a>
 		<span class="header__nav-item__divider">|</span>
 		<a class="header__nav-item" href="/blog">Posts</a>
 		<span class="header__nav-item__divider">|</span>
+		{% if session is empty %}
 		<a class="header__nav-item" href="/login">Login</a>
 		<span class="header__nav-item__divider">|</span>
 		<a class="header__nav-item" href="/register">Register</a>
 		<span class="header__nav-item__divider">|</span>
+		{% else %}
+		<a class="header__nav-item" href="/logout">Logout</a>
+		<span class="header__nav-item__divider">|</span>
+		{% endif %}
 		<a class="switchLight header__nav-item" href="#">Light</a>
 		<span class="header__nav-item__divider">|</span>
 		<a class="switchDark header__nav-item" href="#">Dark</a>
