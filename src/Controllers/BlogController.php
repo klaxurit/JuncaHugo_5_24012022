@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function showPost()
     {
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
-        $this->twig->display('client/pages/posts/view.html.twig', [
+        $this->twig->display('client/pages/blog/view.html.twig', [
             'post' => $post
         ]);
     }
@@ -32,7 +32,7 @@ class BlogController extends Controller
     {
         $paginate = (new PaginationService())->paginate();
         $posts = (new PostManager())->findAllPosts();
-        $this->twig->display('client/pages/index.html.twig', [
+        $this->twig->display('client/pages/blog/index.html.twig', [
             'posts' => $posts,
             'paginate' => $paginate
         ]);
@@ -45,7 +45,7 @@ class BlogController extends Controller
      */
     public function createPost()
     {
-        $this->twig->display('admin/pages/posts/create.html.twig');
+        $this->twig->display('admin/pages/blog/create.html.twig');
     }
 
     /**
@@ -55,7 +55,7 @@ class BlogController extends Controller
      */
     public function updatePost()
     {
-        $this->twig->display('admin/pages/posts/update.html.twig');
+        $this->twig->display('admin/pages/blog/update.html.twig');
     }
 
     /**
@@ -65,6 +65,6 @@ class BlogController extends Controller
      */
     public function deletePost()
     {
-        $this->twig->display('admin/pages/posts/delete.html.twig');
+        $this->twig->display('admin/pages/blog/delete.html.twig');
     }
 }

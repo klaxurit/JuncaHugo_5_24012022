@@ -24,18 +24,48 @@ class PostManager extends Manager
    */
   public function findAllPosts()
   {
+    // determinate what is the current page
+    if (isset($_GET['page']) && !empty($_GET['page'])) {
+      $currentPage = (int) strip_tags($_GET['page']);
+    } else {
+      $currentPage = 1;
+    }
 
+    // count the total of posts
+    $sql2 = "SELECT COUNT(*) AS total_posts from `post`;";
+    $req = $this->pdo->prepare($sql2);
+    $req->execute();
+    $result = $req->fetch();
+    $totalPosts = (int) $result['total_posts'];
+
+    // determinate the number of post per page
+    $perPage = 4;
+
+    // calcul the total of pages
+    $pages = ceil($totalPosts / $perPage);
+
+    // calcul the first post of the page
+    $firstPost = ($currentPage * $perPage) - $perPage;
+
+
+    var_dump($pages, "Number of pages", $perPage, "Number of posts per pages");
+
+    // find all posts
     $sql = "SELECT *, 
     p.created_at as post_created_at, u.created_at as user_created_at, 
     p.updated_at as post_updated_at, u.updated_at as user_updated_at
     FROM post as p
     LEFT OUTER JOIN user as u
     ON p.user_id = u.id
-    LIMIT 0,4
+    LIMIT :first_post, :per_page;
     ";
     $req = $this->pdo->prepare($sql);
+    $req->bindParam(':first_post', $firstPost, PDO::PARAM_INT);
+    $req->bindParam(':per_page', $perPage, PDO::PARAM_INT);
     $req->execute();
     $datas = $req->fetchAll();
+
+    var_dump($firstPost, "First post", $perPage, "Number of posts per pages");
 
     $posts = [];
 
