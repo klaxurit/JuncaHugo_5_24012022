@@ -30,12 +30,7 @@ class BlogController extends Controller
      */
     public function listPosts()
     {
-        $paginate = (new PaginationService())->paginate();
-        $posts = (new PostManager())->findAllPosts();
-        $this->twig->display('client/pages/blog/index.html.twig', [
-            'posts' => $posts,
-            'paginate' => $paginate
-        ]);
+        $this->twig->display('client/pages/blog/index.html.twig', (new PostManager())->findAllPosts());
     }
 
     /**

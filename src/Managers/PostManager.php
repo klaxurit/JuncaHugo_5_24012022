@@ -31,6 +31,7 @@ class PostManager extends Manager
       $currentPage = 1;
     }
 
+
     // count the total of posts
     $sql2 = "SELECT COUNT(*) AS total_posts from `post`;";
     $req = $this->pdo->prepare($sql2);
@@ -42,13 +43,13 @@ class PostManager extends Manager
     $perPage = 4;
 
     // calcul the total of pages
-    $pages = ceil($totalPosts / $perPage);
+    $totalPages = ceil($totalPosts / $perPage);
 
     // calcul the first post of the page
     $firstPost = ($currentPage * $perPage) - $perPage;
 
 
-    var_dump($pages, "Number of pages", $perPage, "Number of posts per pages");
+    // var_dump($pages, "Number of pages", $perPage, "Number of posts per pages");
 
     // find all posts
     $sql = "SELECT *, 
@@ -57,7 +58,8 @@ class PostManager extends Manager
     FROM post as p
     LEFT OUTER JOIN user as u
     ON p.user_id = u.id
-    LIMIT :first_post, :per_page;
+    LIMIT :per_page
+    OFFSET :first_post;
     ";
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':first_post', $firstPost, PDO::PARAM_INT);
@@ -65,7 +67,7 @@ class PostManager extends Manager
     $req->execute();
     $datas = $req->fetchAll();
 
-    var_dump($firstPost, "First post", $perPage, "Number of posts per pages");
+    // var_dump($firstPost, "First post", $perPage, "Number of posts per pages");
 
     $posts = [];
 
@@ -82,7 +84,11 @@ class PostManager extends Manager
       array_push($posts, $post);
     }
 
-    return $posts;
+    return [
+      'posts' => $posts,
+      'currentPage' => $currentPage,
+      'totalPages' => $totalPages
+    ];
   }
 
 

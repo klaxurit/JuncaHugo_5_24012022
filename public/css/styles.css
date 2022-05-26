@@ -212,6 +212,10 @@ p.home__profile-description > svg:nth-child(2) {
   width: 1400px;
 }
 
+.disabled-link {
+  pointer-events: none;
+}
+
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
