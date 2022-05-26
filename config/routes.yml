@@ -8,6 +8,11 @@ login:
   controller: SecurityController
   action: login
   parameters: []
+logout:
+  uri: /logout
+  controller: SecurityController
+  action: logout
+  parameters: []
 contact:
   uri: /contact
   controller: IndexController

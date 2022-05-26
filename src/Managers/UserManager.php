@@ -79,9 +79,6 @@ class UserManager extends Manager
         // get new user's id
         $id = $this->pdo->lastInsertId();
 
-        // start the PHP SESSION
-        session_start();
-
         // stock user's info in $_SESSION
         $_SESSION["user"] = [
           "id" => $id,
@@ -128,10 +125,7 @@ class UserManager extends Manager
         if (!password_verify($_POST["password"], $user["password"])) {
           die("L'utilisateur et/ou le mot de passe est incorrect");
         }
-
         // user is connected
-        // start the PHP SESSION
-        session_start();
 
         // stock user's info in $_SESSION
         $_SESSION["user"] = [
@@ -144,5 +138,13 @@ class UserManager extends Manager
         header("Location: /");
       }
     }
+  }
+
+  public function logoutUser()
+  {
+    // unset the user session
+    unset($_SESSION["user"]);
+    // redirect to home
+    header("Location: /");
   }
 }

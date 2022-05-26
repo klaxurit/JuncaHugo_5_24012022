@@ -41,4 +41,9 @@ class SecurityController extends Controller
       ]
     );
   }
+
+  public function logout()
+  {
+    $user = (new UserManager())->logoutUser();
+  }
 }
