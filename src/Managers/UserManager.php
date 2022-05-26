@@ -75,8 +75,73 @@ class UserManager extends Manager
         $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
 
         $req->execute();
+
+        // get new user's id
+        $id = $this->pdo->lastInsertId();
+
+        // start the PHP SESSION
+        session_start();
+
+        // stock user's info in $_SESSION
+        $_SESSION["user"] = [
+          "id" => $id,
+          "surnom" => $surnom,
+          "email" => $_POST["email"]
+        ];
+
+        // redirect user to home
+        header("Location: /");
       } else {
         die("Le formulaire est incomplet");
+      }
+    }
+  }
+
+  public function loginUser()
+  {
+    // check if form has been sent
+    if (!empty($_POST)) {
+      // form has been sent
+      // check if all reaquired field are completed
+      if (
+        isset($_POST["email"], $_POST["password"])
+        && !empty($_POST["email"] && !empty($_POST["password"]))
+      ) {
+        // email must be an email
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+          die("Ce n'est pas un email");
+        }
+
+        $sql = "SELECT * FROM `user` WHERE `email` = :email";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
+
+        $req->execute();
+        $user = $req->fetch();
+
+        // check if user data exist
+        if (!$user) {
+          die("L'utilisateur et/ou le mot de passe est incorrect");
+        }
+
+        // check if password is OK
+        if (!password_verify($_POST["password"], $user["password"])) {
+          die("L'utilisateur et/ou le mot de passe est incorrect");
+        }
+
+        // user is connected
+        // start the PHP SESSION
+        session_start();
+
+        // stock user's info in $_SESSION
+        $_SESSION["user"] = [
+          "id" => $user["id"],
+          "surnom" => $user["username"],
+          "email" => $user["email"]
+        ];
+
+        // redirect user to home
+        header("Location: /");
       }
     }
   }

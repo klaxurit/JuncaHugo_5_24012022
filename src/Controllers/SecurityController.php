@@ -17,8 +17,13 @@ class SecurityController extends Controller
    */
   public function login()
   {
-
-    $this->twig->display('client/pages/login.html.twig');
+    $user = (new UserManager())->loginUser();
+    $this->twig->display(
+      'client/pages/login.html.twig',
+      [
+        'user' => $user
+      ]
+    );
   }
 
   /**
