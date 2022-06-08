@@ -35,10 +35,27 @@ class UserManager extends Manager
    */
   public function createUser()
   {
+    // // manage form errors
+    // $errors = [];
     // check if form has been sent
     if (!empty($_POST)) {
+      // if (empty($_POST["nom"])) {
+      //   $errors["nom"] = "Le champ \"Nom\" est requis.";
+      // }
+      // if (empty($_POST["prenom"])) {
+      //   $errors["prenom"] = "Le champ \"Prenom\" est requis.";
+      // }
+      // if (empty($_POST["surnom"])) {
+      //   $errors["surnom"] = "Le champ \"Surnom\" est requis.";
+      // }
+      // if (empty($_POST["email"])) {
+      //   $errors["email"] = "Le champ \"Email\" est requis.";
+      // }
+      // if (empty($_POST["password"])) {
+      //   $errors["password"] = "Le champ \"Password\" est requis.";
+      // }
       // form has been sent
-      // check if all reaquired field are completed
+      // check if all required field are completed
       if (
         isset($_POST["nom"], $_POST["prenom"], $_POST["surnom"], $_POST["email"], $_POST["password"])
         && !empty($_POST["nom"])
@@ -67,29 +84,32 @@ class UserManager extends Manager
           die("Les mots de passe entrés sont différents");
         }
 
-        $sql = "INSERT INTO `user`(`firstname`, `lastname`, `username`, `email`, `password`) VALUES (:nom, :prenom, :surnom, :email, '$password')";
-        $req = $this->pdo->prepare($sql);
-        $req->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $req->bindParam(':prenom', $prenom, PDO::PARAM_STR);
-        $req->bindParam(':surnom', $surnom, PDO::PARAM_STR);
-        $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
+        if (empty($errors)) {
 
-        $req->execute();
+          $sql = "INSERT INTO `user`(`firstname`, `lastname`, `username`, `email`, `password`) VALUES (:nom, :prenom, :surnom, :email, '$password')";
+          $req = $this->pdo->prepare($sql);
+          $req->bindParam(':nom', $nom, PDO::PARAM_STR);
+          $req->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+          $req->bindParam(':surnom', $surnom, PDO::PARAM_STR);
+          $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
 
-        // get new user's id
-        $id = $this->pdo->lastInsertId();
+          $req->execute();
 
-        // stock user's info in $_SESSION
-        $_SESSION["user"] = [
-          "id" => $id,
-          "surnom" => $surnom,
-          "email" => $_POST["email"]
-        ];
+          // get new user's id
+          $id = $this->pdo->lastInsertId();
 
-        // redirect user to home
-        header("Location: /");
-      } else {
-        die("Le formulaire est incomplet");
+          // stock user's info in $_SESSION
+          $_SESSION["user"] = [
+            "id" => $id,
+            "surnom" => $surnom,
+            "email" => $_POST["email"]
+          ];
+
+          // redirect user to home
+          header("Location: /");
+        } else {
+          die("Le formulaire est incomplet");
+        }
       }
     }
   }
