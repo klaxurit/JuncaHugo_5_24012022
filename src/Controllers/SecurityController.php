@@ -56,13 +56,67 @@ class SecurityController extends Controller
       }
     }
 
+    // check if form has been sent
+    if (!empty($_POST)) {
+      if (
+        isset($_POST["nom"], $_POST["prenom"], $_POST["surnom"], $_POST["email"], $_POST["password"])
+        && !empty($_POST["nom"])
+        && !empty($_POST["prenom"])
+        && !empty($_POST["surnom"])
+        && !empty($_POST["email"])
+        && !empty($_POST["password"])
+      ) {
+        // form is complete
+        // get & protect datas
+        $nom = strip_tags($_POST["nom"]);
+        $prenom = strip_tags($_POST["prenom"]);
+        $surnom = strip_tags($_POST["surnom"]);
+
+        // email must be an email
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+          die("L'addresse email est incorrect.");
+        }
+
+        // // hash password using password ARGON2ID 
+        // // (ARGON2ID algorithm most powerfull than BCRYPT and ARGON2I)
+        // $password = password_hash($_POST["password"], PASSWORD_ARGON2ID);
+
+        // check if entered password are the same
+        if ($_POST["password_confirmation"] != $_POST["password"]) {
+          die("Les mots de passe entrés sont différents");
+        }
+
+        if (empty($errors)) {
+
+          $user = (new UserManager())->createUser();
+
+          if ($user) {
+            $_SESSION["user"] = [
+              "id" => $user,
+              "surnom" => $surnom,
+              "email" => $_POST["email"]
+            ];
+          }
+
+          // get new user's id
+          // $id = $this->pdo->lastInsertId();
+
+          // stock user's info in $_SESSION
 
 
-    $user = (new UserManager())->createUser();
+          // redirect user to home
+          header("Location: /");
+        } else {
+          die("Le formulaire est incomplet");
+        }
+      }
+    }
+
+    // $user = (new UserManager())->createUser();
     $this->twig->display(
       'client/pages/register.html.twig',
       [
-        'user' => $user,
+        // 'user' => $_SESSION["user"],
         'errors' => $errors
       ]
     );
