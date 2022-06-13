@@ -1,11 +1,17 @@
 <nav class="pagination" aria-label="pagination">
     <ul class="nav__pagination">
-        <li><a href=""><span aria-hidden="true">«</span><span class="visuallyhidden">previous set of pages</span></a></li>
-        {% set page = 1 %}
-        {% if  page <= pages %}
-        {% set page = page + 1 %}
-            <li><a href="{{ uri ~ "?page=" ~ page }}"><span class="visuallyhidden">page </span>{{ page }}</a></li>
-        {% endif %}
-        <li><a href=""><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">»</span></a></li>
+    {% if currentPage == 1 %}
+    <li><a href="{{ uri ~ "blog?page=" ~ (currentPage - 1) }}" class="disabled-link"><span aria-hidden="true">«</span><span class="visuallyhidden">previous set of pages</span></a></li>
+    {% else %}
+    <li><a href="{{ uri ~ "blog?page=" ~ (currentPage - 1) }}"><span aria-hidden="true">«</span><span class="visuallyhidden">previous set of pages</span></a></li>
+    {% endif %}
+        {% for i in 1..totalPages %}
+            <li><a href="{{ uri ~ "blog?page=" ~ i }}"><span class="visuallyhidden">page </span>{{ i }}</a></li>
+        {% endfor %}
+    {% if currentPage == totalPages %}
+    <li><a href="{{ uri ~ "blog?page=" ~ (currentPage + 1) }}" class="disabled-link"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">»</span></a></li>
+    {% else %}
+    <li><a href="{{ uri ~ "blog?page=" ~ (currentPage + 1) }}"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">»</span></a></li>
+    {% endif %}
     </ul>
 </nav>

@@ -13,33 +13,71 @@
 				</legend>
 				<div class="form__infos">
 					<div class="register__nom-prenom">
-						<p class="register__field-nom">
-							<label for="nom">Nom</label>
-							<input type="nom" name="nom" id="nom"/>
-						</p>
-						<p class="register__field-prenom">
-							<label for="prenom">Prénom</label>
-							<input type="prenom" name="prenom" id="prenom"/>
-						</p>
+						<div class="register__field">
+							<p class="register__field-nom">
+								<label for="nom">Nom</label>
+								<input type="nom" name="nom" id="nom" value="{{ _post.nom }}"/>
+								{% if errors['nom'] is defined %}
+									<p class="form_error">{{ errors['nom'] }}</p>
+								{% endif %}
+							</p>
+						</div>
+						<div class="register__field">
+							<p class="register__field-prenom">
+								<label for="prenom">Prénom</label>
+								<input type="prenom" name="prenom" id="prenom" value="{{ _post.prenom }}"/>
+								{% if errors['prenom'] is defined %}
+									<p class="form_error">{{ errors['prenom'] }}</p>
+								{% endif %}
+							</p>
+						</div>
 					</div>
 					<div class="register__surnom-email">
-						<p class="register__field-surnom">
-							<label for="surnom">Surnom</label>
-							<input type="surnom" name="surnom" id="surnom"/>
-						</p>
-						<p class="register__field-email">
-							<label for="email">E-mail</label>
-							<input type="email" name="email" id="email"/>
-						</p>
+						<div class="register__field">
+							<p class="register__field-surnom">
+								<label for="surnom">Surnom</label>
+								<input type="surnom" name="surnom" id="surnom" value="{{ _post.surnom }}"/>
+								{% if errors['surnom'] is defined %}
+									<p class="form_error">{{ errors['surnom'] }}</p>
+								{% endif %}
+							</p>
+						</div>
+						<div class="register__field">
+							<p class="register__field-email">
+								<label for="email">E-mail</label>
+								<input type="email" name="email" id="email" value="{{ _post.email }}"/>
+								{% if errors['email_invalid'] is defined %}
+									<p class="form_error">{{ errors['email_invalid'] }}</p>
+								{% endif %}
+								{% if errors['email'] is defined %}
+									<p class="form_error">{{ errors['email'] }}</p>
+								{% endif %}
+							</p>
+						</div>
 					</div>
+
 					<p class="register__field-password">
 						<label for="password">Mot de passe</label>
 						<input type="password" name="password" id="password"/>
 					</p>
+					<div class="form_error-password">
+						{% if errors['password'] is defined %}
+							<p>{{ errors['password'] }}</p>
+						{% endif %}
+					</div>
 					<p>
 						<label for="password">Confirmez le mot de passe</label>
 						<input type="password" name="password_confirmation" id="password_confirmation"/>
 					</p>
+					<div class="form_error-password">
+						{% if errors['password_confirmation'] is defined %}
+							<p>{{ errors['password_confirmation'] }}</p>
+						{% endif %}
+
+					</div>
+					{% if errors['passwords_are_same'] is defined %}
+						<p class="form_error">{{ errors['passwords_are_same'] }}</p>
+					{% endif %}
 				</div>
 				<button class="register__button">S'enregistrer</button>
 			</fieldset>

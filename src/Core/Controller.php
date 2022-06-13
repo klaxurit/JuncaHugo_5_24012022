@@ -30,6 +30,7 @@ class Controller
         $this->twig->addGlobal("uri", $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . "/");
         @session_start();
         $this->twig->addGlobal("session", isset($_SESSION['user']));
+        $this->twig->addGlobal("_post", $_POST);
     }
 
 

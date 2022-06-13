@@ -123,7 +123,7 @@ p.home__profile-description > svg:nth-child(2) {
 }
 
 .register__field-password {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .register__nom-prenom {
@@ -131,8 +131,16 @@ p.home__profile-description > svg:nth-child(2) {
   margin-top: 1em;
 }
 
+
 .register__surnom-email {
   display: flex;
+}
+
+.register__field {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
 }
 
 .register__button {
@@ -210,6 +218,10 @@ p.home__profile-description > svg:nth-child(2) {
   position: fixed;
   bottom: 6em;/* SALE */
   width: 1400px;
+}
+
+.disabled-link {
+  pointer-events: none;
 }
 
 .visuallyhidden {
@@ -306,6 +318,40 @@ form {
 .form__message {
   display: flex;
   flex-direction: column;
+}
+
+/* .form_error {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+} */
+
+.form_error > p {
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+  color: rgb(212, 0, 0);
+}
+
+.form_error-password  {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.form_error-password > p {
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+  color: rgb(212, 0, 0);
+}
+
+.form_error {
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+  color: rgb(212, 0, 0);
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 

@@ -5,15 +5,19 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Managers\PostManager;
 use App\Service\PaginationService;
+use Twig\Error\RuntimeError;
 
 class BlogController extends Controller
 {
-
+    const PER_PAGE = 6;
 
     /**
      * Return one post
      *
      * @return void
+     * @throws \Twig\Error\LoaderError
+     * @throws RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function showPost()
     {
@@ -27,15 +31,27 @@ class BlogController extends Controller
      * Return index of posts
      *
      * @return void
+     * @throws \Twig\Error\LoaderError
+     * @throws RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function listPosts()
     {
-        $paginate = (new PaginationService())->paginate();
-        $posts = (new PostManager())->findAllPosts();
-        $this->twig->display('client/pages/blog/index.html.twig', [
-            'posts' => $posts,
-            'paginate' => $paginate
-        ]);
+        // determinate what is the current page
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $currentPage = (int)strip_tags($_GET['page']);
+        } else {
+            $currentPage = 1;
+        }
+
+        $this->twig->display(
+            'client/pages/blog/index.html.twig',
+            [
+                'posts' => (new PostManager())->findAllPosts(self::PER_PAGE, $currentPage),
+                'totalPages' => ceil((new PostManager())->countPosts() / self::PER_PAGE),
+                "currentPage" => $currentPage
+            ]
+        );
     }
 
     /**
