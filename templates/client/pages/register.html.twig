@@ -46,6 +46,9 @@
 							<p class="register__field-email">
 								<label for="email">E-mail</label>
 								<input type="email" name="email" id="email" value="{{ _post.email }}"/>
+								{% if errors['email_invalid'] is defined %}
+									<p class="form_error">{{ errors['email_invalid'] }}</p>
+								{% endif %}
 								{% if errors['email'] is defined %}
 									<p class="form_error">{{ errors['email'] }}</p>
 								{% endif %}
@@ -70,7 +73,11 @@
 						{% if errors['password_confirmation'] is defined %}
 							<p>{{ errors['password_confirmation'] }}</p>
 						{% endif %}
+
 					</div>
+					{% if errors['passwords_are_same'] is defined %}
+						<p class="form_error">{{ errors['passwords_are_same'] }}</p>
+					{% endif %}
 				</div>
 				<button class="register__button">S'enregistrer</button>
 			</fieldset>

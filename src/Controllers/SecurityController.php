@@ -17,13 +17,41 @@ class SecurityController extends Controller
    */
   public function login()
   {
-    $user = (new UserManager())->loginUser();
-    $this->twig->display(
-      'client/pages/login.html.twig',
-      [
-        'user' => $user
-      ]
-    );
+    // check if form has been sent
+    if (!empty($_POST)) {
+      // form has been sent
+      // check if all reaquired field are completed
+      if (
+        isset($_POST["email"], $_POST["password"])
+        && !empty($_POST["email"] && !empty($_POST["password"]))
+      ) {
+        // email must be an email
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+          die("Ce n'est pas un email");
+        }
+        $user = (new UserManager())->loginUser();
+        // check if user data exist
+        if (!$user) {
+          die("L'utilisateur et/ou le mot de passe est incorrect");
+        }
+        // check if password is OK
+        if (!password_verify($_POST["password"], $user["password"])) {
+          var_dump($_POST["password"], $user["password"]);
+          die("L'utilisateur et/ou le mot de passe est incorrect");
+        }
+        // user is connected
+        // stock user's info in $_SESSION
+        $_SESSION["user"] = [
+          "id" => $user,
+          "surnom" => $user["username"],
+          "email" => $_POST["email"]
+        ];
+        // redirect user to home
+        header("Location: /");
+      }
+    }
+    // $user = (new UserManager())->loginUser();
+    $this->twig->display('client/pages/login.html.twig');
   }
 
   /**
@@ -55,7 +83,6 @@ class SecurityController extends Controller
         $errors["password_confirmation"] = "Le champ \"Confirmez le mdp\" est requis.";
       }
     }
-
     // check if form has been sent
     if (!empty($_POST)) {
       if (
@@ -71,25 +98,18 @@ class SecurityController extends Controller
         $nom = strip_tags($_POST["nom"]);
         $prenom = strip_tags($_POST["prenom"]);
         $surnom = strip_tags($_POST["surnom"]);
-
         // email must be an email
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-          die("L'addresse email est incorrect.");
+          $errors["email_invalid"] = "L'addresse email est incorrect.";
         }
-
-        // // hash password using password ARGON2ID 
-        // // (ARGON2ID algorithm most powerfull than BCRYPT and ARGON2I)
-        // $password = password_hash($_POST["password"], PASSWORD_ARGON2ID);
-
         // check if entered password are the same
         if ($_POST["password_confirmation"] != $_POST["password"]) {
-          die("Les mots de passe entrés sont différents");
+          $errors["passwords_are_same"] = "Les mots de passes entrés ne sont pas identiques.";
         }
 
         if (empty($errors)) {
-
           $user = (new UserManager())->createUser();
-
+          // stock user's info in $_SESSION
           if ($user) {
             $_SESSION["user"] = [
               "id" => $user,
@@ -97,26 +117,14 @@ class SecurityController extends Controller
               "email" => $_POST["email"]
             ];
           }
-
-          // get new user's id
-          // $id = $this->pdo->lastInsertId();
-
-          // stock user's info in $_SESSION
-
-
           // redirect user to home
           header("Location: /");
-        } else {
-          die("Le formulaire est incomplet");
         }
       }
     }
-
-    // $user = (new UserManager())->createUser();
     $this->twig->display(
       'client/pages/register.html.twig',
       [
-        // 'user' => $_SESSION["user"],
         'errors' => $errors
       ]
     );
