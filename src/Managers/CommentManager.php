@@ -23,7 +23,7 @@ class CommentManager extends Manager
     $datas = $req->fetchAll();
   }
 
-  public function getCommentByPostId()
+  public function getCommentByPostId(int $id)
   {
     $sql = "SELECT * FROM comment WHERE id = :id";
     $req = $this->pdo->prepare($sql);
