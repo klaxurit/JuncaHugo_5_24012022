@@ -59,11 +59,14 @@
 		</section>
 
 		<section class="article__comments">
+		{% for comment in comments %}
 			<div class="article__user-comment">
-				<p class="artcile__comment-author">Mario SANCHEZ le
-					<i>02/03/2022</i>:</p>
-				<p class="article__comment-content">Nunc viverra tellus non elit rutrum tincidunt.😋</p>
+				<p class="artcile__comment-author">{{ comment.user_id }} le
+					<i>{{ comment.title }}</i>:</p>
+				<p class="article__comment-content">{{ comment.content }}😋</p>
 			</div>
+		{% endfor %}
+
 			<div class="article__user-comment">
 				<p class="artcile__comment-author">André LAURENT le
 					<i>01/03/2022</i>:</p>

@@ -61,6 +61,7 @@ class UserManager extends Manager
 
     $req->execute();
     $user = $req->fetch();
+    $user = new User();
 
     return $user;
   }

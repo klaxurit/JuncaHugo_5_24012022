@@ -15,6 +15,7 @@ class Post extends Entity
   private $alt_cover_image;
   private $slug;
   private User $author;
+  private $comments;
 
 
 
@@ -172,6 +173,24 @@ class Post extends Entity
   public function setAuthor(User $author): self
   {
     $this->author = $author;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of comments
+   */
+  public function getComments()
+  {
+    return $this->comments;
+  }
+
+  /**
+   * Set the value of comments
+   */
+  public function setComments($comments): self
+  {
+    $this->comments = $comments;
 
     return $this;
   }

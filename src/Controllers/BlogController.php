@@ -22,11 +22,10 @@ class BlogController extends Controller
      */
     public function showPost()
     {
-        $comments = (new CommentManager())->findAll();
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $this->twig->display('client/pages/blog/view.html.twig', [
             'post' => $post,
-            'comments' => $comments
+            'comments' => (new CommentManager())->getCommentByPostId($post->getId())
         ]);
     }
 
