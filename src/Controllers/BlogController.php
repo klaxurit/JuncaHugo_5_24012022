@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Managers\CommentManager;
 use App\Managers\PostManager;
 use App\Service\PaginationService;
 use Twig\Error\RuntimeError;
@@ -21,9 +22,11 @@ class BlogController extends Controller
      */
     public function showPost()
     {
+        $comments = (new CommentManager())->findAll();
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $this->twig->display('client/pages/blog/view.html.twig', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments
         ]);
     }
 

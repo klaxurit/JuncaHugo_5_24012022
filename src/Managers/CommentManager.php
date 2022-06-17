@@ -3,6 +3,7 @@
 namespace App\Managers;
 
 use PDO;
+use App\Model\Comment;
 use App\Model\Post;
 use App\Model\User;
 use App\Core\Manager;
@@ -14,8 +15,16 @@ class CommentManager extends Manager
     parent::__construct();
   }
 
-  public function findAllPostComments()
+  public function findAll()
   {
-    // find all post comments
+    $sql = "SELECT * FROM comment";
+    $req = $this->pdo->prepare($sql);
+    $req->execute();
+    $datas = $req->fetchAll();
+  }
+
+  public function getCommentByPostId()
+  {
+    //
   }
 }
