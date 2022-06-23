@@ -15,28 +15,20 @@ class CommentManager extends Manager
     parent::__construct();
   }
 
-  public function findAll()
-  {
-    $sql = "SELECT * FROM comment";
-    $req = $this->pdo->prepare($sql);
-    $req->execute();
-    $datas = $req->fetchAll();
-  }
+  // public function getCommentByPostId(int $id)
+  // {
+  //   $sql = "SELECT * FROM comment WHERE id = :id";
+  //   $req = $this->pdo->prepare($sql);
+  //   $req->bindParam(':id', $id);
+  //   $req->execute();
+  //   $datas = $req->fetchAll();
 
-  public function getCommentByPostId(int $id)
-  {
-    $sql = "SELECT * FROM comment WHERE id = :id";
-    $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id);
-    $req->execute();
-    $datas = $req->fetchAll();
+  //   $comments = [];
 
-    $comments = [];
+  //   foreach ($datas as $comments) {
+  //     array_push($comments, new Comment());
+  //   }
 
-    foreach ($datas as $comments) {
-      array_push($comments, new Comment());
-    }
-
-    return $comments;
-  }
+  //   return $comments;
+  // }
 }

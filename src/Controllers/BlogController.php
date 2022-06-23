@@ -25,7 +25,7 @@ class BlogController extends Controller
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $this->twig->display('client/pages/blog/view.html.twig', [
             'post' => $post,
-            'comments' => (new CommentManager())->getCommentByPostId($post->getId())
+            // 'comments' => (new CommentManager())->getCommentByPostId($post->getId())
         ]);
     }
 

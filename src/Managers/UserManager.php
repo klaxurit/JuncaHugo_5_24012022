@@ -65,12 +65,4 @@ class UserManager extends Manager
 
     return $user;
   }
-
-  public function logoutUser()
-  {
-    // unset the user session
-    unset($_SESSION["user"]);
-    // redirect to home
-    header("Location: /");
-  }
 }

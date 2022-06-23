@@ -19,22 +19,20 @@ class SecurityController extends Controller
   {
     if (!empty($_POST)) {
       try {
-        // Test si un email est présent
+        // check if email exist and valid
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) throw (new \Error("identifiants incorrects !"));
-        // Email présent => On récupère un utilisateur avec l'email
+        // email ok => get user with email
         $user = (new UserManager())->loginUser();
         if ($user && password_verify($_POST["password"], $user["password"])) {
-          // Si on a un utilisateur et que le mdp est bon => on se connecte.
+          // if user ok and password correct user connect and redirect.
           $_SESSION["user"] = [
             "id" => $user,
             "surnom" => $user["username"],
             "email" => $_POST["email"]
           ];
-          // redirect user to home
           header("Location: /");
         } else {
-          // Sinon erreur
-          throw (new \Error("identifiants incorrects !"));
+          throw (new \Error("Identifiants incorrects !"));
         }
       } catch (\Error $error) {
         $this->twig->display(
@@ -129,6 +127,9 @@ class SecurityController extends Controller
 
   public function logout()
   {
-    $user = (new UserManager())->logoutUser();
+    // unset the user session
+    unset($_SESSION["user"]);
+    // redirect to home
+    header("Location: /");
   }
 }

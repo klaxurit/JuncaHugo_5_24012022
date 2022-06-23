@@ -59,7 +59,10 @@
 		</section>
 
 		<section class="article__comments">
-		{% for comment in comments %}
+		<pre>
+			{{ dump(post.comments.content) }}
+		</pre>
+		{% for comment in post.comments %}
 			<div class="article__user-comment">
 				<p class="artcile__comment-author">{{ comment.user_id }} le
 					<i>{{ comment.title }}</i>:</p>

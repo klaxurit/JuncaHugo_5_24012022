@@ -6,6 +6,7 @@ use PDO;
 use App\Model\Post;
 use App\Model\User;
 use App\Core\Manager;
+use App\Model\Comment;
 
 class PostManager extends Manager
 {
@@ -82,12 +83,15 @@ class PostManager extends Manager
   {
     // using slug to find the post
     $sql = "SELECT *, 
-    p.created_at as post_created_at, u.created_at as user_created_at, 
-    p.updated_at as post_updated_at, u.updated_at as user_updated_at
+    p.created_at as post_created_at, u.created_at as user_created_at,
+    p.updated_at as post_updated_at, u.updated_at as user_updated_at,
+    c.updated_at as comment_updated_at, c.created_at as comment_created_at,
+    p.content as post_content, p.title as post_title,
+    c.content as comment_content, c.title as comment_title
     FROM post as p
-    LEFT OUTER JOIN user as u
-    ON p.user_id = u.id WHERE p.slug = :slug
-    ";
+    LEFT OUTER JOIN user as u ON p.user_id = u.id 
+    LEFT OUTER JOIN comment as c ON c.post_id = p.id
+    WHERE p.slug = :slug";
 
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':slug', $slug);
@@ -97,12 +101,23 @@ class PostManager extends Manager
 
     $datas['createdAt'] = $datas['post_created_at'];
     $datas['updatedAt'] = $datas['post_updated_at'];
+    $datas['title'] = $datas['post_title'];
+    $datas['content'] = $datas['post_content'];
     $post = new Post($datas);
+
+    $datas['createdAt'] = $datas['comment_created_at'];
+    $datas['updatedAt'] = $datas['comment_updated_at'];
+    $datas['title'] = $datas['comment_title'];
+    $datas['content'] = $datas['comment_content'];
+    $comments = new Comment($datas);
+    $post->setComments($comments);
 
     $datas['createdAt'] = $datas['user_created_at'];
     $datas['updatedAt'] = $datas['user_updated_at'];
     $author = new User($datas);
     $post->setAuthor($author);
+
+    var_dump($post);
 
     return $post;
   }
