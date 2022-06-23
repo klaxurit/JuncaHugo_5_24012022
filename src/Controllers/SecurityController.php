@@ -17,41 +17,38 @@ class SecurityController extends Controller
    */
   public function login()
   {
-    // check if form has been sent
     if (!empty($_POST)) {
-      // form has been sent
-      // check if all reaquired field are completed
-      if (
-        isset($_POST["email"], $_POST["password"])
-        && !empty($_POST["email"] && !empty($_POST["password"]))
-      ) {
-        // email must be an email
-        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-          die("Ce n'est pas un email");
-        }
+      try {
+        // Test si un email est présent
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) throw (new \Error("identifiants incorrects !"));
+        // Email présent => On récupère un utilisateur avec l'email
         $user = (new UserManager())->loginUser();
-        // check if user data exist
-        if (!$user) {
-          die("L'utilisateur et/ou le mot de passe est incorrect");
+        if ($user && password_verify($_POST["password"], $user["password"])) {
+          // Si on a un utilisateur et que le mdp est bon => on se connecte.
+          $_SESSION["user"] = [
+            "id" => $user,
+            "surnom" => $user["username"],
+            "email" => $_POST["email"]
+          ];
+          // redirect user to home
+          header("Location: /");
+        } else {
+          // Sinon erreur
+          throw (new \Error("identifiants incorrects !"));
         }
-        // check if password is OK
-        if (!password_verify($_POST["password"], $user["password"])) {
-          var_dump($_POST["password"], $user["password"]);
-          die("L'utilisateur et/ou le mot de passe est incorrect");
-        }
-        // user is connected
-        // stock user's info in $_SESSION
-        $_SESSION["user"] = [
-          "id" => $user,
-          "surnom" => $user["username"],
-          "email" => $_POST["email"]
-        ];
-        // redirect user to home
-        header("Location: /");
+      } catch (\Error $error) {
+        $this->twig->display(
+          'client/pages/login.html.twig',
+          [
+            'error' => $error->getMessage()
+          ]
+        );
       }
+    } else {
+      $this->twig->display(
+        'client/pages/login.html.twig'
+      );
     }
-    // $user = (new UserManager())->loginUser();
-    $this->twig->display('client/pages/login.html.twig');
   }
 
   /**
