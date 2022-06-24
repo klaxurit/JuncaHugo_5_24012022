@@ -60,9 +60,8 @@ class UserManager extends Manager
     $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
 
     $req->execute();
-    $user = $req->fetch();
-    $user = new User();
+    $datas = $req->fetch();
 
-    return $user;
+    return ($datas) ? new User($datas) : null;
   }
 }

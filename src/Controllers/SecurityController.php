@@ -23,12 +23,12 @@ class SecurityController extends Controller
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) throw (new \Error("identifiants incorrects !"));
         // email ok => get user with email
         $user = (new UserManager())->loginUser();
-        if ($user && password_verify($_POST["password"], $user["password"])) {
+        if ($user && password_verify($_POST["password"], $user->getPassword())) {
           // if user ok and password correct user connect and redirect.
           $_SESSION["user"] = [
-            "id" => $user,
-            "surnom" => $user["username"],
-            "email" => $_POST["email"]
+            "id" => $user->getId(),
+            "surnom" => $user->getUsername(),
+            "email" => $user->getEmail()
           ];
           header("Location: /");
         } else {

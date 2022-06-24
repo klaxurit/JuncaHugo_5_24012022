@@ -2,10 +2,6 @@
 
 namespace App\Managers;
 
-use PDO;
-use App\Model\Comment;
-use App\Model\Post;
-use App\Model\User;
 use App\Core\Manager;
 
 class CommentManager extends Manager
@@ -15,20 +11,17 @@ class CommentManager extends Manager
     parent::__construct();
   }
 
-  // public function getCommentByPostId(int $id)
-  // {
-  //   $sql = "SELECT * FROM comment WHERE id = :id";
-  //   $req = $this->pdo->prepare($sql);
-  //   $req->bindParam(':id', $id);
-  //   $req->execute();
-  //   $datas = $req->fetchAll();
+  public function getCommentsByPostId(int $id)
+  {
+    $sql = "SELECT c.*, u.username
+    FROM comment as c
+    INNER JOIN user as u ON u.id = c.user_id
+    WHERE post_id = :id";
 
-  //   $comments = [];
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id);
+    $req->execute();
 
-  //   foreach ($datas as $comments) {
-  //     array_push($comments, new Comment());
-  //   }
-
-  //   return $comments;
-  // }
+    return $req->fetchAll();
+  }
 }
