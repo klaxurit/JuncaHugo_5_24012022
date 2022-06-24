@@ -3,10 +3,9 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Managers\CommentManager;
-use App\Managers\PostManager;
-use App\Service\PaginationService;
 use Twig\Error\RuntimeError;
+use App\Managers\PostManager;
+use App\Managers\CommentManager;
 
 class BlogController extends Controller
 {

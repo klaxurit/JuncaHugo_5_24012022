@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/admin">Pannel d'administration</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/">Accueil du site</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/blog">Liste des articles</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Déconnexion</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+<div class="container">
+  <?php if(!empty($_SESSION['erreur'])): ?>
+      <div class="alert alert-danger" role="alert">
+          <?php echo $_SESSION['erreur']; unset($_SESSION['erreur']); ?>
+      </div>
+  <?php endif; ?>
+  <?php if(!empty($_SESSION['message'])): ?>
+      <div class="alert alert-success" role="alert">
+          <?php echo $_SESSION['message']; unset($_SESSION['message']); ?>
+      </div>
+  <?php endif; ?>
+  <?= $contenu ?>
+</div>

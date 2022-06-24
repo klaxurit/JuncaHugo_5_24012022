@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Managers\AdminManager;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -31,6 +32,10 @@ class Controller
         @session_start();
         $this->twig->addGlobal("session", isset($_SESSION['user']));
         $this->twig->addGlobal("_post", $_POST);
+        if (isset($_SESSION['user'])) {
+            $admin = (new AdminManager())->findAdmin();
+            $this->twig->addGlobal("isAdmin", ($_SESSION['user']['id']) === $admin->getUserId());
+        }
     }
 
 

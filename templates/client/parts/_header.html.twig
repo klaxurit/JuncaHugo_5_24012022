@@ -20,5 +20,9 @@
 		<a class="switchLight header__nav-item" href="#">Light</a>
 		<span class="header__nav-item__divider">|</span>
 		<a class="switchDark header__nav-item" href="#">Dark</a>
+		{% if isAdmin %}
+		<span class="header__nav-item__divider">|</span>
+		<a class="switchDark header__nav-item" href="/admin">Administration</a>
+		{% endif %}
 	</nav>
 </header>

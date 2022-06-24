@@ -3,6 +3,26 @@ home:
   controller: IndexController
   action: showHome
   parameters: []
+admin:
+  uri: /admin
+  controller: AdminController
+  action: index
+  parameters: []
+managePosts:
+  uri: /admin/posts
+  controller: AdminController
+  action: managePosts
+  parameters: []
+manageComments:
+  uri: /admin/comments
+  controller: AdminController
+  action: manageComments
+  parameters: []
+activateComment:
+  uril: /admin/comments/activateComment
+  controller: AdminController
+  action: activateComment
+  parameters: ["id"]
 login:
   uri: /login
   controller: SecurityController

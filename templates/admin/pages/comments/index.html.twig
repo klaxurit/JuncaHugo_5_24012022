@@ -1,0 +1,41 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+	Blog - Gestion des commentaires
+{% endblock %}
+{% block body %}
+<div class="admin-container">
+  <h3>Gestion </h3>
+  <table class="table table-striped">
+    <thead>
+      <th>Titre</th>
+      <th>Post ID</th>
+      <th>Comment ID</th>
+      <th>Actif</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      {% for comment in comments %}
+        <tr>
+        <td>{{ comment.title }}</td>
+        <td>{{ comment.post_id }}</td>
+        <td>{{ comment.id }}</td>
+        <td>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" 
+              id="customSwitch{{ comment.id }}" {{ comment.status is same as("1") ? 'checked' : '' }} 
+              data-id="{{ comment.id }}">
+            <label class="custom-control-label" for="customSwitch{{ comment.id }}"></label>
+          </div>
+        </td>
+        <td>
+          <a href="/admin/posts/update/{{ comment.id }}" class="btn btn-warning update__button">Modifier</a>
+          <a href="/admin/posts/delete/{{ comment.id }}" class="btn btn-danger">Supprimer</a>
+        </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

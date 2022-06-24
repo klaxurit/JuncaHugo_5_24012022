@@ -15,6 +15,21 @@ class PostManager extends Manager
     parent::__construct();
   }
 
+  public function createPost()
+  {
+    //
+  }
+
+  public function updatePost()
+  {
+    //
+  }
+
+  public function deletePost()
+  {
+    //
+  }
+
   public function countPosts()
   {
     // count the total of posts
@@ -28,7 +43,7 @@ class PostManager extends Manager
 
 
   /**
-   * find all posts in db
+   * find all posts in db with
    *
    * @return void
    */
