@@ -3,9 +3,9 @@ ini_set('display_errors', 1);
 error_reporting(-1);
 
 define("ROOT_DIR", realPath(dirname(__DIR__)));
-define("CONF_DIR", ROOT_DIR. "/config");
+define("CONF_DIR", ROOT_DIR . "/config");
 
-require ROOT_DIR. "/vendor/autoload.php";
+require ROOT_DIR . "/vendor/autoload.php";
 
 use App\Controllers\ErrorController;
 use App\Core\Router;
@@ -20,12 +20,12 @@ try {
         throw new ControllerNotFound();
     }
     $controller->execute();
-} catch(ControllerNotFound $e) {
+} catch (ControllerNotFound $e) {
     $controller = new ErrorController("show404");
     $controller->execute();
-} catch(ConfigNotFound $e) {
+} catch (ConfigNotFound $e) {
     $controller = new ErrorController("showError", [
-        "message"=>$e->getMessage()
+        "message" => $e->getMessage()
     ]);
     $controller->execute();
 }

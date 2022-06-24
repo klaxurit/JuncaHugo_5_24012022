@@ -6,14 +6,13 @@ use PDO;
 use App\Model\Post;
 use App\Model\User;
 use App\Core\Manager;
-use App\Service\PaginationService;
+use App\Model\Comment;
 
 class PostManager extends Manager
 {
   public function __construct()
   {
     parent::__construct();
-    $this->paginate = new PaginationService();
   }
 
   public function countPosts()
@@ -83,28 +82,15 @@ class PostManager extends Manager
   public function getPostBySlug(string $slug)
   {
     // using slug to find the post
-    $sql = "SELECT *, 
-    p.created_at as post_created_at, u.created_at as user_created_at, 
-    p.updated_at as post_updated_at, u.updated_at as user_updated_at
-    FROM post as p
-    LEFT OUTER JOIN user as u
-    ON p.user_id = u.id WHERE p.slug = :slug
-    ";
+    $sql = "SELECT p.*, u.username, u.id as userId
+    FROM post AS p
+    INNER JOIN user as u ON u.id = p.user_id 
+    WHERE p.slug = :slug";
 
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':slug', $slug);
     $req->execute();
-    $datas = $req->fetch();
-
-
-    $datas['createdAt'] = $datas['post_created_at'];
-    $datas['updatedAt'] = $datas['post_updated_at'];
-    $post = new Post($datas);
-
-    $datas['createdAt'] = $datas['user_created_at'];
-    $datas['updatedAt'] = $datas['user_updated_at'];
-    $author = new User($datas);
-    $post->setAuthor($author);
+    $post = $req->fetch();
 
     return $post;
   }

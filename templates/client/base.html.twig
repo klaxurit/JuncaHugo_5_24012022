@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-	<html lang="en">
-		<head>
-			<meta charset="UTF-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta name="description" content="Blog d'un développeur PHP"/>
-			<meta name="author" content="Axurit"/>
-			<title>
-				{% block title %}Axurit
-				{% endblock %}
-			</title>
-			{% block stylesheets %}
-				<link rel="stylesheet" href="/css/styles.css">
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Blog d'un développeur PHP"/>
+		<meta name="author" content="Axurit"/>
+		<title>
+			{% block title %}Axurit
 			{% endblock %}
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+		</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="/css/styles.css">
+		{% endblock %}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-		</head>
-		<body>
-			{% include('/client/parts/_header.html.twig') %}
-			{% block body %}{% endblock %}
-			{% block javascripts %}
-				<script type="text/javascript" src="/js/toggleTheme.js"></script>
-				<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
-			{% endblock %}
-			<div id="footer">
-				{% include('/client/parts/_footer.html.twig') %}
-			</div>
-		</body>
-	</html>
+	</head>
+	<body>
+		{% include('/client/parts/_header.html.twig') %}
+		{% block body %}{% endblock %}
+		{% block javascripts %}
+			<script type="text/javascript" src="/js/toggleTheme.js"></script>
+			<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+		{% endblock %}
+		<div id="footer">
+			{% include('/client/parts/_footer.html.twig') %}
+		</div>
+	</body>
+</html>

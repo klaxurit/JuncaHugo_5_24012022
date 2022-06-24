@@ -60,16 +60,8 @@ class UserManager extends Manager
     $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
 
     $req->execute();
-    $user = $req->fetch();
+    $datas = $req->fetch();
 
-    return $user;
-  }
-
-  public function logoutUser()
-  {
-    // unset the user session
-    unset($_SESSION["user"]);
-    // redirect to home
-    header("Location: /");
+    return ($datas) ? new User($datas) : null;
   }
 }
