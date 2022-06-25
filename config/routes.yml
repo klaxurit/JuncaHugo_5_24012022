@@ -19,7 +19,7 @@ manageComments:
   action: manageComments
   parameters: []
 activateComment:
-  uril: /admin/comments/activateComment
+  uri: /admin/comments/activateComment
   controller: AdminController
   action: activateComment
   parameters: ["id"]

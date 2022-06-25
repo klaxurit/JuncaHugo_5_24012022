@@ -4,6 +4,7 @@ namespace App\Managers;
 
 use PDO;
 use App\Core\Manager;
+use App\Model\Comment;
 
 class CommentManager extends Manager
 {
@@ -66,7 +67,14 @@ class CommentManager extends Manager
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':id', $id);
     $req->execute();
+    $datas = $req->fetchAll();
+    $comments = [];
 
-    return $req->fetchAll();
+    foreach ($datas as $data) {
+      $comment = new Comment($data);
+      array_push($comments, $comment);
+    }
+
+    return $comments;
   }
 }

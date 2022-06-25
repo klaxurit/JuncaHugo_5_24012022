@@ -32,25 +32,35 @@ class UserManager extends Manager
    *
    * @return void
    */
-  public function createUser()
+  public function createUser($user)
   {
     // hash password using password ARGON2ID 
     // (ARGON2ID algorithm most powerfull than BCRYPT and ARGON2I)
-    $password = password_hash($_POST["password"], PASSWORD_ARGON2ID);
+    $password = password_hash($user["password"], PASSWORD_ARGON2ID);
 
-    $sql = "INSERT INTO `user`(`firstname`, `lastname`, `username`, `email`, `password`) VALUES (:nom, :prenom, :surnom, :email, '$password')";
+    $sql = "INSERT INTO `user`(`firstname`, `lastname`, `username`, `email`, `password`) VALUES (:lastName, :firstName, :username, :email, :pass)";
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':nom', $_POST["nom"], PDO::PARAM_STR);
-    $req->bindParam(':prenom', $_POST["prenom"], PDO::PARAM_STR);
-    $req->bindParam(':surnom', $_POST["surnom"], PDO::PARAM_STR);
-    $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
+    $req->bindParam(':lastName', $user["lastName"], PDO::PARAM_STR);
+    $req->bindParam(':firstName', $user["firstName"], PDO::PARAM_STR);
+    $req->bindParam(':username', $user["username"], PDO::PARAM_STR);
+    $req->bindParam(':email', $user["email"], PDO::PARAM_STR);
+    $req->bindParam(':pass', $password, PDO::PARAM_STR);
 
     $req->execute();
+
 
     // get new user's id
     $id = $this->pdo->lastInsertId();
 
-    return $id;
+    $sql = "SELECT * FROM user WHERE id = :id";
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+    $data = $req->fetch();
+
+    $user = new User($data);
+
+    return $user;
   }
 
   public function loginUser()

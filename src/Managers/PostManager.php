@@ -107,6 +107,8 @@ class PostManager extends Manager
     $req->execute();
     $post = $req->fetch();
 
+    $post = new Post($post);
+
     return $post;
   }
 }
