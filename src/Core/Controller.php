@@ -30,7 +30,9 @@ class Controller
     {
         $this->twig->addGlobal("uri", $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . "/");
         @session_start();
-        $this->twig->addGlobal("user", $_SESSION['user']);
+        if (isset($_SESSION['user'])) {
+            $this->twig->addGlobal("user", $_SESSION['user']);
+        }
         $this->twig->addGlobal("_post", $_POST);
         if (isset($_SESSION['user'])) {
             $admin = (new AdminManager())->findAdmin();

@@ -88,26 +88,37 @@ class PostManager extends Manager
   }
 
 
+
   /**
-   * find one post by slug
+   * getPostBySlug
    *
    * @param  mixed $slug
    * @return void
    */
   public function getPostBySlug(string $slug)
   {
-    // using slug to find the post
-    $sql = "SELECT p.*, u.username, u.id as userId
-    FROM post AS p
-    INNER JOIN user as u ON u.id = p.user_id 
+    $sql = "SELECT *, 
+    p.created_at as post_created_at, u.created_at as user_created_at, 
+    p.updated_at as post_updated_at, u.updated_at as user_updated_at
+    FROM post as p
+    LEFT OUTER JOIN user as u
+    ON p.user_id = u.id
     WHERE p.slug = :slug";
 
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':slug', $slug);
     $req->execute();
-    $post = $req->fetch();
+    $data = $req->fetch();
 
-    $post = new Post($post);
+    $data['createdAt'] = $data['post_created_at'];
+    $data['updatedAt'] = $data['post_updated_at'];
+    $post = new Post($data);
+
+    $data['createdAt'] = $data['user_created_at'];
+    $data['updatedAt'] = $data['user_updated_at'];
+    $author = new User($data);
+
+    $post->setAuthor($author);
 
     return $post;
   }
