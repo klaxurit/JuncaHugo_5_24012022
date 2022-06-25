@@ -68,16 +68,17 @@ class PostManager extends Manager
     $req->execute();
     $datas = $req->fetchAll();
 
-
     $posts = [];
 
     foreach ($datas as $data) {
       $data['createdAt'] = $data['post_created_at'];
       $data['updatedAt'] = $data['post_updated_at'];
+      $data['id'] = $data['post_id'];
       $post = new Post($data);
 
       $data['createdAt'] = $data['user_created_at'];
       $data['updatedAt'] = $data['user_updated_at'];
+      $data['id'] = $data['user_id'];
       $author = new User($data);
 
       $post->setAuthor($author);
@@ -99,7 +100,8 @@ class PostManager extends Manager
   {
     $sql = "SELECT *, 
     p.created_at as post_created_at, u.created_at as user_created_at, 
-    p.updated_at as post_updated_at, u.updated_at as user_updated_at
+    p.updated_at as post_updated_at, u.updated_at as user_updated_at,
+    p.id as post_id, u.id as user_id
     FROM post as p
     LEFT OUTER JOIN user as u
     ON p.user_id = u.id
@@ -112,10 +114,12 @@ class PostManager extends Manager
 
     $data['createdAt'] = $data['post_created_at'];
     $data['updatedAt'] = $data['post_updated_at'];
+    $data['id'] = $data['post_id'];
     $post = new Post($data);
 
     $data['createdAt'] = $data['user_created_at'];
     $data['updatedAt'] = $data['user_updated_at'];
+    $data['id'] = $data['user_id'];
     $author = new User($data);
 
     $post->setAuthor($author);

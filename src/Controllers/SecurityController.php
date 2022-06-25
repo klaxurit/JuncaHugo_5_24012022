@@ -25,6 +25,7 @@ class SecurityController extends Controller
         $user = (new UserManager())->loginUser();
         if ($user && password_verify($_POST["password"], $user->getPassword())) {
           // if user ok and password correct user connect and redirect.
+          // voir refaire ça
           $_SESSION["user"] = [
             "id" => $user->getId(),
             "surnom" => $user->getUsername(),

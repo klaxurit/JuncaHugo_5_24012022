@@ -95,14 +95,14 @@ class AdminController extends Controller
    * @param  mixed $id
    * @return void
    */
-  public function activateComment(int $id)
-  {
-    if ($this->isAdmin()) {
-      $comment = (new CommentManager())->getCommentsByPostId($id);
-      die(var_dump($comment));
-      $comment = new Comment();
-      $comment->setStatus($comment->getStatus() ? 0 : 1);
-    }
-    $comment->updateComment();
-  }
+  // public function activateComment(int $id)
+  // {
+  //   if ($this->isAdmin()) {
+  //     $comment = (new CommentManager())->getCommentsByPostId($id);
+  //     die(var_dump($comment));
+  //     $comment = new Comment();
+  //     $comment->setStatus($comment->getStatus() ? 0 : 1);
+  //   }
+  //   $comment->updateComment();
+  // }
 }

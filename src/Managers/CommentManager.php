@@ -54,7 +54,16 @@ class CommentManager extends Manager
     $req->bindParam(':per_page', $limit, PDO::PARAM_INT);
     $req->execute();
 
-    return $req->fetchAll();
+    $datas = $req->fetchAll();
+    $comments = [];
+
+    foreach ($datas as $data) {
+      $comment = new Comment($data);
+      array_push($comments, $comment);
+    }
+
+    return $comments;
+    //revoir pour renvoyer un objet
   }
 
   public function getCommentsByPostId(int $id)
