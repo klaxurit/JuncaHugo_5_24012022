@@ -12,6 +12,7 @@ class Comment extends Entity
   private $title;
   private $content;
   private $status;
+  private User $author;
 
   /**
    * Get the value of status
@@ -109,6 +110,23 @@ class Comment extends Entity
   public function setUserId($user_id)
   {
     $this->user_id = $user_id;
+
+    return $this;
+  }
+  /**
+   * Get the value of author
+   */
+  public function getAuthor(): User
+  {
+    return $this->author;
+  }
+
+  /**
+   * Set the value of author
+   */
+  public function setAuthor(User $author): self
+  {
+    $this->author = $author;
 
     return $this;
   }

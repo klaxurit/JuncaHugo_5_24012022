@@ -48,6 +48,11 @@ post:
   controller: BlogController
   action: showPost
   parameters: ["slug"]
+createComment:
+  uri: /blog/([a-zA-Z0-9-]+)
+  controller: BlogController
+  action: addComment
+  parameters: []
 posts:
   uri: /blog
   controller: BlogController

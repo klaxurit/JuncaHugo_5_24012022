@@ -24,7 +24,9 @@ class UserManager extends Manager
     $req = $this->pdo->prepare($sql);
     $req->execute();
     $datas = $req->fetchAll(PDO::FETCH_COLUMN, 2);
-    return $datas;
+    $users = new User($datas);
+
+    return $users;
   }
 
   /**

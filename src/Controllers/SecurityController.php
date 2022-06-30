@@ -62,18 +62,26 @@ class SecurityController extends Controller
     if (!empty($_POST)) {
       if (empty($_POST["lastName"])) {
         $errors["lastName"] = "Le champ \"Nom\" est requis.";
+      } else if (!preg_match("/^[a-zA-Z-']*$/", $_POST["lastName"])) {
+        $errors["badLastName"] = "Le champ \"Nom\" est incorrect.";
       }
       if (empty($_POST["firstName"])) {
         $errors["firstName"] = "Le champ \"Prenom\" est requis.";
+      } else if (!preg_match("/^[a-zA-Z-']*$/", $_POST["firstName"])) {
+        $errors["badFirstName"] = "Le champ \"Prenom\" est incorrect.";
       }
       if (empty($_POST["username"])) {
         $errors["username"] = "Le champ \"Surnom\" est requis.";
+      } else if (!preg_match("/^[0-9a-zA-Z']*$/", $_POST["username"])) {
+        $errors["badUsername"] = "Le champ \"Surnom\" est incorrect.";
       }
       if (empty($_POST["email"])) {
         $errors["email"] = "Le champ \"Email\" est requis.";
       }
       if (empty($_POST["password"])) {
         $errors["password"] = "Le champ \"Mot de passe\" est requis.";
+      } else if (!preg_match('/^[a-z0-9_-]{6,18}$/', $_POST["password"])) {
+        $errors["badPassword"] = "Le champ \"Mot de passe\" est incorrect.";
       }
       if (empty($_POST["password_confirmation"])) {
         $errors["password_confirmation"] = "Le champ \"Confirmez le mdp\" est requis.";

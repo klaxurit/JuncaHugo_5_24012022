@@ -86,4 +86,27 @@ class BlogController extends Controller
     {
         $this->twig->display('admin/pages/blog/delete.html.twig');
     }
+
+    public function addComment()
+    {
+        // manage form errors
+        die(var_dump("ICI"));
+        $errors = [];
+        if (!empty($_POST)) {
+            if (empty($_POST["content"])) {
+                $errors["content"] = "Le champ \"commentaire\" est requis.";
+            } else if (!preg_match("/^[0-9a-zA-Z ']*$/", $_POST["content"])) {
+                $errors["badContent"] = "Le champ \"commentaire\" est incorrect.";
+            }
+            if (!$errors) {
+                foreach ($_POST as $key => $value) {
+                    $_POST[$key] = strip_tags($value);
+                }
+                $comment = (new CommentManager())->createComment($_POST);
+            }
+        }
+        $this->twig->display('client/pages/blog/view.html.twig', [
+            'errors' => $errors
+        ]);
+    }
 }

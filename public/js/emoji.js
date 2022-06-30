@@ -1,5 +1,5 @@
 tinymce.init({
-  selector: "#mytextarea",
+  selector: "#content",
   plugins: "emoticons",
   toolbar: "emoticons",
   height: 150,

@@ -3,6 +3,7 @@
 namespace App\Managers;
 
 use PDO;
+use App\Model\User;
 use App\Core\Manager;
 use App\Model\Comment;
 
@@ -13,9 +14,27 @@ class CommentManager extends Manager
     parent::__construct();
   }
 
-  public function createComment()
+  public function createComment($comment)
   {
-    //
+    $sql = "INSERT INTO `comment`(`content`) VALUES (:content)";
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':content', $comment["content"], PDO::PARAM_STR);
+
+    $req->execute();
+    die(var_dump("ici"));
+
+    $id = $this->pdo->lastInsertId();
+
+    $sql = "SELECT * FROM comment WHERE id = :id";
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+    $data = $req->fetch();
+
+    $comment = new Comment($data);
+
+
+    return $comment;
   }
 
   public function updateComment(int $id)
@@ -59,6 +78,7 @@ class CommentManager extends Manager
 
     foreach ($datas as $data) {
       $comment = new Comment($data);
+
       array_push($comments, $comment);
     }
 
@@ -68,7 +88,8 @@ class CommentManager extends Manager
 
   public function getCommentsByPostId(int $id)
   {
-    $sql = "SELECT c.*, u.username
+    $sql = "SELECT c.*, u.username,
+    c.id as comment_id, u.id as user_id
     FROM comment as c
     INNER JOIN user as u ON u.id = c.user_id
     WHERE post_id = :id";
@@ -80,7 +101,13 @@ class CommentManager extends Manager
     $comments = [];
 
     foreach ($datas as $data) {
+      $data['id'] = $data['comment_id'];
       $comment = new Comment($data);
+
+      $data['id'] = $data['user_id'];
+      $author = new User($data);
+
+      $comment->setAuthor($author);
       array_push($comments, $comment);
     }
 
