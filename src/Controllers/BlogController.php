@@ -90,13 +90,13 @@ class BlogController extends Controller
     public function addComment()
     {
         // manage form errors
-        die(var_dump("ICI"));
         $errors = [];
         if (!empty($_POST)) {
             if (empty($_POST["content"])) {
                 $errors["content"] = "Le champ \"commentaire\" est requis.";
-            } else if (!preg_match("/^[0-9a-zA-Z ']*$/", $_POST["content"])) {
-                $errors["badContent"] = "Le champ \"commentaire\" est incorrect.";
+                // } else if (!preg_match("/^[a-zA-Z-']*$/", $_POST["content"])) {
+                // $errors["badContent"] = "Le champ \"commentaire\" est incorrect.";
+                // }
             }
             if (!$errors) {
                 foreach ($_POST as $key => $value) {

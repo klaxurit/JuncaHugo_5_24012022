@@ -49,7 +49,7 @@ post:
   action: showPost
   parameters: ["slug"]
 createComment:
-  uri: /blog/([a-zA-Z0-9-]+)
+  uri: /createComment
   controller: BlogController
   action: addComment
   parameters: []

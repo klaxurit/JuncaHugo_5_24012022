@@ -6,6 +6,8 @@ use PDO;
 use App\Model\User;
 use App\Core\Controller;
 use App\Managers\UserManager;
+use App\Managers\AdminManager;
+use App\Controllers\AdminController;
 
 class SecurityController extends Controller
 {
@@ -24,12 +26,14 @@ class SecurityController extends Controller
         // email ok => get user with email
         $user = (new UserManager())->loginUser();
         if ($user && password_verify($_POST["password"], $user->getPassword())) {
+          $isAdmin = $this->isAdmin();
           // if user ok and password correct user connect and redirect.
           // voir refaire ça
           $_SESSION["user"] = [
             "id" => $user->getId(),
             "surnom" => $user->getUsername(),
-            "email" => $user->getEmail()
+            "email" => $user->getEmail(),
+            "isAdmin" => $isAdmin
           ];
           header("Location: /");
         } else {
@@ -78,6 +82,9 @@ class SecurityController extends Controller
       if (empty($_POST["email"])) {
         $errors["email"] = "Le champ \"Email\" est requis.";
       }
+      if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $errors["email_invalid"] = "L'addresse email est incorrect.";
+      }
       if (empty($_POST["password"])) {
         $errors["password"] = "Le champ \"Mot de passe\" est requis.";
       } else if (!preg_match('/^[a-z0-9_-]{6,18}$/', $_POST["password"])) {
@@ -85,9 +92,6 @@ class SecurityController extends Controller
       }
       if (empty($_POST["password_confirmation"])) {
         $errors["password_confirmation"] = "Le champ \"Confirmez le mdp\" est requis.";
-      }
-      if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-        $errors["email_invalid"] = "L'addresse email est incorrect.";
       }
       // check if entered password are the same
       if ($_POST["password_confirmation"] != $_POST["password"]) {
@@ -116,5 +120,24 @@ class SecurityController extends Controller
     unset($_SESSION["user"]);
     // redirect to home
     header("Location: /");
+  }
+
+  /**
+   * check if current user is admin
+   *
+   * @return void
+   */
+  private function isAdmin()
+  {
+    $admin = (new AdminManager())->findAdmin();
+    //check if user is conected and if he is admin
+    if (isset($_SESSION['user']) && ($_SESSION['user']['id']) === $admin->getUserId()) {
+      // is admin
+      return true;
+    } else {
+      // is not admin
+      $_SESSION['error'] = "Vous n'avez pas accès a l'administration.";
+      header('Location: /');
+    }
   }
 }

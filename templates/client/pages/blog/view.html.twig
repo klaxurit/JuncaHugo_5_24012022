@@ -50,7 +50,7 @@
 		</section>
 
 		<section class="article__comment-form">
-			<form method="post" action="">
+			<form method="post" action="/createComment">
 				<fieldset>
 					<!-- Titre du fieldset -->
 					<legend>Laisser votre commentaire ci-dessous:</legend>
@@ -61,7 +61,7 @@
 						{% elseif errors['badContent'] is defined %}
 							<p class="form_error">{{ errors['badContent'] }}</p>
 						{% endif %}
-						<button href="/createComment" class="form__button">Envoyer</button>
+						<button type="submit" class="form__button" onclick="window.location.reload(true)">Envoyer</button>
 					</div>
 				</fieldset>
 			</form>

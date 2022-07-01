@@ -11,14 +11,16 @@
       <th>Titre</th>
       <th>Post ID</th>
       <th>Comment ID</th>
-      <th>Actif</th>
-      <th>Actions</th>
+      <th>Action</th>
     </thead>
     <tbody>
       {% for comment in comments %}
+      <pre>
+        {{ dump(comment.status) }}
+      </pre>
         <tr>
-        <td>{{ comment.title }}</td>
-        <td>{{ comment.post_id }}</td>
+        <td>{{ comment.content }}</td>
+        <td>{{ comment.postId }}</td>
         <td>{{ comment.id }}</td>
         <td>
           <div class="custom-control custom-switch">
@@ -29,7 +31,11 @@
           </div>
         </td>
         <td>
-          <a href="/admin/posts/update/{{ comment.id }}" class="btn btn-warning update__button">Modifier</a>
+        {% if comment.status is same as("0") %}
+          <a href="/admin/{{ comment.id }}/setActive" class="btn btn-warning">Rendre actif</a>
+          {% else %}
+          <a href="/admin/{{ comment.id }}/setActive" class="btn btn-warning">Rendre inactif</a>
+        {% endif %}
           <a href="/admin/posts/delete/{{ comment.id }}" class="btn btn-danger">Supprimer</a>
         </td>
         </tr>

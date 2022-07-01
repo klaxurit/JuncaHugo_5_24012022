@@ -9,7 +9,6 @@ class Comment extends Entity
 {
   private $user_id;
   private $post_id;
-  private $title;
   private $content;
   private $status;
   private User $author;
@@ -50,26 +49,6 @@ class Comment extends Entity
   public function setContent($content)
   {
     $this->content = $content;
-
-    return $this;
-  }
-
-  /**
-   * Get the value of title
-   */
-  public function getTitle()
-  {
-    return $this->title;
-  }
-
-  /**
-   * Set the value of title
-   *
-   * @return  self
-   */
-  public function setTitle($title)
-  {
-    $this->title = $title;
 
     return $this;
   }

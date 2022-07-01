@@ -16,12 +16,14 @@ class CommentManager extends Manager
 
   public function createComment($comment)
   {
-    $sql = "INSERT INTO `comment`(`content`) VALUES (:content)";
+    $userId = $_SESSION['user']->getId();
+    $postId = "1";
+    // die(var_dump($userId));
+    $sql = "INSERT INTO `comment`(`content`, `user_id`, `post_id`) VALUES (:content, $userId, $postId)";
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':content', $comment["content"], PDO::PARAM_STR);
 
     $req->execute();
-    die(var_dump("ici"));
 
     $id = $this->pdo->lastInsertId();
 
@@ -32,7 +34,7 @@ class CommentManager extends Manager
     $data = $req->fetch();
 
     $comment = new Comment($data);
-
+    // die(var_dump($comment));
 
     return $comment;
   }
@@ -83,7 +85,6 @@ class CommentManager extends Manager
     }
 
     return $comments;
-    //revoir pour renvoyer un objet
   }
 
   public function getCommentsByPostId(int $id)
