@@ -15,9 +15,6 @@
     </thead>
     <tbody>
       {% for comment in comments %}
-      <pre>
-        {{ dump(comment.status) }}
-      </pre>
         <tr>
         <td>{{ comment.content }}</td>
         <td>{{ comment.postId }}</td>
