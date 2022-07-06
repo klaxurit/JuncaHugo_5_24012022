@@ -8,6 +8,7 @@ use App\Core\Controller;
 use App\Managers\UserManager;
 use App\Managers\AdminManager;
 use App\Controllers\AdminController;
+use App\Service\ValidationForm;
 
 class SecurityController extends Controller
 {
@@ -59,14 +60,11 @@ class SecurityController extends Controller
    */
   public function register()
   {
+    $validate = new ValidationForm();
     // manage form errors
     $errors = [];
     if (!empty($_POST)) {
-      if (empty($_POST["lastName"])) {
-        $errors["lastName"] = "Le champ \"Nom\" est requis.";
-      } else if (!preg_match("/^[a-zA-Z-']*$/", $_POST["lastName"])) {
-        $errors["badLastName"] = "Le champ \"Nom\" est incorrect.";
-      }
+      $validate->checkString($_POST["lastName"], "lastName");
       if (empty($_POST["firstName"])) {
         $errors["firstName"] = "Le champ \"Prenom\" est requis.";
       } else if (!preg_match("/^[a-zA-Z-']*$/", $_POST["firstName"])) {
