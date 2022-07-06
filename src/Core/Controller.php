@@ -34,6 +34,11 @@ class Controller
             $this->twig->addGlobal("user", $_SESSION['user']);
         }
         $this->twig->addGlobal("_post", $_POST);
+        $admin = (new AdminManager())->findAdmin();
+        if (isset($_SESSION['user']) && ($_SESSION['user']['id']) === $admin->getUserId()) {
+            // is admin
+            $this->twig->addGlobal("adminAccess", $_SESSION['user']);
+        }
     }
 
 

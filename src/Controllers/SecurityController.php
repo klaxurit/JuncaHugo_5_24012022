@@ -26,14 +26,12 @@ class SecurityController extends Controller
         // email ok => get user with email
         $user = (new UserManager())->loginUser();
         if ($user && password_verify($_POST["password"], $user->getPassword())) {
-          $isAdmin = $this->isAdmin();
           // if user ok and password correct user connect and redirect.
           // voir refaire ça
           $_SESSION["user"] = [
             "id" => $user->getId(),
             "surnom" => $user->getUsername(),
             "email" => $user->getEmail(),
-            "isAdmin" => $isAdmin
           ];
           header("Location: /");
         } else {
@@ -122,22 +120,22 @@ class SecurityController extends Controller
     header("Location: /");
   }
 
-  /**
-   * check if current user is admin
-   *
-   * @return void
-   */
-  private function isAdmin()
-  {
-    $admin = (new AdminManager())->findAdmin();
-    //check if user is conected and if he is admin
-    if (isset($_SESSION['user']) && ($_SESSION['user']['id']) === $admin->getUserId()) {
-      // is admin
-      return true;
-    } else {
-      // is not admin
-      $_SESSION['error'] = "Vous n'avez pas accès a l'administration.";
-      header('Location: /');
-    }
-  }
+  // /**
+  //  * check if current user is admin
+  //  *
+  //  * @return void
+  //  */
+  // private function isAdmin()
+  // {
+  //   $admin = (new AdminManager())->findAdmin();
+  //   //check if user is conected and if he is admin
+  //   if (isset($_SESSION['user']) && ($_SESSION['user']['id']) === $admin->getUserId()) {
+  //     // is admin
+  //     return true;
+  //   } else {
+  //     // is not admin
+  //     $_SESSION['error'] = "Vous n'avez pas accès a l'administration.";
+  //     header('Location: /');
+  //   }
+  // }
 }

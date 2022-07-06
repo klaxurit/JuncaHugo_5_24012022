@@ -18,11 +18,6 @@ manageComments:
   controller: AdminController
   action: manageComments
   parameters: []
-activateComment:
-  uri: /admin/comments/activateComment
-  controller: AdminController
-  action: activateComment
-  parameters: ["id"]
 login:
   uri: /login
   controller: SecurityController
@@ -48,11 +43,6 @@ post:
   controller: BlogController
   action: showPost
   parameters: ["slug"]
-createComment:
-  uri: /createComment
-  controller: BlogController
-  action: addComment
-  parameters: []
 posts:
   uri: /blog
   controller: BlogController
@@ -73,3 +63,13 @@ delete:
   controller: BlogController
   action: deletePost
   parameters: ["slug"]
+switchStatus:
+  uri: /admin/switchStatus/([0-9]+)
+  controller: AdminController
+  action: switchStatus
+  parameters: ["id"]
+switchStatus:
+  uri: /admin/delete/([0-9]+)
+  controller: AdminController
+  action: adminDeleteComment
+  parameters: ["id"]

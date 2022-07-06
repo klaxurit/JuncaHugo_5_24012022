@@ -50,7 +50,7 @@
 		</section>
 
 		<section class="article__comment-form">
-			<form method="post" action="/createComment">
+			<form method="post" action="">
 				<fieldset>
 					<!-- Titre du fieldset -->
 					<legend>Laisser votre commentaire ci-dessous:</legend>
@@ -61,7 +61,7 @@
 						{% elseif errors['badContent'] is defined %}
 							<p class="form_error">{{ errors['badContent'] }}</p>
 						{% endif %}
-						<button type="submit" class="form__button" onclick="window.location.reload(true)">Envoyer</button>
+						<button type="submit" class="form__button">Envoyer</button>
 					</div>
 				</fieldset>
 			</form>
@@ -69,12 +69,14 @@
 
 		<section class="article__comments">
 			{% for comment in comments %}
+			{% if comment.status is same as("1") %}
 				<div class="article__user-comment">
 					<p class="artcile__comment-author">{{ comment.author.username }}
 						le
 						<i>{{ comment.createdAt | date("d/m/Y") }}</i>:</p>
 					<p class="article__comment-content">{{ comment.content }}</p>
 				</div>
+				{% endif %}
 			{% endfor %}
 		</section>
 

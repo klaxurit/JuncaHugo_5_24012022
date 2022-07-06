@@ -4,41 +4,35 @@
 	Blog - Gestion des commentaires
 {% endblock %}
 {% block body %}
-<div class="admin-container">
-  <h3>Gestion </h3>
-  <table class="table table-striped">
-    <thead>
-      <th>Titre</th>
-      <th>Post ID</th>
-      <th>Comment ID</th>
-      <th>Action</th>
-    </thead>
-    <tbody>
-      {% for comment in comments %}
-        <tr>
-        <td>{{ comment.content }}</td>
-        <td>{{ comment.postId }}</td>
-        <td>{{ comment.id }}</td>
-        <td>
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" 
-              id="customSwitch{{ comment.id }}" {{ comment.status is same as("1") ? 'checked' : '' }} 
-              data-id="{{ comment.id }}">
-            <label class="custom-control-label" for="customSwitch{{ comment.id }}"></label>
-          </div>
-        </td>
-        <td>
-        {% if comment.status is same as("0") %}
-          <a href="/admin/{{ comment.id }}/setActive" class="btn btn-warning">Rendre actif</a>
-          {% else %}
-          <a href="/admin/{{ comment.id }}/setActive" class="btn btn-warning">Rendre inactif</a>
-        {% endif %}
-          <a href="/admin/posts/delete/{{ comment.id }}" class="btn btn-danger">Supprimer</a>
-        </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+	<div class="admin-container">
+		<h3 class="admin__manage-title">Manage comments
+		</h3>
+		<table class="table table-striped">
+			<thead>
+				<th>Content</th>
+				<th>Post ID</th>
+				<th>Comment ID</th>
+				<th>Action</th>
+			</thead>
+			<tbody>
+				{% for comment in comments %}
+					<tr>
+						<td>{{ comment.content }}</td>
+						<td>{{ comment.postId }}</td>
+						<td>{{ comment.id }}</td>
+						<td>
+              <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-warning">
+              {% if comment.status is same as("0") %}
+                Rendre actif
+              {% else %}
+                Rendre inactif
+							{% endif %}
+              </a>
+							<a href="/admin/delete/{{ comment.id }}" class="btn btn-danger">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}
-

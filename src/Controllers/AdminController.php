@@ -71,6 +71,7 @@ class AdminController extends Controller
    */
   public function manageComments()
   {
+    // die(var_dump("ici"));
     if ($this->isAdmin()) {
       // determinate what is the current page
       if (isset($_GET['page']) && !empty($_GET['page'])) {
@@ -95,14 +96,26 @@ class AdminController extends Controller
    * @param  mixed $id
    * @return void
    */
-  // public function activateComment(int $id)
-  // {
-  //   if ($this->isAdmin()) {
-  //     $comment = (new CommentManager())->getCommentsByPostId($id);
-  //     die(var_dump($comment));
-  //     $comment = new Comment();
-  //     $comment->setStatus($comment->getStatus() ? 0 : 1);
-  //   }
-  //   $comment->updateComment();
-  // }
+  public function switchStatus()
+  {
+    if ($this->isAdmin()) {
+      $comment = (new CommentManager())->findOneComment($this->params['id']);
+      $status = $comment->getStatus();
+      if ($status === "1") {
+        $status = "0";
+      } else {
+        $status = "1";
+      }
+      (new CommentManager())->updateComment($this->params['id'], $status);
+    }
+    $this->manageComments();
+  }
+
+  public function adminDeleteComment()
+  {
+    if ($this->isAdmin()) {
+      (new CommentManager())->deleteComment($this->params['id']);
+    }
+    $this->manageComments();
+  }
 }

@@ -36,7 +36,8 @@ class BlogController extends Controller
                 foreach ($_POST as $key => $value) {
                     $_POST[$key] = strip_tags($value);
                 }
-                $comment = (new CommentManager())->createComment($post->getId());
+                $comment = (new CommentManager())->createComment($post->getId(), $_POST);
+                header("Refresh:0");
             }
         }
 
@@ -102,14 +103,5 @@ class BlogController extends Controller
     public function deletePost()
     {
         $this->twig->display('admin/pages/blog/delete.html.twig');
-    }
-
-    public function addComment()
-    {
-        // manage form errors
-
-        $this->twig->display('client/pages/blog/view.html.twig', [
-            'errors' => $errors
-        ]);
     }
 }
