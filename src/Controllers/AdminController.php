@@ -25,7 +25,7 @@ class AdminController extends Controller
    *
    * @return void
    */
-  private function isAdmin()
+  public function isAdmin()
   {
     $admin = (new AdminManager())->findAdmin();
     //check if user is conected and if he is admin

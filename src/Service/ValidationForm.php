@@ -9,21 +9,26 @@ class ValidationForm
   const usernameRegex = "/^[0-9a-zA-Z']*$/";
   public $errors = [];
 
-  public function checkString($field, $fieldName)
+  public function checkEmpty($field, $fieldName)
   {
     if (empty($field)) {
       $this->errors[$fieldName] = "Le champ " . $fieldName . " est requis.";
-    } else if (!preg_match(self::stringRegex, $field)) {
+    }
+  }
+
+  public function checkString($field, $fieldName)
+  {
+    $this->checkEmpty($field, $fieldName);
+    if (!preg_match(self::stringRegex, $field)) {
       $this->errors[$fieldName] = "Le champ " . $fieldName . " est incorrect.";
     }
     return array_push($this->errors);
   }
 
-  public function checkUsername($field, $fieldName)
+  public function checkStringAndNumber($field, $fieldName)
   {
-    if (empty($field)) {
-      $errors[$fieldName] = "Le champ " . $fieldName . " est requis.";
-    } else if (!preg_match(self::usernameRegex, $field)) {
+    $this->checkEmpty($field, $fieldName);
+    if (!preg_match(self::usernameRegex, $field)) {
       $errors[$fieldName] = "Le champ " . $fieldName . " est incorrect.";
     }
     return array_push($this->errors);
@@ -31,9 +36,7 @@ class ValidationForm
 
   public function checkEmail($field, $fieldName)
   {
-    if (empty($field)) {
-      $this->errors[$fieldName] = "Le champ " . $fieldName . " est requis.";
-    }
+    $this->checkEmpty($field, $fieldName);
     if (!filter_var($field, FILTER_VALIDATE_EMAIL)) {
       $this->errors[$fieldName] = "L'addresse email est incorrect.";
     }
@@ -42,20 +45,20 @@ class ValidationForm
 
   public function checkPassword($field, $fieldName)
   {
-    if (empty($field)) {
-      $this->errors[$fieldName] = "Le champ " . $fieldName . " est requis.";
-    } else if (!preg_match(self::passwordRegex, $field)) {
+    $this->checkEmpty($field, $fieldName);
+    if (!preg_match(self::passwordRegex, $field)) {
       $this->errors[$fieldName] = "Le champ " . $fieldName . " est incorrect.";
     }
-
     return array_push($this->errors);
   }
 
-  public function checkPasswordConfirmation($field, $fieldName)
+  public function checkRegister($form)
   {
-    if (empty($field)) {
-      $this->errors[$fieldName] = "Le champ " . $fieldName . " est requis.";
-    }
-    return array_push($this->errors);
+    $this->checkString($form["lastName"], "lastName");
+    $this->checkString($form["firstName"], "firstName");
+    $this->checkStringAndNumber($form["username"], "username");
+    $this->checkEmail($form["email"], "email");
+    $this->checkPassword($form["password"], "password");
+    $this->checkEmpty($form["password_confirmation"], "password_confirmation");
   }
 }

@@ -63,15 +63,7 @@ class SecurityController extends Controller
     $validate = new ValidationForm();
     // manage form errors
     if (!empty($_POST)) {
-      $validate->checkString($_POST["lastName"], "nom");
-      $validate->checkString($_POST["firstName"], "prenom");
-      $validate->checkUsername($_POST["username"], "surnom");
-      $validate->checkEmail($_POST["email"], "email");
-      $validate->checkPassword($_POST["password"], "mot de passe");
-      $validate->checkPasswordConfirmation($_POST["password_confirmation"], "confirmez le mdp");
-      // die(var_dump($validate->errors));
-
-
+      $validate->checkRegister($_POST);
       
       // check if entered password are the same
       if ($_POST["password_confirmation"] != $_POST["password"]) {
