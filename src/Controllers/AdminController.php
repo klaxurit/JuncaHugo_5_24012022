@@ -6,7 +6,10 @@ use App\Model\Comment;
 use App\Core\Controller;
 use App\Managers\PostManager;
 use App\Managers\AdminManager;
+use App\Managers\SocialManager;
+use App\Service\ValidationForm;
 use App\Managers\CommentManager;
+use App\Service\SocialCRUD;
 
 class AdminController extends Controller
 {
@@ -116,5 +119,26 @@ class AdminController extends Controller
       (new CommentManager())->deleteComment($this->params['id']);
     }
     $this->manageComments();
+  }
+
+  public function manageSocials()
+  {
+    $this->twig->display(
+      'admin/pages/socials/index.html.twig',
+      [
+        'socials' => (new SocialManager())->findAllSocials()
+      ]
+    );
+  }
+
+  public function AdminCreateSocial()
+  {
+    $social = (new SocialCRUD())->addSocial();
+    $this->twig->display(
+      'admin/pages/socials/create.html.twig',
+      [
+        'errors' => $social
+      ]
+    );
   }
 }

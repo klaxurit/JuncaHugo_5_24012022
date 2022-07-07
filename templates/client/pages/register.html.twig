@@ -19,8 +19,6 @@
 								<input type="text" name="lastName" id="lastName" value="{{ _post.lastname }}"/>
 								{% if errors['lastName'] is defined %}
 									<p class="form_error">{{ errors['lastName'] }}</p>
-									{% elseif errors['lastName'] is defined %}
-									<p class="form_error">{{ errors['lastName'] }}</p>
 								{% endif %}
 							</p>
 						</div>
@@ -29,8 +27,6 @@
 								<label for="firstName">Prénom</label>
 								<input type="text" name="firstName" id="firstName" value="{{ _post.firstname }}"/>
 								{% if errors['firstName'] is defined %}
-									<p class="form_error">{{ errors['firstName'] }}</p>
-									{% elseif errors['firstName'] is defined %}
 									<p class="form_error">{{ errors['firstName'] }}</p>
 								{% endif %}
 							</p>
@@ -43,8 +39,6 @@
 								<input type="text" name="username" id="username" value="{{ _post.username }}"/>
 								{% if errors['username'] is defined %}
 									<p class="form_error">{{ errors['username'] }}</p>
-									{% elseif errors['username'] is defined %}
-									<p class="form_error">{{ errors['username'] }}</p>
 								{% endif %}
 							</p>
 						</div>
@@ -52,9 +46,6 @@
 							<p class="register__field-email">
 								<label for="email">E-mail</label>
 								<input type="email" name="email" id="email" value="{{ _post.email }}"/>
-								{% if errors['email_invalid'] is defined %}
-									<p class="form_error">{{ errors['email_invalid'] }}</p>
-								{% endif %}
 								{% if errors['email'] is defined %}
 									<p class="form_error">{{ errors['email'] }}</p>
 								{% endif %}
@@ -68,8 +59,6 @@
 					<div class="form_error-password">
 						{% if errors['password'] is defined %}
 							<p>{{ errors['password'] }}</p>
-							{% elseif errors['badPassword'] is defined %}
-							<p class="form_error">{{ errors['badPassword'] }}</p>
 						{% endif %}
 					</div>
 					<p>

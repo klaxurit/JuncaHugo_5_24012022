@@ -1,0 +1,26 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+	Blog - Ajout d'un réseau social
+{% endblock %}
+{% block body %}
+	<div class="admin-container">
+		<h3 class="admin__manage-title">Manage socials
+		</h3>
+		<form method="post" action="">
+			<div class="form-group">
+				<label for="iconName">Icon name</label>
+				<input type="text" class="form-control" id="iconName" value="{{ _post.iconName }}">
+			</div>
+			<div class="form-group">
+				<label for="socialUrl">Url</label>
+				<input type="text" class="form-control" id="socialUrl" value="{{ _post.socialUrl }}">
+			</div>
+			<div class="form-group">
+				<label for="socialName">Name</label>
+				<input type="text" class="form-control" id="socialName" value="{{ _post.socialName }}">
+			</div>
+			<button type="submit" class="btn btn-primary">Ajouter</button>
+		</form>
+	</div>
+{% endblock %}

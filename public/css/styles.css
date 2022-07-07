@@ -328,6 +328,8 @@ form {
 
 .form_error > p {
   font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   padding: 0;
   margin: 0;
   color: rgb(212, 0, 0);
@@ -342,6 +344,8 @@ form {
 
 .form_error-password > p {
   font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   padding: 0;
   margin: 0;
   color: rgb(212, 0, 0);
@@ -349,6 +353,8 @@ form {
 
 .form_error {
   font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   padding: 0;
   margin: 0;
   color: rgb(212, 0, 0);

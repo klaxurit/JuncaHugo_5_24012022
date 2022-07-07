@@ -1,8 +1,8 @@
 <footer>
 	<div class="footer__social-icon">
-		<a class="footer__social-icon__link" href="http://www.github.com/klaxurit" target="_blank"><span class="iconify" href="" data-icon="entypo-social:github" data-width="20"></span></a>
-		<a class="footer__social-icon__link" href="http://www.twitter.com/axurit_" target="_blank"><span class="iconify" href="" data-icon="akar-icons:twitter-fill" data-width="20"></span></a>
-		<a class="footer__social-icon__link" href="http://www.linkedin.com/in/juncahugo/" target="_blank"><span class="iconify"  data-icon="entypo-social:linkedin" data-width="20"></span></a>
+	{% for social in socials %}
+		<a class="footer__social-icon__link" href="{{ social.url }}" target="_blank"><span class="iconify" href="" data-icon="{{ social.iconName }}" data-width="20"></span></a>
+	{% endfor %}
 	</div>
 	<div class="footer__text">
 		<p>tous les contenus sont soumis au droit d'auteur axurit © 2022 • tous droits réservés .</p>

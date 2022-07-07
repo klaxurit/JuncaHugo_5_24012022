@@ -18,6 +18,16 @@ manageComments:
   controller: AdminController
   action: manageComments
   parameters: []
+manageSocials:
+  uri: /admin/socials
+  controller: AdminController
+  action: manageSocials
+  parameters: []
+createSocial:
+  uri: /admin/socials/create
+  controller: AdminController
+  action: AdminCreateSocial
+  parameters: []
 login:
   uri: /login
   controller: SecurityController

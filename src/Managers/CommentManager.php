@@ -70,10 +70,10 @@ class CommentManager extends Manager
 
   public function findAllComments($limit, $first_comment)
   {
-    // calcul the first post of the page
+    // calcul the first comment of the page
     $offset = ($first_comment * $limit) - $limit;
 
-    // find all posts
+    // find all comments
     $sql = "SELECT * FROM comment
     LIMIT :per_page
     OFFSET :first_comment;
@@ -103,7 +103,6 @@ class CommentManager extends Manager
     $req->execute();
 
     $data = $req->fetch();
-    // die(var_dump($data));
 
     $comment = new Comment($data);
 

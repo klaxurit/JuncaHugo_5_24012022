@@ -20,15 +20,15 @@
 						<td>{{ comment.content }}</td>
 						<td>{{ comment.postId }}</td>
 						<td>{{ comment.id }}</td>
-						<td>
-              <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-warning">
+						<td class="mt-2 pt-2">
+              <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-sm btn-warning">
               {% if comment.status is same as("0") %}
                 Rendre actif
               {% else %}
                 Rendre inactif
 							{% endif %}
               </a>
-							<a href="/admin/delete/{{ comment.id }}" class="btn btn-danger">Supprimer</a>
+							<a href="/admin/delete/{{ comment.id }}" class="btn btn-sm btn-danger">Supprimer</a>
 						</td>
 					</tr>
 				{% endfor %}

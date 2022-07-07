@@ -58,8 +58,6 @@
 						<textarea name="content" id="content" value="{{ _post.content }}" cols="40" rows="6"></textarea>
 						{% if errors['content'] is defined %}
 							<p class="form_error">{{ errors['content'] }}</p>
-						{% elseif errors['badContent'] is defined %}
-							<p class="form_error">{{ errors['badContent'] }}</p>
 						{% endif %}
 						<button type="submit" class="form__button">Envoyer</button>
 					</div>

@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Service\AddComment;
 use Twig\Error\RuntimeError;
 use App\Managers\PostManager;
+use App\Service\ValidationForm;
 use App\Managers\CommentManager;
 
 class BlogController extends Controller
@@ -23,28 +25,12 @@ class BlogController extends Controller
     {
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $comments = (new CommentManager())->getCommentsByPostId($post->getId());
-
-        $errors = [];
-        if (!empty($_POST)) {
-            if (empty($_POST["content"])) {
-                $errors["content"] = "Le champ \"commentaire\" est requis.";
-                // } else if (!preg_match("/^[a-zA-Z-']*$/", $_POST["content"])) {
-                // $errors["badContent"] = "Le champ \"commentaire\" est incorrect.";
-                // }
-            }
-            if (!$errors) {
-                foreach ($_POST as $key => $value) {
-                    $_POST[$key] = strip_tags($value);
-                }
-                $comment = (new CommentManager())->createComment($post->getId(), $_POST);
-                header("Refresh:0");
-            }
-        }
+        $comment = (new AddComment())->add($post->getId());
 
         $this->twig->display('client/pages/blog/view.html.twig', [
             'post' => $post,
             'comments' => $comments,
-            'errors' => $errors
+            'errors' => $comment
         ]);
     }
 
