@@ -62,38 +62,22 @@ class SecurityController extends Controller
   {
     $validate = new ValidationForm();
     // manage form errors
-    $errors = [];
     if (!empty($_POST)) {
-      $validate->checkString($_POST["lastName"], "lastName");
-      if (empty($_POST["firstName"])) {
-        $errors["firstName"] = "Le champ \"Prenom\" est requis.";
-      } else if (!preg_match("/^[a-zA-Z-']*$/", $_POST["firstName"])) {
-        $errors["badFirstName"] = "Le champ \"Prenom\" est incorrect.";
-      }
-      if (empty($_POST["username"])) {
-        $errors["username"] = "Le champ \"Surnom\" est requis.";
-      } else if (!preg_match("/^[0-9a-zA-Z']*$/", $_POST["username"])) {
-        $errors["badUsername"] = "Le champ \"Surnom\" est incorrect.";
-      }
-      if (empty($_POST["email"])) {
-        $errors["email"] = "Le champ \"Email\" est requis.";
-      }
-      if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-        $errors["email_invalid"] = "L'addresse email est incorrect.";
-      }
-      if (empty($_POST["password"])) {
-        $errors["password"] = "Le champ \"Mot de passe\" est requis.";
-      } else if (!preg_match('/^[a-z0-9_-]{6,18}$/', $_POST["password"])) {
-        $errors["badPassword"] = "Le champ \"Mot de passe\" est incorrect.";
-      }
-      if (empty($_POST["password_confirmation"])) {
-        $errors["password_confirmation"] = "Le champ \"Confirmez le mdp\" est requis.";
-      }
+      $validate->checkString($_POST["lastName"], "nom");
+      $validate->checkString($_POST["firstName"], "prenom");
+      $validate->checkUsername($_POST["username"], "surnom");
+      $validate->checkEmail($_POST["email"], "email");
+      $validate->checkPassword($_POST["password"], "mot de passe");
+      $validate->checkPasswordConfirmation($_POST["password_confirmation"], "confirmez le mdp");
+      // die(var_dump($validate->errors));
+
+
+      
       // check if entered password are the same
       if ($_POST["password_confirmation"] != $_POST["password"]) {
         $errors["passwords_are_same"] = "Les mots de passes entrés ne sont pas identiques.";
       }
-      if (!$errors) {
+      if (!$validate->errors) {
         foreach ($_POST as $key => $value) {
           $_POST[$key] = strip_tags($value);
         }
@@ -105,7 +89,7 @@ class SecurityController extends Controller
     $this->twig->display(
       'client/pages/register.html.twig',
       [
-        'errors' => $errors
+        'errors' => $validate->errors
       ]
     );
   }
@@ -117,23 +101,4 @@ class SecurityController extends Controller
     // redirect to home
     header("Location: /");
   }
-
-  // /**
-  //  * check if current user is admin
-  //  *
-  //  * @return void
-  //  */
-  // private function isAdmin()
-  // {
-  //   $admin = (new AdminManager())->findAdmin();
-  //   //check if user is conected and if he is admin
-  //   if (isset($_SESSION['user']) && ($_SESSION['user']['id']) === $admin->getUserId()) {
-  //     // is admin
-  //     return true;
-  //   } else {
-  //     // is not admin
-  //     $_SESSION['error'] = "Vous n'avez pas accès a l'administration.";
-  //     header('Location: /');
-  //   }
-  // }
 }
