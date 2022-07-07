@@ -71,7 +71,6 @@ class AdminController extends Controller
    */
   public function manageComments()
   {
-    // die(var_dump("ici"));
     if ($this->isAdmin()) {
       // determinate what is the current page
       if (isset($_GET['page']) && !empty($_GET['page'])) {
