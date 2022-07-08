@@ -51,4 +51,11 @@ class ValidationForm
     $this->checkPassword($form["password"], "password", "mot de passe");
     $this->checkEmpty($form["password_confirmation"], "password_confirmation", "confirmation du mdp");
   }
+
+  public function checkAddSocial($form)
+  {
+    $this->checkEmpty($form["iconName"], "content", "nom de l'icon");
+    $this->checkEmpty($form["socialUrl"], "content", "url");
+    $this->checkEmpty($form["socialName"], "socialName", "nom");
+  }
 }

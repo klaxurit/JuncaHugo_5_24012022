@@ -134,6 +134,7 @@ class AdminController extends Controller
   public function AdminCreateSocial()
   {
     $social = (new SocialCRUD())->addSocial();
+    // die(var_dump("ici"));
     $this->twig->display(
       'admin/pages/socials/create.html.twig',
       [

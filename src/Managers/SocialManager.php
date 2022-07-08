@@ -30,6 +30,7 @@ class SocialManager extends Manager
     $req->bindParam(':id', $id, PDO::PARAM_STR);
     $req->execute();
     $data = $req->fetch();
+    die(var_dump($data));
 
     $social = new Social($data);
 
