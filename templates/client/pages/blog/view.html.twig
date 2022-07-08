@@ -56,6 +56,9 @@
 					<legend>Laisser votre commentaire ci-dessous:</legend>
 					<div class="form__comment">
 						<textarea name="content" id="content" value="{{ _post.content }}" cols="40" rows="6"></textarea>
+						{% if user is not defined %}
+							<p class="form_error">Vous devez être connecté pour poster un commentaire.</p>
+						{% endif %}
 						{% if errors['content'] is defined %}
 							<p class="form_error">{{ errors['content'] }}</p>
 						{% endif %}

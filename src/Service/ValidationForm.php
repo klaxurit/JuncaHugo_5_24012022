@@ -42,6 +42,13 @@ class ValidationForm
     return array_push($this->errors);
   }
 
+  // public function checkUserConnected($fieldName)
+  // {
+  //   if (!isset($_SESSION['user'])) {
+  //     $this->errors[$fieldName] = "Vous devez être connecté pour poster un commentaire.";
+  //   }
+  // }
+
   public function checkRegister($form)
   {
     $this->checkString($form["lastName"], "lastName", "nom");

@@ -33,6 +33,11 @@ deleteSocial:
   controller: AdminController
   action: adminDeleteSocial
   parameters: ["id"]
+updateSocial:
+  uri: /admin/socials/update/([0-9]+)
+  controller: AdminController
+  action: adminUpdateSocial
+  parameters: ["id"]
 login:
   uri: /login
   controller: SecurityController

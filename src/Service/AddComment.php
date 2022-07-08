@@ -12,7 +12,8 @@ class AddComment
   {
     $validate = new ValidationForm();
     if (!empty($_POST)) {
-    $validate->checkEmpty($_POST["content"], "content", "commentaire");
+    $validate->checkEmpty($_POST["content"], "content");
+    // $validate->checkUserConnected($_POST["content"], "content");
         if (!$validate->errors) {
           foreach ($_POST as $key => $value) {
               $_POST[$key] = strip_tags($value);

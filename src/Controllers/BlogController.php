@@ -30,7 +30,7 @@ class BlogController extends Controller
         $this->twig->display('client/pages/blog/view.html.twig', [
             'post' => $post,
             'comments' => $comments,
-            'errors' => $comment
+            'errors' => $comment ?? []
         ]);
     }
 

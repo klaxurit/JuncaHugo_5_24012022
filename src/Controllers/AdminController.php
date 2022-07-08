@@ -155,4 +155,23 @@ class AdminController extends Controller
     }
     $this->manageSocials();
   }
+
+  public function adminUpdateSocial()
+  {
+    if (!empty($_POST)) {
+      $social = (new SocialManager())->findOneSocial($this->params['id']);
+      $errors = (new SocialCRUD())->modifySocial($social->getId());
+      // (new SocialCRUD())->modifySocial($social->getId());
+      if (empty($errors)) {
+        $this->manageSocials();
+      }
+    }
+
+    $this->twig->display(
+      'admin/pages/socials/update.html.twig',
+      [
+        'errors' => $errors ?? []
+      ]
+    );
+  }
 }
