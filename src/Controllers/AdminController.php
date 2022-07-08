@@ -131,15 +131,28 @@ class AdminController extends Controller
     );
   }
 
-  public function AdminCreateSocial()
+  public function adminCreateSocial()
   {
-    $social = (new SocialCRUD())->addSocial();
-    // die(var_dump("ici"));
+    if (!empty($_POST)) {
+      $errors = (new SocialCRUD())->addSocial();
+      if (empty($errors)) {
+        header("Location: /admin/socials");
+      }
+    }
+
     $this->twig->display(
       'admin/pages/socials/create.html.twig',
       [
-        'errors' => $social
+        'errors' => $errors ?? []
       ]
     );
+  }
+
+  public function adminDeleteSocial()
+  {
+    if ($this->isAdmin()) {
+      (new SocialManager())->deleteSocial($this->params['id']);
+    }
+    $this->manageSocials();
   }
 }

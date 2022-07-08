@@ -54,8 +54,8 @@ class ValidationForm
 
   public function checkAddSocial($form)
   {
-    $this->checkEmpty($form["iconName"], "content", "nom de l'icon");
-    $this->checkEmpty($form["socialUrl"], "content", "url");
+    $this->checkEmpty($form["iconName"], "iconName", "nom de l'icon");
+    $this->checkEmpty($form["socialUrl"], "socialUrl", "url");
     $this->checkEmpty($form["socialName"], "socialName", "nom");
   }
 }

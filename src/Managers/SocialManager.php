@@ -30,11 +30,18 @@ class SocialManager extends Manager
     $req->bindParam(':id', $id, PDO::PARAM_STR);
     $req->execute();
     $data = $req->fetch();
-    die(var_dump($data));
 
     $social = new Social($data);
 
     return $social;
+  }
+
+  public function deleteSocial(int $id)
+  {
+    $sql = "DELETE FROM social_network WHERE id=:id";
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
   }
 
   public function findAllSocials()

@@ -10,21 +10,21 @@
 		<form method="post" action="">
 			<div class="form-group">
 				<label for="iconName">Icon name</label>
-				<input type="text" class="form-control" id="iconName" value="{{ _post.iconName }}">
+				<input type="text" name="iconName" class="form-control" id="iconName" value="{{ _post.iconName }}">
 				{% if errors['iconName'] is defined %}
 					<p class="form_error">{{ errors['iconName'] }}</p>
 				{% endif %}
 			</div>
 			<div class="form-group">
 				<label for="socialUrl">Url</label>
-				<input type="text" class="form-control" id="socialUrl" value="{{ _post.socialUrl }}">
+				<input type="text" name="socialUrl" class="form-control" id="socialUrl" value="{{ _post.socialUrl }}">
 				{% if errors['socialUrl'] is defined %}
 					<p class="form_error">{{ errors['socialUrl'] }}</p>
 				{% endif %}
 			</div>
 			<div class="form-group">
 				<label for="socialName">Name</label>
-				<input type="text" class="form-control" id="socialName" value="{{ _post.socialName }}">
+				<input type="text" name="socialName" class="form-control" id="socialName" value="{{ _post.socialName }}">
 				{% if errors['socialName'] is defined %}
 					<p class="form_error">{{ errors['socialName'] }}</p>
 				{% endif %}
