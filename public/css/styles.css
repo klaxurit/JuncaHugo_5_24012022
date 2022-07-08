@@ -315,6 +315,16 @@ form {
   text-transform: uppercase;
 }
 
+.form__button-error {
+  padding: 0.8em;
+  border: 1px solid red;
+  background-color: #000;
+  color: red;
+  margin-top: 2em;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
 .form__message {
   display: flex;
   flex-direction: column;
