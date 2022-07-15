@@ -15,11 +15,11 @@ class AddComment
     $validate->checkEmpty($_POST["content"], "content");
     // $validate->checkUserConnected($_POST["content"], "content");
         if (!$validate->errors) {
+          // voir pour factoriser ce morceau de code qui est trop répété
           foreach ($_POST as $key => $value) {
               $_POST[$key] = strip_tags($value);
           }
-          $comment = (new CommentManager())->createComment($postId, $_POST);
-          header("Refresh:0");
+          (new CommentManager())->createComment($postId, $_POST);
         }
     }
     return $validate->errors;

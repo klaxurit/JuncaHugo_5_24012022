@@ -44,6 +44,7 @@ class SocialManager extends Manager
     $req->bindParam(':iconName', $_POST["iconName"], PDO::PARAM_STR);
     $req->bindParam(':socialUrl', $_POST["socialUrl"], PDO::PARAM_STR);
     $req->bindParam(':socialName', $_POST["socialName"], PDO::PARAM_STR);
+    $req->bindParam('id', $id, PDO::PARAM_STR);
     $req->execute();
   }
 

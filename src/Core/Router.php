@@ -44,7 +44,7 @@ class Router
                 $params = array_combine($route["parameters"], array_slice($matches, 1));
                 // Check if uri contain /admin and if current user is admin
                 $admin = (new AdminManager())->findAdmin();
-                if (strpos($uri, "/admin") === 0 && $user["id"] !== $admin->getUserId()){
+                if (strpos($uri, "/admin") === 0 && isset($_SESSION["user"]) && $user["id"] !== $admin->getUserId()){
                     return $controller = new ErrorController("show403");
                 }
                 // Return a new instance of Controller with params
