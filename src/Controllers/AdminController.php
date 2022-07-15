@@ -19,7 +19,7 @@ class AdminController extends Controller
   {
     //check if current user is admin
     if ($this->isAdmin()) {
-      $this->twig->display('admin/index.html.twig');
+      return $this->twig->display('admin/index.html.twig');
     }
   }
 
@@ -38,7 +38,7 @@ class AdminController extends Controller
     } else {
       // is not admin
       $_SESSION['error'] = "Vous n'avez pas accès a l'administration.";
-      header('Location: /');
+      return header('Location: /');
     }
   }
 
@@ -57,7 +57,7 @@ class AdminController extends Controller
         $currentPage = 1;
       }
     }
-    $this->twig->display(
+    return $this->twig->display(
       'admin/pages/posts/index.html.twig',
       [
         'posts' => (new PostManager())->findAllPosts(self::PER_PAGE, $currentPage),
@@ -82,7 +82,7 @@ class AdminController extends Controller
         $currentPage = 1;
       }
     }
-    $this->twig->display(
+    return $this->twig->display(
       'admin/pages/comments/index.html.twig',
       [
         'comments' => (new CommentManager())->findAllComments(self::PER_PAGE, $currentPage),
@@ -110,7 +110,7 @@ class AdminController extends Controller
       }
       (new CommentManager())->updateComment($this->params['id'], $status);
     }
-    $this->manageComments();
+    return $this->manageComments();
   }
 
   public function adminDeleteComment()
@@ -118,12 +118,12 @@ class AdminController extends Controller
     if ($this->isAdmin()) {
       (new CommentManager())->deleteComment($this->params['id']);
     }
-    $this->manageComments();
+    return $this->manageComments();
   }
 
   public function manageSocials()
   {
-    $this->twig->display(
+    return $this->twig->display(
       'admin/pages/socials/index.html.twig',
       [
         'socials' => (new SocialManager())->findAllSocials()
@@ -140,7 +140,7 @@ class AdminController extends Controller
       }
     }
 
-    $this->twig->display(
+    return $this->twig->display(
       'admin/pages/socials/create.html.twig',
       [
         'errors' => $errors ?? []
@@ -163,15 +163,15 @@ class AdminController extends Controller
       $errors = (new SocialCRUD())->modifySocial($social->getId());
       // (new SocialCRUD())->modifySocial($social->getId());
       if (empty($errors)) {
-        $this->manageSocials();
+        return $this->manageSocials();
       }
     }
-
     $this->twig->display(
       'admin/pages/socials/update.html.twig',
       [
         'errors' => $errors ?? []
       ]
     );
+
   }
 }
