@@ -29,6 +29,21 @@ class UserManager extends Manager
     return $users;
   }
 
+  public function findOneUser(int $id)
+  {
+    $sql = "SELECT * FROM user WHERE id=:id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+
+    $data = $req->fetch();
+
+    $user = new User($data);
+
+    return $user;
+  }
+
   /**
    * add a new user in db
    *

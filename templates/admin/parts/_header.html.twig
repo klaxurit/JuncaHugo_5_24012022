@@ -21,22 +21,9 @@
 	</div>
 </nav>
 <div class="container">
-	<pre>
-    {{ dump(_session["FLASH_MESSAGES"]["comment"]["type"] is same as("success")) }}
-    </pre>
-	{% if _session["FLASH_MESSAGES"]["comment"]["type"] is defined %}
-		{% if _session["FLASH_MESSAGES"]["comment"]["type"] is same as("error") %}
-			<div class="alert alert-danger" role="alert">
-				{{ _session["FLASH_MESSAGES"]["comment"]["message"] }}
-			</div>
-		{% endif %}
+	{% if flash('success') %}
+		<div class="alert alert-success">
+			{{ flash('success') }}
+		</div>
 	{% endif %}
-	{% if _session["FLASH_MESSAGES"]["comment"]["type"] is defined %}
-		{% if _session["FLASH_MESSAGES"]["comment"]["type"] is same as("success") %}
-			<div class="alert alert-success" role="alert">
-				{{ _session["FLASH_MESSAGES"]["comment"]["message"] }}
-			</div>
-		{% endif %}
-	{% endif %}
-	{{ contenu }}
 </div>

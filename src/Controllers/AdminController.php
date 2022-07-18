@@ -2,19 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Model\Comment;
 use App\Core\Controller;
 use App\Service\SocialCRUD;
 use App\Managers\PostManager;
-use App\Service\FlashMessage;
 use App\Managers\AdminManager;
 use App\Managers\SocialManager;
-use App\Service\ValidationForm;
 use App\Managers\CommentManager;
+use App\Service\FlashMessage;
+use App\Session\PHPSession;
+use App\Session\SessionInterface;
 
 class AdminController extends Controller
 {
   const PER_PAGE = 10;
+  public SessionInterface $session;
 
   public function index()
   {
@@ -159,27 +160,24 @@ class AdminController extends Controller
 
   public function adminUpdateSocial()
   {
-    $message = "";
     $socialDatas = (new SocialManager())->findOneSocial($this->params['id']);
     if (!empty($_POST)) {
       $social = (new SocialManager())->findOneSocial($this->params['id']);
       $errors = (new SocialCRUD())->modifySocial($social->getId());
       if (empty($errors)) {
-        $message = (new FlashMessage())->flash('comment', 'comment succesfully updated', 'success');
+        $session = new PHPSession();
+        $flash = new FlashMessage($session);
+        $flash->success('Le réseau social a bien été modifié.');
         return $this->manageSocials();
-      } else {
-        $message = (new FlashMessage())->flash('comment', 'comment unsuccesfully updated', 'error');
       }
     }
-    
+
     $this->twig->display(
       'admin/pages/socials/update.html.twig',
       [
-        'message' => $message,
         'social' => $socialDatas,
         'errors' => $errors ?? []
       ]
     );
-
   }
 }
