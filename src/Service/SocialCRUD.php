@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Service\ValidationForm;
 use App\Managers\SocialManager;
-
+use App\Model\Social;
 
 class SocialCRUD
 {
@@ -25,7 +25,6 @@ class SocialCRUD
 
   public function modifySocial(int $id)
   {
-    // récuperrer les champs pour pré remplir le formulaire
     $validate = new ValidationForm();
     // $validate->checkAddSocial($_POST);
     if (!$validate->errors) {

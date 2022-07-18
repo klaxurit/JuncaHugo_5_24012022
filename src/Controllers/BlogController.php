@@ -27,7 +27,6 @@ class BlogController extends Controller
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $comments = (new CommentManager())->getCommentsByPostId($post->getId());
         $admin = (new AdminManager())->findAdmin();
-        // var_dump($_SESSION['user']['id'], $admin->getUserId());
         if (isset($_SESSION['user']) && $_SESSION['user']['id'] === $admin->getUserId()) {
             $comment = (new AddComment())->add($post->getId());
         }

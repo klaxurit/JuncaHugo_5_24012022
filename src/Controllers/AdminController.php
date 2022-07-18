@@ -4,12 +4,13 @@ namespace App\Controllers;
 
 use App\Model\Comment;
 use App\Core\Controller;
+use App\Service\SocialCRUD;
 use App\Managers\PostManager;
+use App\Service\FlashMessage;
 use App\Managers\AdminManager;
 use App\Managers\SocialManager;
 use App\Service\ValidationForm;
 use App\Managers\CommentManager;
-use App\Service\SocialCRUD;
 
 class AdminController extends Controller
 {
@@ -158,17 +159,24 @@ class AdminController extends Controller
 
   public function adminUpdateSocial()
   {
+    $message = "";
+    $socialDatas = (new SocialManager())->findOneSocial($this->params['id']);
     if (!empty($_POST)) {
       $social = (new SocialManager())->findOneSocial($this->params['id']);
       $errors = (new SocialCRUD())->modifySocial($social->getId());
-      // (new SocialCRUD())->modifySocial($social->getId());
       if (empty($errors)) {
+        $message = (new FlashMessage())->flash('comment', 'comment succesfully updated', 'success');
         return $this->manageSocials();
+      } else {
+        $message = (new FlashMessage())->flash('comment', 'comment unsuccesfully updated', 'error');
       }
     }
+    
     $this->twig->display(
       'admin/pages/socials/update.html.twig',
       [
+        'message' => $message,
+        'social' => $socialDatas,
         'errors' => $errors ?? []
       ]
     );

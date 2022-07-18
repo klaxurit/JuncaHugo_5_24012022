@@ -26,6 +26,7 @@ class SocialManager extends Manager
     $id = $this->pdo->lastInsertId();
 
     $sql = "SELECT * FROM social_network WHERE id = :id";
+
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':id', $id, PDO::PARAM_STR);
     $req->execute();
@@ -39,18 +40,20 @@ class SocialManager extends Manager
   public function updateSocial(int $id)
   {
     $sql = "UPDATE social_network SET `icon_name`=:iconName, `url`=:socialUrl, `name`=:socialName WHERE id=$id";
+
     $req = $this->pdo->prepare($sql);
-    // die(var_dump($req));
     $req->bindParam(':iconName', $_POST["iconName"], PDO::PARAM_STR);
     $req->bindParam(':socialUrl', $_POST["socialUrl"], PDO::PARAM_STR);
     $req->bindParam(':socialName', $_POST["socialName"], PDO::PARAM_STR);
-    $req->bindParam('id', $id, PDO::PARAM_STR);
+    // Si je décommente cette ligne -> SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+    // $req->bindParam('id', $id, PDO::PARAM_STR);
     $req->execute();
   }
 
   public function deleteSocial(int $id)
   {
     $sql = "DELETE FROM social_network WHERE id=:id";
+
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':id', $id, PDO::PARAM_STR);
     $req->execute();
@@ -59,6 +62,7 @@ class SocialManager extends Manager
   public function findAllSocials()
   {
     $sql = "SELECT * FROM social_network";
+
     $req = $this->pdo->prepare($sql);
     $req->execute();
 
@@ -77,6 +81,7 @@ class SocialManager extends Manager
   public function findOneSocial(int $id)
   {
     $sql = "SELECT * FROM social_network WHERE id=:id";
+
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':id', $id, PDO::PARAM_STR);
     $req->execute();
