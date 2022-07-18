@@ -34,7 +34,6 @@ class CommentManager extends Manager
     $req->execute();
     $data = $req->fetch();
 
-
     $comment = new Comment($data);
 
     return $comment;

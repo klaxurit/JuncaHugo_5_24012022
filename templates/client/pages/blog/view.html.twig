@@ -63,7 +63,7 @@
 							<p class="form_error">{{ errors['content'] }}</p>
 						{% endif %}
 						{% if user is not defined %}
-							<button type="submit" disabled class="form__button-error">Login before send comment</button>
+							<button class="form__button"><a href="/login">Se connecter</a></button>
 						{% else %}
 							<button type="submit" class="form__button">Envoyer</button>
 						{% endif %}

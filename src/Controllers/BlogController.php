@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Managers\AdminManager;
 use App\Service\AddComment;
 use Twig\Error\RuntimeError;
 use App\Managers\PostManager;
@@ -25,7 +26,11 @@ class BlogController extends Controller
     {
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $comments = (new CommentManager())->getCommentsByPostId($post->getId());
-        $comment = (new AddComment())->add($post->getId());
+        $admin = (new AdminManager())->findAdmin();
+        // var_dump($_SESSION['user']['id'], $admin->getUserId());
+        if (isset($_SESSION['user']) && $_SESSION['user']['id'] === $admin->getUserId()) {
+            $comment = (new AddComment())->add($post->getId());
+        }
 
         $this->twig->display('client/pages/blog/view.html.twig', [
             'post' => $post,
