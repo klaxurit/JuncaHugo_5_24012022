@@ -14,6 +14,8 @@ class FlashMessage
 
     private $sessionKey = 'flash';
 
+    private $message;
+
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
@@ -28,10 +30,12 @@ class FlashMessage
 
     public function get(string $type)
     {
-        $flash = $this->session->get($this->sessionKey, []);
-        $this->session->delete($this->sessionKey);
-        if (array_key_exists($type, $flash)) {
-            return $flash[$type];
+        if (is_null($this->message)){
+            $this->message = $this->session->get($this->sessionKey, []);
+            $this->session->delete($this->sessionKey);
+        }
+        if (array_key_exists($type, $this->message)) {
+            return $this->message[$type];
         }
         return null;
     }
