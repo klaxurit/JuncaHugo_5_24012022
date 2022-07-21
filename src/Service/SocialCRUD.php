@@ -33,6 +33,6 @@ class SocialCRUD
       }
       (new SocialManager())->updateSocial($id);
     }
-    return $validate->errors;
+      return $validate->errors;
   }
 }

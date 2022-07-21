@@ -84,7 +84,6 @@ class AdminController extends Controller
         $currentPage = 1;
       }
     }
-    var_dump("ici");
     return $this->twig->display(
       'admin/pages/comments/index.html.twig',
       [
@@ -121,12 +120,14 @@ class AdminController extends Controller
     if ($this->isAdmin()) {
       (new CommentManager())->deleteComment($this->params['id']);
     }
-    return $this->manageComments();
+    $session = new PHPSession();
+    $flash = new FlashMessage($session);
+    $flash->success('Le commentaire a bien été supprimé.');
+    header("Location: /admin/comments");
   }
 
   public function manageSocials()
   {
-    var_dump("ici");
     return $this->twig->display(
       'admin/pages/socials/index.html.twig',
       [
@@ -140,6 +141,9 @@ class AdminController extends Controller
     if (!empty($_POST)) {
       $errors = (new SocialCRUD())->addSocial();
       if (empty($errors)) {
+        $session = new PHPSession();
+        $flash = new FlashMessage($session);
+        $flash->success('Le réseau social a bien été créé.');
         header("Location: /admin/socials");
       }
     }
@@ -157,24 +161,22 @@ class AdminController extends Controller
     if ($this->isAdmin()) {
       (new SocialManager())->deleteSocial($this->params['id']);
     }
-    // $session = new PHPSession();
-    // $flash = new FlashMessage($session);
-    // $flash->success('Le réseau social a bien été supprimé.');
-    return $this->manageSocials();
+    $session = new PHPSession();
+    $flash = new FlashMessage($session);
+    $flash->success('Le réseau social a bien été supprimé.');
+    return header('Location: /admin/socials');
   }
 
   public function adminUpdateSocial()
   {
     $socialDatas = (new SocialManager())->findOneSocial($this->params['id']);
     if (!empty($_POST)) {
-      // $social = (new SocialManager())->findOneSocial($this->params['id']);
       $errors = (new SocialCRUD())->modifySocial($socialDatas->getId());
       if (empty($errors)) {
         $session = new PHPSession();
         $flash = new FlashMessage($session);
         $flash->success('Le réseau social a bien été modifié.');
-        // die(var_dump(empty($errors)));
-        return $this->manageSocials();
+        return header('Location: /admin/socials');
       }
     }
     

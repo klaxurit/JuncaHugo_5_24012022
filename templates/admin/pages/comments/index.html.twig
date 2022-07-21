@@ -21,13 +21,11 @@
 						<td>{{ comment.postId }}</td>
 						<td>{{ comment.id }}</td>
 						<td class="mt-2 pt-2">
-              <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-sm btn-warning">
               {% if comment.status is same as("0") %}
-                Rendre actif
+                <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-sm btn-secondary">Rendre actif</a>
               {% else %}
-                Rendre inactif
+                <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-sm btn-success">Rendre inactif</a>
 							{% endif %}
-              </a>
 							<a href="/admin/delete/{{ comment.id }}" class="btn btn-sm btn-danger">Supprimer</a>
 						</td>
 					</tr>
