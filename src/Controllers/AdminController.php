@@ -144,7 +144,7 @@ class AdminController extends Controller
         $session = new PHPSession();
         $flash = new FlashMessage($session);
         $flash->success('Le réseau social a bien été créé.');
-        header("Location: /admin/socials");
+        return header("Location: /admin/socials");
       }
     }
 

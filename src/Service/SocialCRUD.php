@@ -13,11 +13,6 @@ class SocialCRUD
     $validate = new ValidationForm();
     $validate->checkAddSocial($_POST);
     if (!$validate->errors) {
-      foreach ($_POST as $key => $value) {
-        $_POST[$key] = strip_tags($value);
-      }
-      // $social = new Social($_POST);
-      // Voir pour gérrer les insertions 
       (new SocialManager())->createSocial($_POST);
     }
     return $validate->errors;
@@ -28,9 +23,6 @@ class SocialCRUD
     $validate = new ValidationForm();
     // $validate->checkAddSocial($_POST);
     if (!$validate->errors) {
-      foreach ($_POST as $key => $value) {
-        $_POST[$key] = strip_tags($value);
-      }
       (new SocialManager())->updateSocial($id);
     }
       return $validate->errors;

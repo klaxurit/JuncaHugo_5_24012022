@@ -14,6 +14,7 @@ class Entity
   {
     if (!empty($data)) {
       $this->hydrate($data);
+      $this->clearString();
     }
   }
 
@@ -30,6 +31,13 @@ class Entity
       if (is_callable([$this, $method])) {
         $this->$method($value);
       }
+    }
+  }
+
+  public function clearString()
+  {
+    foreach ($_POST as $key => $value) {
+      $_POST[$key] = strip_tags($value);
     }
   }
 

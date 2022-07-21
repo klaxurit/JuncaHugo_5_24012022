@@ -70,9 +70,6 @@ class SecurityController extends Controller
         $errors["passwords_are_same"] = "Les mots de passes entrés ne sont pas identiques.";
       }
       if (!$validate->errors) {
-        foreach ($_POST as $key => $value) {
-          $_POST[$key] = strip_tags($value);
-        }
         $user = (new UserManager())->createUser($_POST);
         $_SESSION["user"] = $user;
         header("Location: /");
