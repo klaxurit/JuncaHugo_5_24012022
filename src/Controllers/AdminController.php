@@ -31,7 +31,7 @@ class AdminController extends Controller
   {
     $admin = (new AdminManager())->findAdmin();
     //check if user is conected and if he is admin
-    if (isset($_SESSION['user']) && ($_SESSION['user']['id']) === $admin->getUserId()) {
+    if (isset($_SESSION['user']) && ($_SESSION['user']->getId()) === $admin->getUserId()) {
       // is admin
       return true;
     } else {

@@ -41,7 +41,7 @@ class Controller
         $this->twig->addGlobal("uri", $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . "/");
         if (isset($_SESSION['user'])) {
             // $user = new User($_SESSION['user']);
-            $userId = (new UserManager())->findOneUser($_SESSION['user']['id']);
+            $user = (new UserManager())->findOneUser($_SESSION['user']->getId());
             $this->twig->addGlobal("user", $_SESSION['user']);
         }
         $this->twig->addGlobal("_post", $_POST);
@@ -50,7 +50,7 @@ class Controller
         }
         $admin = (new AdminManager())->findAdmin();
 
-        if (isset($_SESSION['user']) && ($userId->getId()) === $admin->getUserId()) {
+        if (isset($_SESSION['user']) && ($user->getId()) === $admin->getUserId()) {
             // is admin
             $this->twig->addGlobal("adminAccess", $_SESSION['user']);
         }

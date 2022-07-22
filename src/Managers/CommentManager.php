@@ -16,12 +16,26 @@ class CommentManager extends Manager
 
   public function createComment($postId, $comment)
   {
-    $userId = $_SESSION['user']['id'];
+    // $comment = new Comment($comment);
+    // $content = $comment->getContent();
+    // $postId = $comment->getPostId();
+    // $userId = $_SESSION['user']->getId();
+
+    // $sql = "INSERT INTO `comment`(`content`, `user_id`, `post_id`) VALUES (:content, :userId, :postId)";
+
+    // $req = $this->pdo->prepare($sql);
+    // $req->bindParam(':content', $content, PDO::PARAM_STR);
+    // $req->bindParam(':userId', $userId , PDO::PARAM_STR);
+    // $req->bindParam(':postId', $postId, PDO::PARAM_STR);
+    // $req->execute();
+    $comment = new Comment($comment);
+    $userId = $_SESSION['user']->getId();
+    $content = $comment->getContent();
 
     $sql = "INSERT INTO `comment`(`content`, `user_id`, `post_id`) VALUES (:content, :userId, :postId)";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':content', $comment["content"], PDO::PARAM_STR);
+    $req->bindParam(':content', $content, PDO::PARAM_STR);
     $req->bindParam(':userId', $userId, PDO::PARAM_STR);
     $req->bindParam(':postId', $postId, PDO::PARAM_STR);
     $req->execute();

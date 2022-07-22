@@ -14,7 +14,6 @@ class Entity
   {
     if (!empty($data)) {
       $this->hydrate($data);
-      $this->clearString();
     }
   }
 
@@ -29,15 +28,8 @@ class Entity
       $method = "set" . str_replace("_", "", ucwords($key, "_"));
 
       if (is_callable([$this, $method])) {
-        $this->$method($value);
+        $this->$method(strip_tags($value));
       }
-    }
-  }
-
-  public function clearString()
-  {
-    foreach ($_POST as $key => $value) {
-      $_POST[$key] = strip_tags($value);
     }
   }
 
