@@ -21,6 +21,12 @@ class FlashMessage
         $this->session = $session;
     }
 
+    /**
+     * Stock information in session  
+     *
+     * @param  mixed $message
+     * @return void
+     */
     public function success(string $message)
     {
         $flash = $this->session->get($this->sessionKey, []);
@@ -28,13 +34,21 @@ class FlashMessage
         $this->session->set($this->sessionKey, $flash);
     }
 
+    /**
+     * Get information in session
+     *
+     * @param  mixed $type
+     * @return void
+     */
     public function get(string $type)
     {
         if (is_null($this->message)){
             $this->message = $this->session->get($this->sessionKey, []);
             $this->session->delete($this->sessionKey);
         }
+        // Check if key exist 
         if (array_key_exists($type, $this->message)) {
+            // Return message
             return $this->message[$type];
         }
         return null;

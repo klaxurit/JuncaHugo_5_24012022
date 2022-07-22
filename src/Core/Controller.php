@@ -30,8 +30,7 @@ class Controller
             'debug' => true,
         ]);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-        $session = new PHPSession();
-        $flashMessage = new FlashMessage($session);
+        $flashMessage = new FlashMessage($this->session);
         $this->twig->addExtension(new FlashExtension($flashMessage));
         $this->setGlobals();
     }

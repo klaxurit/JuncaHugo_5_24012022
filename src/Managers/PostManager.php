@@ -29,10 +29,15 @@ class PostManager extends Manager
   {
     //
   }
-
+  
+  /**
+   * Count all posts in db
+   *
+   * @return void
+   */
   public function countPosts()
   {
-    // count the total of posts
+    // Count the total of posts
     $sql2 = "SELECT COUNT(*) AS total_posts from `post`;";
     $req = $this->pdo->prepare($sql2);
     $req->execute();
@@ -43,16 +48,16 @@ class PostManager extends Manager
 
 
   /**
-   * find all posts in db with
+   * Find all posts
    *
    * @return void
    */
   public function findAllPosts($limit, $first_post)
   {
-    // calcul the first post of the page
+    // Calcul the first post of the page
     $offset = ($first_post * $limit) - $limit;
 
-    // find all posts
+    // Find all posts
     $sql = "SELECT *, 
     p.created_at as post_created_at, u.created_at as user_created_at, 
     p.updated_at as post_updated_at, u.updated_at as user_updated_at,
@@ -93,7 +98,7 @@ class PostManager extends Manager
 
 
   /**
-   * getPostBySlug
+   * Get post by slug
    *
    * @param  mixed $slug
    * @return void
@@ -124,6 +129,7 @@ class PostManager extends Manager
     $data['id'] = $data['user_id'];
     $author = new User($data);
 
+    // Add Author by associating user and post
     $post->setAuthor($author);
 
     return $post;

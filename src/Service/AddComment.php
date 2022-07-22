@@ -5,7 +5,9 @@ namespace App\Service;
 use App\Service\ValidationForm;
 use App\Managers\CommentManager;
 
-
+/**
+ * Add a comment
+ */
 class AddComment
 {
   public function add($postId)

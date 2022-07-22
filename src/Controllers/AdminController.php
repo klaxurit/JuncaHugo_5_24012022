@@ -14,47 +14,47 @@ class AdminController extends Controller
 {
   const PER_PAGE = 10;
 
+  /**
+   * Return admin panel
+   *
+   * @return void
+   */
   public function index()
   {
-    //check if current user is admin
+    // Check if current user is admin
     if ($this->isAdmin()) {
       return $this->twig->display('admin/index.html.twig');
     }
   }
 
+
   /**
-   * check if current user is admin
+   * Check if current user is admin
    *
    * @return void
    */
   public function isAdmin()
   {
     $admin = (new AdminManager())->findAdmin();
-    //check if user is conected and if he is admin
     if (isset($_SESSION['user']) && ($_SESSION['user']->getId()) === $admin->getUserId()) {
-      // is admin
       return true;
     } else {
-      // is not admin
-      $_SESSION['error'] = "Vous n'avez pas accès a l'administration.";
       return header('Location: /');
     }
   }
 
   /**
-   * Display all posts
+   * Return post's list
    *
    * @return void
    */
   public function managePosts()
   {
-    if ($this->isAdmin()) {
-      // determinate what is the current page
-      if (isset($_GET['page']) && !empty($_GET['page'])) {
-        $currentPage = (int)strip_tags($_GET['page']);
-      } else {
-        $currentPage = 1;
-      }
+    // Find the current page
+    if (isset($_GET['page']) && !empty($_GET['page'])) {
+      $currentPage = (int)strip_tags($_GET['page']);
+    } else {
+      $currentPage = 1;
     }
     return $this->twig->display(
       'admin/pages/posts/index.html.twig',
@@ -67,19 +67,17 @@ class AdminController extends Controller
   }
 
   /**
-   * Display all posts
+   * Return comment's list
    *
    * @return void
    */
   public function manageComments()
   {
-    if ($this->isAdmin()) {
-      // determinate what is the current page
-      if (isset($_GET['page']) && !empty($_GET['page'])) {
-        $currentPage = (int)strip_tags($_GET['page']);
-      } else {
-        $currentPage = 1;
-      }
+    // Find the current page
+    if (isset($_GET['page']) && !empty($_GET['page'])) {
+      $currentPage = (int)strip_tags($_GET['page']);
+    } else {
+      $currentPage = 1;
     }
     return $this->twig->display(
       'admin/pages/comments/index.html.twig',
@@ -92,35 +90,42 @@ class AdminController extends Controller
   }
 
   /**
-   * active or deactive comment
+   * Switch the comment's status
    *
    * @param  mixed $id
    * @return void
    */
   public function switchStatus()
   {
-    if ($this->isAdmin()) {
-      $comment = (new CommentManager())->findOneComment($this->params['id']);
-      $status = $comment->getStatus();
-      if ($status === "1") {
-        $status = "0";
-      } else {
-        $status = "1";
-      }
-      (new CommentManager())->updateComment($this->params['id'], $status);
+    $comment = (new CommentManager())->findOneComment($this->params['id']);
+    $status = $comment->getStatus();
+    if ($status === "1") {
+      $status = "0";
+    } else {
+      $status = "1";
     }
+    (new CommentManager())->updateComment($this->params['id'], $status);
     return $this->manageComments();
   }
-
+  
+  /**
+   * Delete a comment
+   *
+   * @return void
+   */
   public function adminDeleteComment()
   {
-    if ($this->isAdmin()) {
-      (new CommentManager())->deleteComment($this->params['id']);
-    }
+    (new CommentManager())->deleteComment($this->params['id']);
     $this->flash->success('Le commentaire a bien été supprimé.');
+
     header("Location: /admin/comments");
   }
-
+  
+  /**
+   * Return social network's list
+   *
+   * @return void
+   */
   public function manageSocials()
   {
     return $this->twig->display(
@@ -130,7 +135,12 @@ class AdminController extends Controller
       ]
     );
   }
-
+  
+  /**
+   * Add a social network
+   *
+   * @return void
+   */
   public function adminCreateSocial()
   {
     if (!empty($_POST)) {
@@ -148,16 +158,25 @@ class AdminController extends Controller
       ]
     );
   }
-
+  
+  /**
+   * Delete a social network
+   *
+   * @return void
+   */
   public function adminDeleteSocial()
   {
-    if ($this->isAdmin()) {
-      (new SocialManager())->deleteSocial($this->params['id']);
-    }
+    (new SocialManager())->deleteSocial($this->params['id']);
     $this->flash->success('Le réseau social a bien été supprimé.');
+
     return header('Location: /admin/socials');
   }
-
+  
+  /**
+   * Update a social network
+   *
+   * @return void
+   */
   public function adminUpdateSocial()
   {
     $socialDatas = (new SocialManager())->findOneSocial($this->params['id']);
@@ -168,7 +187,7 @@ class AdminController extends Controller
         return header('Location: /admin/socials');
       }
     }
-    
+
     return $this->twig->display(
       'admin/pages/socials/update.html.twig',
       [

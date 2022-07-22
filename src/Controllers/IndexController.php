@@ -12,7 +12,7 @@ class IndexController extends Controller
 {
 
     /**
-     * Return the home page
+     * Return home page
      *
      * @return void
      */

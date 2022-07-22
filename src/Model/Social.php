@@ -7,22 +7,25 @@ use App\Core\Entity;
 
 class Social extends Entity
 {
-    private string $icon_name;
-    private string $url;
-    private string $name;
+    private $icon_name;
+    private $url;
+    private $name;
 
     /**
      * Get the value of url
+     * 
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->url;
     }
 
     /**
      * Set the value of url
+     * 
+     *  @return  self
      */
-    public function setUrl(string $url): self
+    public function setUrl($url)
     {
         $this->url = $url;
 
@@ -32,15 +35,17 @@ class Social extends Entity
     /**
      * Get the value of name
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
 
     /**
      * Set the value of name
+     * 
+     *  @return  self
      */
-    public function setName(string $name): self
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -49,8 +54,10 @@ class Social extends Entity
 
     /**
      * Get the value of icon_name
+     * 
+     *  @return  self
      */
-    public function getIconName(): string
+    public function getIconName()
     {
         return $this->icon_name;
     }
@@ -58,7 +65,7 @@ class Social extends Entity
     /**
      * Set the value of icon_name
      */
-    public function setIconName(string $icon_name): self
+    public function setIconName($icon_name)
     {
         $this->icon_name = $icon_name;
 

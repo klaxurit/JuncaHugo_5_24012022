@@ -15,7 +15,7 @@ class BlogController extends Controller
     const PER_PAGE = 6;
 
     /**
-     * Return one post
+     * Return article view
      *
      * @return void
      * @throws \Twig\Error\LoaderError
@@ -38,17 +38,15 @@ class BlogController extends Controller
         ]);
     }
 
+    
     /**
-     * Return index of posts
+     * Return articles's list
      *
      * @return void
-     * @throws \Twig\Error\LoaderError
-     * @throws RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
     public function listPosts()
     {
-        // determinate what is the current page
+        // Find the current page
         if (isset($_GET['page']) && !empty($_GET['page'])) {
             $currentPage = (int)strip_tags($_GET['page']);
         } else {

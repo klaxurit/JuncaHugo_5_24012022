@@ -14,6 +14,12 @@ class AdminManager extends Manager
     parent::__construct();
   }
 
+    
+  /**
+   * Find admin
+   *
+   * @return void
+   */
   public function findAdmin()
   {
     $sql = "SELECT * FROM admin";

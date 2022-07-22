@@ -14,7 +14,7 @@ class UserManager extends Manager
   }
 
   /**
-   * find all users in db
+   * Find all users
    *
    * @return void
    */
@@ -28,7 +28,13 @@ class UserManager extends Manager
 
     return $users;
   }
-
+  
+  /**
+   * Find one user by id
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function findOneUser(int $id)
   {
     $sql = "SELECT * FROM user WHERE id=:id";
@@ -45,7 +51,7 @@ class UserManager extends Manager
   }
 
   /**
-   * add a new user in db
+   * Create user
    *
    * @return void
    */
@@ -65,7 +71,6 @@ class UserManager extends Manager
 
     $req->execute();
 
-
     // get new user's id
     $id = $this->pdo->lastInsertId();
 
@@ -80,6 +85,11 @@ class UserManager extends Manager
     return $user;
   }
 
+  /**
+   * Log-in an user
+   *
+   * @return void
+   */
   public function loginUser()
   {
     $sql = "SELECT * FROM `user` WHERE `email` = :email";

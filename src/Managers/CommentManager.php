@@ -14,30 +14,23 @@ class CommentManager extends Manager
     parent::__construct();
   }
 
+  /**
+   * Create a comment
+   *
+   * @param  mixed $postId
+   * @param  mixed $comment
+   * @return void
+   */
   public function createComment($postId, $comment)
   {
-    // $comment = new Comment($comment);
-    // $content = $comment->getContent();
-    // $postId = $comment->getPostId();
-    // $userId = $_SESSION['user']->getId();
-
-    // $sql = "INSERT INTO `comment`(`content`, `user_id`, `post_id`) VALUES (:content, :userId, :postId)";
-
-    // $req = $this->pdo->prepare($sql);
-    // $req->bindParam(':content', $content, PDO::PARAM_STR);
-    // $req->bindParam(':userId', $userId , PDO::PARAM_STR);
-    // $req->bindParam(':postId', $postId, PDO::PARAM_STR);
-    // $req->execute();
     $comment = new Comment($comment);
-    $userId = $_SESSION['user']->getId();
-    $content = $comment->getContent();
 
     $sql = "INSERT INTO `comment`(`content`, `user_id`, `post_id`) VALUES (:content, :userId, :postId)";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':content', $content, PDO::PARAM_STR);
-    $req->bindParam(':userId', $userId, PDO::PARAM_STR);
-    $req->bindParam(':postId', $postId, PDO::PARAM_STR);
+    $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
+    $req->bindValue(':userId', $_SESSION['user']->getId(), PDO::PARAM_STR);
+    $req->bindValue(':postId', $postId, PDO::PARAM_STR);
     $req->execute();
 
     $id = $this->pdo->lastInsertId();
@@ -53,6 +46,13 @@ class CommentManager extends Manager
     return $comment;
   }
 
+  /**
+   * Update a comment
+   *
+   * @param  mixed $id
+   * @param  mixed $status
+   * @return void
+   */
   public function updateComment(int $id, int $status)
   {
     $sql = "UPDATE comment SET status=:status WHERE id=:id";
@@ -62,6 +62,12 @@ class CommentManager extends Manager
     $req->execute();
   }
 
+  /**
+   * Delete a comment
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function deleteComment(int $id)
   {
     $sql = "DELETE FROM comment WHERE id=:id";
@@ -70,9 +76,14 @@ class CommentManager extends Manager
     $req->execute();
   }
 
+  /**
+   * Count all comments
+   *
+   * @return void
+   */
   public function countComments()
   {
-    // count the total of comments
+    // Count the total of comments
     $sql2 = "SELECT COUNT(*) AS total_comments from `comment`;";
     $req = $this->pdo->prepare($sql2);
     $req->execute();
@@ -81,12 +92,19 @@ class CommentManager extends Manager
     return $totalComments;
   }
 
+  /**
+   * Find all comments
+   *
+   * @param  mixed $limit
+   * @param  mixed $first_comment
+   * @return void
+   */
   public function findAllComments($limit, $first_comment)
   {
-    // calcul the first comment of the page
+    // Calcul the first comment of the page
     $offset = ($first_comment * $limit) - $limit;
 
-    // find all comments
+    // Find all comments
     $sql = "SELECT * FROM comment
     LIMIT :per_page
     OFFSET :first_comment;
@@ -108,6 +126,12 @@ class CommentManager extends Manager
     return $comments;
   }
 
+  /**
+   * Find one comment by id
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function findOneComment(int $id)
   {
     $sql = "SELECT * FROM comment WHERE id = :id";
@@ -122,6 +146,12 @@ class CommentManager extends Manager
     return $comment;
   }
 
+  /**
+   * Get comment by post id
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function getCommentsByPostId(int $id)
   {
     $sql = "SELECT c.*, u.username,

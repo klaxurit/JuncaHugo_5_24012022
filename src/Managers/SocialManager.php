@@ -13,14 +13,22 @@ class SocialManager extends Manager
     parent::__construct();
   }
 
+  /**
+   * Create a social network
+   *
+   * @param  mixed $social
+   * @return void
+   */
   public function createSocial($social)
   {
-    $sql = "INSERT INTO `social_network`(`icon_name`, `url`, `name`) VALUES (:iconName, :socialUrl, :socialName)";
+    $social = new Social($social);
+
+    $sql = "INSERT INTO `social_network`(`icon_name`, `url`, `name`) VALUES (:iconName, :url, :name)";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':iconName', $social["iconName"], PDO::PARAM_STR);
-    $req->bindParam(':socialUrl', $social["socialUrl"], PDO::PARAM_STR);
-    $req->bindParam(':socialName', $social["socialName"], PDO::PARAM_STR);
+    $req->bindValue(':iconName', $social->getIconName(), PDO::PARAM_STR);
+    $req->bindValue(':url', $social->getUrl(), PDO::PARAM_STR);
+    $req->bindValue(':name', $social->getName(), PDO::PARAM_STR);
     $req->execute();
 
     $id = $this->pdo->lastInsertId();
@@ -37,6 +45,12 @@ class SocialManager extends Manager
     return $social;
   }
 
+  /**
+   * Update a social network
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function updateSocial(int $id)
   {
     $sql = "UPDATE social_network SET `icon_name`=:iconName, `url`=:socialUrl, `name`=:socialName WHERE id=:id";
@@ -49,6 +63,12 @@ class SocialManager extends Manager
     $req->execute();
   }
 
+  /**
+   * Delete a social network
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function deleteSocial(int $id)
   {
     $sql = "DELETE FROM social_network WHERE id=:id";
@@ -58,6 +78,11 @@ class SocialManager extends Manager
     $req->execute();
   }
 
+  /**
+   * Find all socials
+   *
+   * @return void
+   */
   public function findAllSocials()
   {
     $sql = "SELECT * FROM social_network";
@@ -67,16 +92,22 @@ class SocialManager extends Manager
 
     $datas = $req->fetchAll();
     $socials = [];
-    
+
     foreach ($datas as $data) {
       $social = new Social($data);
-      
+
       array_push($socials, $social);
     }
 
     return $socials;
   }
 
+  /**
+   * Find social by id
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function findOneSocial(int $id)
   {
     $sql = "SELECT * FROM social_network WHERE id=:id";

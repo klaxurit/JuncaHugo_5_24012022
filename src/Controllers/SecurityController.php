@@ -50,18 +50,18 @@ class SecurityController extends Controller
   }
 
   /**
-   * return the register page
+   * Return the register page
    *
    * @return void
    */
   public function register()
   {
     $validate = new ValidationForm();
-    // manage form errors
+    // Manage form errors
     if (!empty($_POST)) {
       $validate->checkRegister($_POST);
       
-      // check if entered password are the same
+      // Check if entered password are the same
       if ($_POST["password_confirmation"] != $_POST["password"]) {
         $errors["passwords_are_same"] = "Les mots de passes entrés ne sont pas identiques.";
       }
@@ -81,9 +81,9 @@ class SecurityController extends Controller
 
   public function logout()
   {
-    // unset the user session
+    // Unset the user session
     unset($_SESSION["user"]);
-    // redirect to home
+    // Redirect to home
     header("Location: /");
   }
 }

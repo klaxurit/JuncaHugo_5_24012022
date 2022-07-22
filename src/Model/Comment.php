@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use App\Model\Post;
 use App\Core\Entity;
 
 class Comment extends Entity
