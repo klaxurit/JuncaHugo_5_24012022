@@ -8,14 +8,11 @@ use App\Managers\PostManager;
 use App\Managers\AdminManager;
 use App\Managers\SocialManager;
 use App\Managers\CommentManager;
-use App\Service\FlashMessage;
 use App\Session\PHPSession;
-use App\Session\SessionInterface;
 
 class AdminController extends Controller
 {
   const PER_PAGE = 10;
-  public SessionInterface $session;
 
   public function index()
   {
@@ -120,9 +117,7 @@ class AdminController extends Controller
     if ($this->isAdmin()) {
       (new CommentManager())->deleteComment($this->params['id']);
     }
-    $session = new PHPSession();
-    $flash = new FlashMessage($session);
-    $flash->success('Le commentaire a bien été supprimé.');
+    $this->flash->success('Le commentaire a bien été supprimé.');
     header("Location: /admin/comments");
   }
 
@@ -141,9 +136,7 @@ class AdminController extends Controller
     if (!empty($_POST)) {
       $errors = (new SocialCRUD())->addSocial();
       if (empty($errors)) {
-        $session = new PHPSession();
-        $flash = new FlashMessage($session);
-        $flash->success('Le réseau social a bien été créé.');
+        $this->flash->success('Le réseau social a bien été créé.');
         return header("Location: /admin/socials");
       }
     }
@@ -161,9 +154,7 @@ class AdminController extends Controller
     if ($this->isAdmin()) {
       (new SocialManager())->deleteSocial($this->params['id']);
     }
-    $session = new PHPSession();
-    $flash = new FlashMessage($session);
-    $flash->success('Le réseau social a bien été supprimé.');
+    $this->flash->success('Le réseau social a bien été supprimé.');
     return header('Location: /admin/socials');
   }
 
@@ -173,9 +164,7 @@ class AdminController extends Controller
     if (!empty($_POST)) {
       $errors = (new SocialCRUD())->modifySocial($socialDatas->getId());
       if (empty($errors)) {
-        $session = new PHPSession();
-        $flash = new FlashMessage($session);
-        $flash->success('Le réseau social a bien été modifié.');
+        $this->flash->success('Le réseau social a bien été modifié.');
         return header('Location: /admin/socials');
       }
     }

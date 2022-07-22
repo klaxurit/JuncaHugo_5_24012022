@@ -2,14 +2,12 @@
 
 namespace App\Core;
 
-use App\Model\User;
 use Twig\Environment;
 use App\Session\PHPSession;
 use App\Twig\FlashExtension;
 use App\Managers\UserManager;
 use App\Service\FlashMessage;
 use App\Managers\AdminManager;
-use App\Session\SessionInterface;
 use Twig\Loader\FilesystemLoader;
 
 class Controller
@@ -18,9 +16,13 @@ class Controller
     protected array $params;
     protected $loader;
     protected $twig;
+    protected $session;
+    protected $flash;
 
     public function __construct(string $action, array $params = [])
     {
+        $this->session = new PHPSession;
+        $this->flash = new FlashMessage($this->session);
         $this->action = $action;
         $this->params = $params;
         $this->loader = new FilesystemLoader(ROOT_DIR . '/templates');

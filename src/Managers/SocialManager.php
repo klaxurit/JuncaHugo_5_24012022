@@ -5,8 +5,6 @@ namespace App\Managers;
 use PDO;
 use App\Core\Manager;
 use App\Model\Social;
-use App\Session\PHPSession;
-use App\Service\FlashMessage;
 
 class SocialManager extends Manager
 {
