@@ -25,6 +25,6 @@ class SocialCRUD
     if (!$validate->errors) {
       (new SocialManager())->updateSocial($id);
     }
-      return $validate->errors;
+    return $validate->errors;
   }
 }

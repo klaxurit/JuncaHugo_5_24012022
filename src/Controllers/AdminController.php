@@ -8,6 +8,7 @@ use App\Managers\PostManager;
 use App\Managers\AdminManager;
 use App\Managers\SocialManager;
 use App\Managers\CommentManager;
+use App\Service\AdminProfile;
 use App\Session\PHPSession;
 
 class AdminController extends Controller
@@ -21,10 +22,35 @@ class AdminController extends Controller
    */
   public function index()
   {
+    $admin = (new AdminManager())->findAdmin();
     // Check if current user is admin
     if ($this->isAdmin()) {
-      return $this->twig->display('admin/index.html.twig');
+      return $this->twig->display(
+        'admin/index.html.twig',
+        [
+          'admin' => $admin
+        ]
+      );
     }
+  }
+
+  public function updateAdminInfos() {
+    $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
+    if (!empty($_POST)) {
+      $errors = (new AdminProfile())->updateInfos($adminDatas->getId());
+      if (empty($errors)) {
+        $this->flash->success('Le réseau social a bien été modifié.');
+        return header('Location: /admin');
+      }
+    }
+
+    return $this->twig->display(
+      'admin/pages/profile/update.html.twig',
+      [
+        'admin' => $adminDatas,
+        'errors' => $errors ?? []
+      ]
+    );
   }
 
 

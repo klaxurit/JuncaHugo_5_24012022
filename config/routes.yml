@@ -8,6 +8,11 @@ admin:
   controller: AdminController
   action: index
   parameters: []
+updateAdminInfos:
+  uri: /admin/profile/update/([0-9]+)
+  controller: AdminController
+  action: updateAdminInfos
+  parameters: ["id"]
 managePosts:
   uri: /admin/posts
   controller: AdminController
