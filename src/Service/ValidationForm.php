@@ -65,4 +65,9 @@ class ValidationForm
     $this->checkEmpty($form["url"], "url");
     $this->checkEmpty($form["name"], "name");
   }
+
+  public function checkAddPost($form)
+  {
+    //
+  }
 }

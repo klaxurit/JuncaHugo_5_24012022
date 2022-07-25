@@ -15,7 +15,7 @@ class PostManager extends Manager
     parent::__construct();
   }
 
-  public function createPost()
+  public function createPost($post)
   {
     //
   }

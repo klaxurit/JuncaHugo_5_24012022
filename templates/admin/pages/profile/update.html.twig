@@ -9,24 +9,38 @@
 		</h3>
 		<form method="post" action="">
 			<div class="form-group">
-				<label for="iconName">Icon name</label>
-				<input type="text" name="iconName" class="form-control" id="iconName" value="{{ social.iconName }}">
-				{% if errors['iconName'] is defined %}
-					<p class="form_error">{{ errors['iconName'] }}</p>
+				<label for="description">Description</label>
+				<textarea class="form-control admin__update-textarea" id="description" name="adminDesc">{{ admin.description }}</textarea>
+				{% if errors['adminDesc'] is defined %}
+					<p class="form_error">{{ errors['adminDesc'] }}</p>
 				{% endif %}
 			</div>
 			<div class="form-group">
-				<label for="socialUrl">Url</label>
-				<input type="text" name="socialUrl" class="form-control" id="socialUrl" value="{{ social.url }}">
-				{% if errors['socialUrl'] is defined %}
-					<p class="form_error">{{ errors['socialUrl'] }}</p>
+				<label for="tagline">Tagline</label>
+				<textarea class="form-control admin__update-textarea" id="tagline" name="tagline">{{ admin.tagline }}</textarea>
+				{% if errors['tagline'] is defined %}
+					<p class="form_error">{{ errors['tagline'] }}</p>
 				{% endif %}
 			</div>
 			<div class="form-group">
-				<label for="socialName">Name</label>
-				<input type="text" name="socialName" class="form-control" id="socialName" value="{{ social.name }}">
-				{% if errors['socialName'] is defined %}
-					<p class="form_error">{{ errors['socialName'] }}</p>
+				<label for="firstname">Firstname</label>
+				<input type="text" name="firstname" class="form-control" id="firstname" value="{{ admin.user.firstname }}">
+				{% if errors['firstname'] is defined %}
+					<p class="form_error">{{ errors['firstname'] }}</p>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label for="lastname">Lastname</label>
+				<input type="text" name="lastname" class="form-control" id="lastname" value="{{ admin.user.lastname }}">
+				{% if errors['lastname'] is defined %}
+					<p class="form_error">{{ errors['lastname'] }}</p>
+				{% endif %}
+			</div>
+						<div class="form-group">
+				<label for="username">Username</label>
+				<input type="text" name="username" class="form-control" id="username" value="{{ admin.user.username }}">
+				{% if errors['username'] is defined %}
+					<p class="form_error">{{ errors['username'] }}</p>
 				{% endif %}
 			</div>
 			<button type="submit" class="btn btn-primary">Modifier</button>

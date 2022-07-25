@@ -8,6 +8,7 @@ use App\Managers\PostManager;
 use App\Managers\AdminManager;
 use App\Managers\SocialManager;
 use App\Managers\CommentManager;
+use App\Managers\UserManager;
 use App\Service\AdminProfile;
 use App\Session\PHPSession;
 
@@ -36,8 +37,10 @@ class AdminController extends Controller
 
   public function updateAdminInfos() {
     $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
+    $userDatas = (new UserManager())->findOneUser($adminDatas->getUserId());
+    // die(var_dump($userDatas));
     if (!empty($_POST)) {
-      $errors = (new AdminProfile())->updateInfos($adminDatas->getId());
+      $errors = (new AdminProfile())->updateInfos($adminDatas->getId(), $userDatas->getId());
       if (empty($errors)) {
         $this->flash->success('Le réseau social a bien été modifié.');
         return header('Location: /admin');

@@ -21,6 +21,7 @@ class SocialCRUD
   public function modifySocial(int $id)
   {
     $validate = new ValidationForm();
+    // Undefined index si je décommente
     // $validate->checkAddSocial($_POST);
     if (!$validate->errors) {
       (new SocialManager())->updateSocial($id);

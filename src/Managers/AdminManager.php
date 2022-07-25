@@ -39,17 +39,23 @@ class AdminManager extends Manager
     return $admin;
   }
 
-  public function updateAdmin(int $id)
+  public function updateAdminInfos(int $id, int $userId)
   {
-    $sql = "UPDATE admin SET `description`=:adminDesc, `tagline`=:tagline, `avatar_url`=:avatarUrl, `avatar_alt`=:avatarAlt, `cv_url`=:cvUrl WHERE id=:id";
+    $sql = "UPDATE admin SET `description`=:adminDesc, `tagline`=:tagline WHERE id=:id";
 
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':adminDesc', $_POST["adminDesc"], PDO::PARAM_STR);
     $req->bindParam(':tagline', $_POST["tagline"], PDO::PARAM_STR);
-    $req->bindParam(':avatarUrl', $_POST["avatarUrl"], PDO::PARAM_STR);
-    $req->bindParam(':avatarAlt', $_POST["avatarAlt"], PDO::PARAM_STR);
-    $req->bindParam(':cvUrl', $_POST["cvUrl"], PDO::PARAM_STR);
     $req->bindParam('id', $id, PDO::PARAM_STR);
+    $req->execute();
+
+    $sql = "UPDATE user SET `firstname`=:firstname, `lastname`=:lastname, `username`=:username WHERE id=:userId";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':firstname', $_POST["firstname"], PDO::PARAM_STR);
+    $req->bindParam(':lastname', $_POST["lastname"], PDO::PARAM_STR);
+    $req->bindParam(':username', $_POST["username"], PDO::PARAM_STR);
+    $req->bindParam(':userId', $userId, PDO::PARAM_STR);
     $req->execute();
   }
 }
