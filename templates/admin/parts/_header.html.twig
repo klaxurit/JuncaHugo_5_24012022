@@ -26,4 +26,9 @@
 			{{ flash('success') }}
 		</div>
 	{% endif %}
+		{% if flash('error') %}
+		<div class="alert alert-danger">
+			{{ flash('error') }}
+		</div>
+	{% endif %}
 </div>

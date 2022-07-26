@@ -178,6 +178,7 @@ class AdminController extends Controller
         $this->flash->success('Le réseau social a bien été créé.');
         return header("Location: /admin/socials");
       }
+      $this->flash->error('Le réseau social n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.');
     }
 
     return $this->twig->display(

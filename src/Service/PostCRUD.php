@@ -13,7 +13,7 @@ class PostCRUD
     //
   }
 
-  public function modifySocial(int $id)
+  public function modifyPost(int $id)
   {
     //
   }
