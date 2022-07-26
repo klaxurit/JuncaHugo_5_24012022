@@ -39,9 +39,6 @@ class CommentManager extends Manager
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':id', $id, PDO::PARAM_STR);
     $req->execute();
-    $data = $req->fetch();
-
-    $comment = new Comment($data);
 
     return $comment;
   }
