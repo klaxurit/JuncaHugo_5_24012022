@@ -37,6 +37,7 @@ class Controller
 
     public function setGlobals()
     {
+        
         $this->twig->addGlobal("uri", $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . "/");
         if (isset($_SESSION['user'])) {
             $user = (new UserManager())->findOneUser($_SESSION['user']->getId());

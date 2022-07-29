@@ -9,7 +9,6 @@ use App\Controllers\ErrorController;
 
 class Router
 {
-
     private $controller;
 
     public function __construct()
@@ -24,7 +23,6 @@ class Router
 
     public function setController()
     {
-        @session_start();
         $routesFile = CONF_DIR . "/routes.yml";
         // Read and parse route config file
         $routes = yaml_parse_file($routesFile);
@@ -46,10 +44,10 @@ class Router
                 $admin = (new AdminManager())->findAdmin();
                 if (strpos($uri, "/admin") === 0 &&
                     (
-                    (isset($_SESSION["user"]) && $_SESSION['user']->getId() !== $admin->getUserId())
-                        || !isset($_SESSION["user"])
+                        (isset($_SESSION["user"]) && $_SESSION['user']->getId() !== $admin->getUserId())
+                            || !isset($_SESSION["user"])
                     )
-                ){
+                ) {
                     return $controller = new ErrorController("show403");
                 }
                 // Return a new instance of Controller with params
