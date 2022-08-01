@@ -28,8 +28,7 @@ class SecurityController extends Controller
         $user = (new UserManager())->loginUser();
         if ($user && password_verify($_POST["password"], $user->getPassword())) {
           // if user ok and password correct user connect and redirect.
-          // voir refaire çae
-          $_SESSION["user"] = $user;
+          $this->session->set("user", $user);
           header("Location: /");
         } else {
           throw (new \Error("Identifiants incorrects !"));
@@ -67,7 +66,7 @@ class SecurityController extends Controller
       }
       if (!$validate->errors) {
         $user = (new UserManager())->createUser($_POST);
-        $_SESSION["user"] = $user;
+        $this->session->set("user", $user);
         header("Location: /");
       }
     }
@@ -82,7 +81,7 @@ class SecurityController extends Controller
   public function logout()
   {
     // Unset the user session
-    unset($_SESSION["user"]);
+    $this->session->delete("user");
     // Redirect to home
     header("Location: /");
   }

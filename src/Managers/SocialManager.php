@@ -2,6 +2,7 @@
 
 namespace App\Managers;
 
+use App\Core\Entity;
 use PDO;
 use App\Core\Manager;
 use App\Model\Social;
@@ -42,21 +43,25 @@ class SocialManager extends Manager
     return $social;
   }
 
+  
+  
   /**
    * Update a social network
    *
-   * @param  mixed $id
+   * @param  mixed $socialDatas
    * @return void
    */
-  public function updateSocial(int $id)
+  public function updateSocial($socialDatas)
   {
-    $sql = "UPDATE social_network SET `icon_name`=:iconName, `url`=:socialUrl, `name`=:socialName WHERE id=:id";
+    $socialDatas = new Social((array) $socialDatas);
+    // die(var_dump($entity));
+    $sql = "UPDATE social_network SET `icon_name`=:iconName, `url`=:url, `name`=:name WHERE id=:id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':iconName', $_POST["iconName"], PDO::PARAM_STR);
-    $req->bindParam(':socialUrl', $_POST["socialUrl"], PDO::PARAM_STR);
-    $req->bindParam(':socialName', $_POST["socialName"], PDO::PARAM_STR);
-    $req->bindParam('id', $id, PDO::PARAM_STR);
+    $req->bindValue(':iconName', $socialDatas->getIconName(), PDO::PARAM_STR);
+    $req->bindValue(':url', $socialDatas->getUrl(), PDO::PARAM_STR);
+    $req->bindValue(':name ', $socialDatas->getName(), PDO::PARAM_STR);
+    $req->bindValue(':id', $socialDatas->getId(), PDO::PARAM_STR);
     $req->execute();
   }
 

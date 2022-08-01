@@ -29,6 +29,7 @@ class CommentManager extends Manager
 
     $req = $this->pdo->prepare($sql);
     $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
+    // Pourquoi je ne peux pas utiliser $comment->getUserId() ?
     $req->bindValue(':userId', $_SESSION['user']->getId(), PDO::PARAM_STR);
     $req->bindValue(':postId', $postId, PDO::PARAM_STR);
     $req->execute();

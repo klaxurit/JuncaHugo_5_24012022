@@ -66,7 +66,8 @@ class AdminController extends Controller
     public function isAdmin()
     {
         $admin = (new AdminManager())->findAdmin();
-        if (isset($_SESSION['user']) && ($_SESSION['user']->getId()) === $admin->getUserId()) {
+        $currentUser = $this->session->get("user");
+        if (isset($currentUser) && ($currentUser->getId()) === $admin->getUserId()) {
             return true;
         } else {
             return header('Location: /');
@@ -212,7 +213,8 @@ class AdminController extends Controller
     {
         $socialDatas = (new SocialManager())->findOneSocial($this->params['id']);
         if (!empty($_POST)) {
-            $errors = (new SocialCRUD())->modifySocial($socialDatas->getId());
+            $socialDatas->hydrate($_POST);
+            $errors = (new SocialCRUD())->modifySocial($socialDatas);
             if (empty($errors)) {
                 $this->flash->success('Le réseau social a bien été modifié.');
                 return header('Location: /admin/socials');

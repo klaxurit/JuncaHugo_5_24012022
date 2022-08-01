@@ -22,6 +22,7 @@ class Controller
     public function __construct(string $action, array $params = [])
     {
         $this->session = new PHPSession;
+        // var_dump($this->session->get("id"));
         $this->flash = new FlashMessage($this->session);
         $this->action = $action;
         $this->params = $params;
@@ -39,19 +40,17 @@ class Controller
     {
         
         $this->twig->addGlobal("uri", $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . "/");
-        if (isset($_SESSION['user'])) {
-            $user = (new UserManager())->findOneUser($_SESSION['user']->getId());
-            $this->twig->addGlobal("user", $_SESSION['user']);
+        if (null !== $this->session->get("user")) {
+            $currentUser = $this->session->get("user");
+            $user = (new UserManager())->findOneUser($currentUser->getId());
+            $this->twig->addGlobal("user", $currentUser);
         }
         $this->twig->addGlobal("_post", $_POST);
-        if (isset($_SESSION)) {
-            $this->twig->addGlobal("_session", $_SESSION);
-        }
         $admin = (new AdminManager())->findAdmin();
 
-        if (isset($_SESSION['user']) && ($user->getId()) === $admin->getUserId()) {
+        if (null !== $this->session->get("user") && ($user->getId()) === $admin->getUserId()) {
             // is admin
-            $this->twig->addGlobal("adminAccess", $_SESSION['user']);
+            $this->twig->addGlobal("adminAccess", $this->session->get("user"));
         }
     }
 

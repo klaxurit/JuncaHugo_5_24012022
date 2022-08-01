@@ -18,13 +18,13 @@ class SocialCRUD
     return $validate->errors;
   }
 
-  public function modifySocial(int $id)
+  public function modifySocial($socialDatas)
   {
     $validate = new ValidationForm();
     // Undefined index si je décommente
     // $validate->checkAddSocial($_POST);
     if (!$validate->errors) {
-      (new SocialManager())->updateSocial($id);
+      (new SocialManager())->updateSocial($socialDatas);
     }
     return $validate->errors;
   }
