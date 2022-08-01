@@ -53,14 +53,12 @@ class SocialManager extends Manager
    */
   public function updateSocial($socialDatas)
   {
-    $socialDatas = new Social((array) $socialDatas);
-    // die(var_dump($entity));
-    $sql = "UPDATE social_network SET `icon_name`=:iconName, `url`=:url, `name`=:name WHERE id=:id";
-
+    $sql = "UPDATE `social_network` SET `icon_name`=:iconName, `url`=:url, `name`=:name WHERE `id`=:id";
+    
     $req = $this->pdo->prepare($sql);
     $req->bindValue(':iconName', $socialDatas->getIconName(), PDO::PARAM_STR);
     $req->bindValue(':url', $socialDatas->getUrl(), PDO::PARAM_STR);
-    $req->bindValue(':name ', $socialDatas->getName(), PDO::PARAM_STR);
+    $req->bindValue(':name', $socialDatas->getName(), PDO::PARAM_STR);
     $req->bindValue(':id', $socialDatas->getId(), PDO::PARAM_STR);
     $req->execute();
   }
