@@ -185,7 +185,7 @@ class AdminController extends Controller
         }
 
         return $this->twig->display(
-            'admin/pages/socials/create.html.twig',
+            'admin/pages/socials/form.html.twig',
             [
                 'errors' => $errors ?? []
             ]
@@ -223,7 +223,7 @@ class AdminController extends Controller
         }
 
         return $this->twig->display(
-            'admin/pages/socials/update.html.twig',
+            'admin/pages/socials/form.html.twig',
             [
                 'social' => $socialDatas,
                 'errors' => $errors ?? []
