@@ -10,14 +10,14 @@
 		<form method="post" action="">
 			<div class="form-group">
 				<label for="description">Description</label>
-				<textarea class="form-control admin__update-textarea" id="description" name="adminDesc">{{ admin.description }}</textarea>
+				<textarea name="description" class="form-control admin__update-textarea" id="description" >{{ admin.description }}</textarea>
 				{% if errors['adminDesc'] is defined %}
 					<p class="form_error">{{ errors['adminDesc'] }}</p>
 				{% endif %}
 			</div>
 			<div class="form-group">
 				<label for="tagline">Tagline</label>
-				<textarea class="form-control admin__update-textarea" id="tagline" name="tagline">{{ admin.tagline }}</textarea>
+				<textarea name="tagline" class="form-control admin__update-textarea" id="tagline" >{{ admin.tagline }}</textarea>
 				{% if errors['tagline'] is defined %}
 					<p class="form_error">{{ errors['tagline'] }}</p>
 				{% endif %}

@@ -6,10 +6,10 @@ use App\Managers\AdminManager;
 
 class AdminProfile
 {
-  public function updateInfos(int $id, int $userId){
+  public function updateInfos($adminDatas){
     $validate = new ValidationForm();
     if (!$validate->errors) {
-      (new AdminManager())->updateAdminInfos($id, $userId);
+      (new AdminManager())->updateAdminInfos($adminDatas);
     }
     return $validate->errors;
   }

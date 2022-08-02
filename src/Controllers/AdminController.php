@@ -29,7 +29,7 @@ class AdminController extends Controller
             return $this->twig->display(
                 'admin/index.html.twig',
                 [
-                  'admin' => $admin
+                    'admin' => $admin
                 ]
             );
         }
@@ -39,9 +39,10 @@ class AdminController extends Controller
     {
         $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
         $userDatas = (new UserManager())->findOneUser($adminDatas->getUserId());
-        // die(var_dump($userDatas));
+        $adminDatas->setUser($userDatas);
         if (!empty($_POST)) {
-            $errors = (new AdminProfile())->updateInfos($adminDatas->getId(), $userDatas->getId());
+            $adminDatas->hydrate($_POST);
+            $errors = (new AdminProfile())->updateInfos($adminDatas);
             if (empty($errors)) {
                 $this->flash->success('Le réseau social a bien été modifié.');
                 return header('Location: /admin');
@@ -51,8 +52,8 @@ class AdminController extends Controller
         return $this->twig->display(
             'admin/pages/profile/update.html.twig',
             [
-              'admin' => $adminDatas,
-              'errors' => $errors ?? []
+                'admin' => $adminDatas,
+                'errors' => $errors ?? []
             ]
         );
     }
@@ -90,9 +91,9 @@ class AdminController extends Controller
         return $this->twig->display(
             'admin/pages/posts/index.html.twig',
             [
-              'posts' => (new PostManager())->findAllPosts(self::PER_PAGE, $currentPage),
-              'totalPages' => ceil((new PostManager())->countPosts() / self::PER_PAGE),
-              "currentPage" => $currentPage
+                'posts' => (new PostManager())->findAllPosts(self::PER_PAGE, $currentPage),
+                'totalPages' => ceil((new PostManager())->countPosts() / self::PER_PAGE),
+                "currentPage" => $currentPage
             ]
         );
     }
@@ -113,9 +114,9 @@ class AdminController extends Controller
         return $this->twig->display(
             'admin/pages/comments/index.html.twig',
             [
-              'comments' => (new CommentManager())->findAllComments(self::PER_PAGE, $currentPage),
-              'totalPages' => ceil((new CommentManager())->countComments() / self::PER_PAGE),
-              "currentPage" => $currentPage
+                'comments' => (new CommentManager())->findAllComments(self::PER_PAGE, $currentPage),
+                'totalPages' => ceil((new CommentManager())->countComments() / self::PER_PAGE),
+                "currentPage" => $currentPage
             ]
         );
     }
@@ -138,7 +139,7 @@ class AdminController extends Controller
         (new CommentManager())->updateComment($this->params['id'], $status);
         return $this->manageComments();
     }
-  
+
     /**
      * Delete a comment
      *
@@ -151,7 +152,7 @@ class AdminController extends Controller
 
         header("Location: /admin/comments");
     }
-  
+
     /**
      * Return social network's list
      *
@@ -162,11 +163,11 @@ class AdminController extends Controller
         return $this->twig->display(
             'admin/pages/socials/index.html.twig',
             [
-              'socials' => (new SocialManager())->findAllSocials()
+                'socials' => (new SocialManager())->findAllSocials()
             ]
         );
     }
-  
+
     /**
      * Add a social network
      *
@@ -186,11 +187,11 @@ class AdminController extends Controller
         return $this->twig->display(
             'admin/pages/socials/create.html.twig',
             [
-              'errors' => $errors ?? []
+                'errors' => $errors ?? []
             ]
         );
     }
-  
+
     /**
      * Delete a social network
      *
@@ -203,7 +204,7 @@ class AdminController extends Controller
 
         return header('Location: /admin/socials');
     }
-  
+
     /**
      * Update a social network
      *
@@ -224,8 +225,8 @@ class AdminController extends Controller
         return $this->twig->display(
             'admin/pages/socials/update.html.twig',
             [
-              'social' => $socialDatas,
-              'errors' => $errors ?? []
+                'social' => $socialDatas,
+                'errors' => $errors ?? []
             ]
         );
     }
