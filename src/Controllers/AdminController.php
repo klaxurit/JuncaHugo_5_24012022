@@ -44,7 +44,7 @@ class AdminController extends Controller
             $adminDatas->hydrate($_POST);
             $errors = (new AdminProfile())->updateInfos($adminDatas);
             if (empty($errors)) {
-                $this->flash->success('Le réseau social a bien été modifié.');
+                $this->flash->go('Le réseau social a bien été modifié.', 'success');
                 return header('Location: /admin');
             }
         }
@@ -148,7 +148,7 @@ class AdminController extends Controller
     public function adminDeleteComment()
     {
         (new CommentManager())->deleteComment($this->params['id']);
-        $this->flash->success('Le commentaire a bien été supprimé.');
+        $this->flash->go('Le commentaire a bien été supprimé.', 'success');
 
         header("Location: /admin/comments");
     }
@@ -178,10 +178,10 @@ class AdminController extends Controller
         if (!empty($_POST)) {
             $errors = (new SocialCRUD())->addSocial();
             if (empty($errors)) {
-                $this->flash->success('Le réseau social a bien été créé.');
+                $this->flash->go('Le réseau social a bien été créé.', 'success');
                 return header("Location: /admin/socials");
             }
-            $this->flash->error('Le réseau social n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.');
+            $this->flash->go('Le réseau social n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.', 'error');
         }
 
         return $this->twig->display(
@@ -200,7 +200,7 @@ class AdminController extends Controller
     public function adminDeleteSocial()
     {
         (new SocialManager())->deleteSocial($this->params['id']);
-        $this->flash->success('Le réseau social a bien été supprimé.');
+        $this->flash->go('Le réseau social a bien été supprimé.', 'success');
 
         return header('Location: /admin/socials');
     }
@@ -217,7 +217,7 @@ class AdminController extends Controller
             $socialDatas->hydrate($_POST);
             $errors = (new SocialCRUD())->modifySocial($socialDatas);
             if (empty($errors)) {
-                $this->flash->success('Le réseau social a bien été modifié.');
+                $this->flash->go('Le réseau social a bien été modifié.', 'success');
                 return header('Location: /admin/socials');
             }
         }

@@ -16,34 +16,25 @@ class FlashMessage
 
     private $message;
 
+    private $type;
+
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }
 
+    
     /**
-     * Stock information in session  
+     * go
      *
      * @param  mixed $message
+     * @param  mixed $type
      * @return void
      */
-    public function success(string $message)
+    public function go(string $message, string $type)
     {
         $flash = $this->session->get($this->sessionKey, []);
-        $flash['success'] = $message;
-        $this->session->set($this->sessionKey, $flash);
-    }
-
-    /**
-     * Stock information in session  
-     *
-     * @param  mixed $message
-     * @return void
-     */
-    public function error(string $message)
-    {
-        $flash = $this->session->get($this->sessionKey, []);
-        $flash['error'] = $message;
+        $flash[$type] = $message;
         $this->session->set($this->sessionKey, $flash);
     }
 
