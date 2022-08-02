@@ -24,7 +24,7 @@
 						<td>{{ social.name }}</td>
 						<td class="mt-2 pt-2">
 							<a href="/admin/socials/form/{{ social.id }}" class="btn btn-sm btn-warning">Modifier</a>
-							<a href="/admin/socials/delete/{{ social.id }}" class="btn btn-sm btn-danger">Supprimer</a>
+							<a href="/admin/socials/delete/{{ social.id }}" onclick="return confirm('Ettes-vous sûr de vouloir supprimer ce réseau social ?')" class="btn btn-sm btn-danger">Supprimer</a>
 						</td>
 						<td>
 						</td>

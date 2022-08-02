@@ -15,7 +15,6 @@ class AddComment
     $validate = new ValidationForm();
     if (!empty($_POST)) {
     $validate->checkEmpty($_POST["content"], "content");
-    // $validate->checkUserConnected($_POST["content"], "content");
         if (!$validate->errors) {
           (new CommentManager())->createComment($postId, $_POST);
         }

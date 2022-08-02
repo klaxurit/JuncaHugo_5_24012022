@@ -27,23 +27,23 @@
 			<div class="form-group">
 				<label for="socialUrl">Url</label>
 				{% if social is empty %}
-				<input type="text" name="url" class="form-control" id="socialUrl" value="{{ _post.socialUrl }}">
+				<input type="text" name="url" class="form-control" id="socialUrl" value="{{ _post.url }}">
 				{% else %}
 				<input type="text" name="url" class="form-control" id="socialUrl"  value="{{ social.url }}">
 				{% endif %}
-				{% if errors['socialUrl'] is defined %}
-					<p class="form_error">{{ errors['socialUrl'] }}</p>
+				{% if errors['url'] is defined %}
+					<p class="form_error">{{ errors['url'] }}</p>
 				{% endif %}
 			</div>
 			<div class="form-group">
 				<label for="socialName">Name</label>
 				{% if social is empty %}
-				<input type="text" name="name" class="form-control" id="socialName" value="{{ _post.socialName }}">
+				<input type="text" name="name" class="form-control" id="socialName" value="{{ _post.name }}">
 				{% else %}
 				<input type="text" name="name" class="form-control" id="socialName" value="{{ social.name }}">
 				{% endif %}
-				{% if errors['socialName'] is defined %}
-					<p class="form_error">{{ errors['socialName'] }}</p>
+				{% if errors['name'] is defined %}
+					<p class="form_error">{{ errors['name'] }}</p>
 				{% endif %}
 			</div>
 			<button type="submit" class="btn btn-primary">Modifier</button>
