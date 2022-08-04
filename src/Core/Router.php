@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Controller;
+use App\Session\PHPSession;
 use App\Managers\AdminManager;
 use App\Controllers\AdminController;
 use App\Controllers\ErrorController;
@@ -10,9 +11,11 @@ use App\Controllers\ErrorController;
 class Router
 {
     private $controller;
+    private $session;
 
     public function __construct()
     {
+        $this->session = new PHPSession;
         $this->controller = $this->setController();
     }
 
@@ -29,9 +32,7 @@ class Router
         // array(2) { ["path"]=> string(5) "/tutu" ["query"]=> string(10) "artcile=12" } string(5) "/tutu"
         // Get and parse url params and path
         $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-        if (isset($_SESSION['user'])) {
-            $user = $_SESSION["user"];
-        }
+        $user = $this->session->get("user");
         // var_dump($uri);
         foreach ($routes as $route) {
             // Search in route config file if we have match between requested URI and Routes in routes.yml
@@ -44,8 +45,8 @@ class Router
                 $admin = (new AdminManager())->findAdmin();
                 if (strpos($uri, "/admin") === 0 &&
                     (
-                        (isset($_SESSION["user"]) && $_SESSION['user']->getId() !== $admin->getUserId())
-                            || !isset($_SESSION["user"])
+                        ($user !== null && $user->getId() !== $admin->getUserId())
+                            || $user == null
                     )
                 ) {
                     return $controller = new ErrorController("show403");

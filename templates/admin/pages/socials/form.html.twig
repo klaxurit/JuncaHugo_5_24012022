@@ -10,8 +10,14 @@
 {% endblock %}
 {% block body %}
 	<div class="admin-container">
+	{% if social is empty %}
 		<h3 class="admin__manage-title">Update social
 		</h3>
+	{% else %}
+			<h3 class="admin__manage-title">Create social
+		</h3>
+	{% endif %}
+			
 		<form method="post" action="">
 			<div class="form-group">
 				<label for="iconName">Icon name</label>
