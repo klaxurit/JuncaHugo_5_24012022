@@ -56,4 +56,20 @@ class AdminManager extends Manager
     $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
     $req->execute();
   }
+
+  public function updateAdminFiles($adminDatas)
+  {
+    $sql = "UPDATE admin
+    SET admin.avatar_url=:avatar_url, admin.cv_url=:cv_url
+    WHERE admin.id=:id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindValue(':avatar_url', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
+    $req->bindValue(':cv_url', $adminDatas->getCvUrl(), PDO::PARAM_STR);
+    $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
+    $req->execute();
+
+    var_dump($adminDatas->getAvatarUrl());
+    die();
+  }
 }

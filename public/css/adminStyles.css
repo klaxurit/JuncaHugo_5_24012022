@@ -24,6 +24,12 @@ li {
   margin-right: 1em;
 }
 
+.home__profile-logo {
+  margin: 1em;
+  max-width: 100px;
+  padding: 0;
+}
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 

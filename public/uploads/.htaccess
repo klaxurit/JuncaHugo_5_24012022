@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|pdf)$
+RewriteRule .*$ - [F]
+### Check extension and protect uploads folder

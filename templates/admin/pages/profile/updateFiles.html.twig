@@ -1,0 +1,22 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+	Blog - Modification des informations de l'admin
+{% endblock %}
+{% block body %}
+	<div class="admin-container">
+		<h3 class="admin__manage-title">Update admin files
+		</h3>
+    <img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ admin.avatarUrl }}" alt="">
+    <form enctype="multipart/form-data" action="" method="post">
+      <h5>Logo de l'admin:</h5>
+      <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+      Modifier:<br> <input type="file" name="avatar_url" id="fichier" accept="image/jpeg" /><br>
+      {# <h5>Cv de l'admin:</h5>
+      <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+      Modifier:<br> <input type="file" name="monfichier" /><br> #}
+      <br>
+      <input type="submit" />
+    </form>
+	</div>
+{% endblock %}

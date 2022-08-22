@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Core\Router;
 use App\Service\SocialCRUD;
 use App\Managers\PostManager;
 use App\Managers\AdminManager;
@@ -51,6 +52,74 @@ class AdminController extends Controller
 
         return $this->twig->display(
             'admin/pages/profile/update.html.twig',
+            [
+                'admin' => $adminDatas,
+                'errors' => $errors ?? []
+            ]
+        );
+    }
+
+    public function updateAdminFiles()
+    {
+        $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
+        if (!empty($_POST)) {
+            // var_dump(isset($_FILES["avatar_url"]));
+            // die();
+            if(isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["error"] === 0) {
+                // On a recu le fichier
+                // On procède aux vérifications
+                // On vérifie toujours l'extension et le type mime
+                $allowed = [
+                    "jpg" => "image/jpeg",
+                    "jpeg" => "image/jpeg",
+                    "png" => "image/png"
+                ];
+                // var_dump("mes couuilles");
+                // die();
+                $fileName = $_FILES["avatar_url"]["name"];
+                $fileType = $_FILES["avatar_url"]["type"];
+                $fileSize = $_FILES["avatar_url"]["size"];
+                
+                $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                // On vérifie l'absence de l'etension dans les clefs $allowed ou l'bsence du type mime dans les valeurs
+                if(!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
+                    // Ici soit l'extension soit le type est incorrect
+                    die("Erreur: format de fichier incorrect");
+                }
+                // Ici le type est correct
+                // On limite a 1Mo
+                if($fileSize > 1024 * 1024) {
+                    die("Fichier trop volumineux");
+                }
+                
+                // On génère un nom unique
+                $newName = md5(uniqid());
+                
+                // On génère le chemin complet
+                $newFileName = ROOT_DIR . "/public/uploads/$newName.$extension";
+                
+                if(!move_uploaded_file($_FILES["avatar_url"]["tmp_name"], $newFileName)) {
+                    die("L'upload a échoué");
+                }
+                
+                // On protège l'utiliseur d'un éventuel script
+                chmod($newFileName, 0644);
+                
+                $adminDatas->hydrate($_POST);
+                $errors = (new AdminProfile())->updateFiles($adminDatas);
+                var_dump($adminDatas, "voila");
+                die();
+                
+
+            }
+            // if (empty($errors)) {
+            //     $this->flash->go('Fichier(s) bien modifié !', 'success');
+            //     return header('Location: /admin');
+            // }
+        }
+
+        return $this->twig->display(
+            'admin/pages/profile/updateFiles.html.twig',
             [
                 'admin' => $adminDatas,
                 'errors' => $errors ?? []

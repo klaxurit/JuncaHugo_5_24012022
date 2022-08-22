@@ -13,6 +13,11 @@ updateAdminInfos:
   controller: AdminController
   action: updateAdminInfos
   parameters: ["id"]
+updateAdminFiles:
+  uri: /admin/profile/updateFiles/([0-9]+)
+  controller: AdminController
+  action: updateAdminFiles
+  parameters: ["id"]
 managePosts:
   uri: /admin/posts
   controller: AdminController

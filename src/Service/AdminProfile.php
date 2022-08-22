@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Managers\AdminManager;
+use App\Service\FileUploader;
 
 class AdminProfile
 {
@@ -10,6 +11,16 @@ class AdminProfile
     $validate = new ValidationForm();
     if (!$validate->errors) {
       (new AdminManager())->updateAdminInfos($adminDatas);
+    }
+    return $validate->errors;
+  }
+
+  public function updateFiles($adminDatas){
+    // var_dump("ici");
+    // die();
+    $validate = new ValidationForm();
+    if (!$validate->errors) {
+      (new AdminManager())->updateAdminFiles($adminDatas);
     }
     return $validate->errors;
   }
