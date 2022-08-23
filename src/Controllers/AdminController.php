@@ -45,7 +45,7 @@ class AdminController extends Controller
             $adminDatas->hydrate($_POST);
             $errors = (new AdminProfile())->updateInfos($adminDatas);
             if (empty($errors)) {
-                $this->flash->go('Le réseau social a bien été modifié.', 'success');
+                $this->flash->set('Le réseau social a bien été modifié.', 'success');
                 return header('Location: /admin');
             }
         }
@@ -63,33 +63,36 @@ class AdminController extends Controller
     {
         $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
         if (!empty($_POST)) {
-            // var_dump(isset($_FILES["avatar_url"]));
+            // var_dump($_FILES["monfichier"]["error"]);
             // die();
-            if(isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["error"] === 0) {
+            if(isset($_FILES["monfichier"]) && $_FILES["monfichier"]["error"] === 0) {
                 // On a recu le fichier
                 // On procède aux vérifications
                 // On vérifie toujours l'extension et le type mime
                 $allowed = [
                     "jpg" => "image/jpeg",
                     "jpeg" => "image/jpeg",
-                    "png" => "image/png"
+                    "png" => "image/png",
+                    "pdf" => "application/pdf"
                 ];
                 // var_dump("mes couuilles");
                 // die();
-                $fileName = $_FILES["avatar_url"]["name"];
-                $fileType = $_FILES["avatar_url"]["type"];
-                $fileSize = $_FILES["avatar_url"]["size"];
+                $fileName = $_FILES["monfichier"]["name"];
+                $fileType = $_FILES["monfichier"]["type"];
+                $fileSize = $_FILES["monfichier"]["size"];
                 
                 $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
                 // On vérifie l'absence de l'etension dans les clefs $allowed ou l'bsence du type mime dans les valeurs
                 if(!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
                     // Ici soit l'extension soit le type est incorrect
-                    die("Erreur: format de fichier incorrect");
+                    $this->flash->set('Type de fichier non pris en compte.', 'error');
+                    return header("Location: /admin");
                 }
                 // Ici le type est correct
                 // On limite a 1Mo
                 if($fileSize > 1024 * 1024) {
-                    die("Fichier trop volumineux");
+                    $this->flash->set('Fichier trop volumineux.', 'error');
+                    return header("Location: /admin");
                 }
                 
                 // On génère un nom unique
@@ -98,8 +101,9 @@ class AdminController extends Controller
                 // On génère le chemin complet
                 $newFileName = ROOT_DIR . "/public/uploads/$newName.$extension";
                 
-                if(!move_uploaded_file($_FILES["avatar_url"]["tmp_name"], $newFileName)) {
-                    die("L'upload a échoué");
+                if(!move_uploaded_file($_FILES["monfichier"]["tmp_name"], $newFileName)) {
+                    $this->flash->set('Le téléchargement du fichier a échoué.', 'error');
+                    return header("Location: /admin");
                 }
                 
                 // On protège l'utiliseur d'un éventuel script
@@ -107,13 +111,12 @@ class AdminController extends Controller
                 
                 $adminDatas->hydrate($_POST);
                 $errors = (new AdminProfile())->updateFiles($adminDatas);
-                var_dump($adminDatas, "voila");
-                die();
-                
+                // var_dump($adminDatas, "voila");
+                // die();
 
             }
             // if (empty($errors)) {
-            //     $this->flash->go('Fichier(s) bien modifié !', 'success');
+            //     $this->flash->set('Fichier(s) bien modifié !', 'success');
             //     return header('Location: /admin');
             // }
         }
@@ -217,7 +220,7 @@ class AdminController extends Controller
     public function adminDeleteComment()
     {
         (new CommentManager())->deleteComment($this->params['id']);
-        $this->flash->go('Le commentaire a bien été supprimé.', 'success');
+        $this->flash->set('Le commentaire a bien été supprimé.', 'success');
 
         header("Location: /admin/comments");
     }
@@ -247,10 +250,10 @@ class AdminController extends Controller
         if (!empty($_POST)) {
             $errors = (new SocialCRUD())->addSocial();
             if (empty($errors)) {
-                $this->flash->go('Le réseau social a bien été créé.', 'success');
+                $this->flash->set('Le réseau social a bien été créé.', 'success');
                 return header("Location: /admin/socials");
             }
-            $this->flash->go('Le réseau social n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.', 'error');
+            $this->flash->set('Le réseau social n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.', 'error');
         }
 
         return $this->twig->display(
@@ -269,7 +272,7 @@ class AdminController extends Controller
     public function adminDeleteSocial()
     {
         (new SocialManager())->deleteSocial($this->params['id']);
-        $this->flash->go('Le réseau social a bien été supprimé.', 'success');
+        $this->flash->set('Le réseau social a bien été supprimé.', 'success');
 
         return header('Location: /admin/socials');
     }
@@ -286,7 +289,7 @@ class AdminController extends Controller
             $socialDatas->hydrate($_POST);
             $errors = (new SocialCRUD())->modifySocial($socialDatas);
             if (empty($errors)) {
-                $this->flash->go('Le réseau social a bien été modifié.', 'success');
+                $this->flash->set('Le réseau social a bien été modifié.', 'success');
                 return header('Location: /admin/socials');
             }
         }

@@ -13,7 +13,8 @@ class FileUploader
       $allowed = [
         "jpg" => "image/jpeg",
         "jpeg" => "image/jpeg",
-        "png" => "image/png"
+        "png" => "image/png",
+        "pdf" => "application/pdf"
       ];
 
       $fileName = $_FILES["monfichier"]["name"];

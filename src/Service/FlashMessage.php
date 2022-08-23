@@ -25,13 +25,13 @@ class FlashMessage
 
     
     /**
-     * go
+     * set
      *
      * @param  mixed $message
      * @param  mixed $type
      * @return void
      */
-    public function go(string $message, string $type)
+    public function set(string $message, string $type)
     {
         $flash = $this->session->get($this->sessionKey, []);
         $flash[$type] = $message;
