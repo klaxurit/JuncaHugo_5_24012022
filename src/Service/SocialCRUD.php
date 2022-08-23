@@ -8,12 +8,12 @@ use App\Model\Social;
 
 class SocialCRUD
 {
-  public function addSocial()
+  public function addSocial($socialDatas)
   {
     $validate = new ValidationForm();
-    $validate->checkAddSocial($_POST);
+    $validate->checkAddSocial($socialDatas);
     if (!$validate->errors) {
-      (new SocialManager())->createSocial($_POST);
+      (new SocialManager())->createSocial($socialDatas);
     }
     return $validate->errors;
   }

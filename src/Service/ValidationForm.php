@@ -59,6 +59,11 @@ class ValidationForm
     $this->checkEmpty($form["name"], "name");
   }
 
+  public function checkAddComment($form)
+  {
+    $this->checkEmpty($form["content"], "content");
+  }
+
   public function checkAddPost($form)
   {
     //

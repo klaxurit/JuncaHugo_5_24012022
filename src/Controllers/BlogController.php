@@ -28,13 +28,16 @@ class BlogController extends Controller
         $comments = (new CommentManager())->getCommentsByPostId($post->getId());
         $admin = (new AdminManager())->findAdmin();
         if (null !== $this->session->get("user")) {
-            $comment = (new AddComment())->add($post->getId());
+            if (!empty($_POST)) {
+                $commentDatas = $_POST;
+                $errors = (new AddComment())->add($post->getId(), $commentDatas);
+            }
         }
 
         $this->twig->display('client/pages/blog/view.html.twig', [
             'post' => $post,
             'comments' => $comments,
-            'errors' => $comment ?? []
+            'errors' => $errors ?? []
         ]);
     }
 

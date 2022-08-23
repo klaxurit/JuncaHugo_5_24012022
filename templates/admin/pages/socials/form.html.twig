@@ -20,7 +20,7 @@
 			
 		<form method="post" action="">
 			<div class="form-group">
-				<label for="iconName">Icon name</label>
+				<label for="iconName">Icon name*</label>
 				{% if social is empty %}
 				<input type="text" name="iconName" class="form-control" id="iconName" value="{{ _post.iconName }}">
 				{% else %}
@@ -54,5 +54,6 @@
 			</div>
 			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
+		<p class="social__info">*To find the "Icon name" go on https://icones.js.org/ and click on the icon needed.<br>Example for instagram logo: icon-park-outline:instagram </p>
 	</div>
 {% endblock %}

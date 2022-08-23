@@ -248,7 +248,8 @@ class AdminController extends Controller
     public function adminCreateSocial()
     {
         if (!empty($_POST)) {
-            $errors = (new SocialCRUD())->addSocial();
+            $socialDatas = $_POST;
+            $errors = (new SocialCRUD())->addSocial($socialDatas);
             if (empty($errors)) {
                 $this->flash->set('Le réseau social a bien été créé.', 'success');
                 return header("Location: /admin/socials");
