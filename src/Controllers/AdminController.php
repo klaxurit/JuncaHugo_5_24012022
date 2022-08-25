@@ -69,25 +69,29 @@ class AdminController extends Controller
                 // On a recu le fichier
                 // On procède aux vérifications
                 // On vérifie toujours l'extension et le type mime
-                $allowed = [
-                    "jpg" => "image/jpeg",
-                    "jpeg" => "image/jpeg",
-                    "png" => "image/png",
-                    "pdf" => "application/pdf"
-                ];
-                // var_dump("mes couuilles");
-                // die();
+                
                 $fileName = $_FILES["monfichier"]["name"];
                 $fileType = $_FILES["monfichier"]["type"];
                 $fileSize = $_FILES["monfichier"]["size"];
                 
                 $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-                // On vérifie l'absence de l'etension dans les clefs $allowed ou l'bsence du type mime dans les valeurs
+
+                // Tableau des extension / type mime accepté
+                $allowed = [
+                    "jpg" => "image/jpeg",
+                    "jpeg" => "image/jpeg",
+                    "png" => "image/png",
+                    "svg" => "image/svg+xml",
+                    "pdf" => "application/pdf"
+                ];
+                
+                // On vérifie l'absence de l'extension dans les clefs $allowed ou l'absence du type mime dans les valeurs
                 if(!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
                     // Ici soit l'extension soit le type est incorrect
                     $this->flash->set('Type de fichier non pris en compte.', 'error');
                     return header("Location: /admin");
                 }
+
                 // Ici le type est correct
                 // On limite a 1Mo
                 if($fileSize > 1024 * 1024) {
@@ -99,20 +103,25 @@ class AdminController extends Controller
                 $newName = md5(uniqid());
                 
                 // On génère le chemin complet
-                $newFileName = ROOT_DIR . "/public/uploads/$newName.$extension";
+                $filePath = ROOT_DIR . "/public/uploads/$newName.$extension";
                 
-                if(!move_uploaded_file($_FILES["monfichier"]["tmp_name"], $newFileName)) {
+                if(!move_uploaded_file($_FILES["monfichier"]["tmp_name"], $filePath)) {
                     $this->flash->set('Le téléchargement du fichier a échoué.', 'error');
                     return header("Location: /admin");
                 }
                 
                 // On protège l'utiliseur d'un éventuel script
-                chmod($newFileName, 0644);
+                chmod($filePath, 0644);
+
+                if ($extension === "jpg" || $extension === "jpeg" || $extension === "png" || $extension === "svg") {
+                    $adminDatas->setAvatarUrl("$newName.$extension");
+                } else {
+                    $adminDatas->setCvUrl("$newName.$extension");
+                }
                 
-                $adminDatas->hydrate($_POST);
                 $errors = (new AdminProfile())->updateFiles($adminDatas);
-                // var_dump($adminDatas, "voila");
-                // die();
+
+                // Trouver comment faire un formulaire avec 2 fichiers et une solution pour transformer tout ça en service 
 
             }
             // if (empty($errors)) {

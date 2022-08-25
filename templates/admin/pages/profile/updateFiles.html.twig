@@ -10,11 +10,11 @@
     <img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ admin.avatarUrl }}" alt="">
     <form enctype="multipart/form-data" action="" method="post">
       <h5>Logo de l'admin:</h5>
-      <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-      Modifier:<br> <input type="file" name="monfichier" id="fichier" accept="image/jpeg,image/gif,image/png,application/pdf" /><br>
-      {# <h5>Cv de l'admin:</h5>
-      <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-      Modifier:<br> <input type="file" name="monfichier" /><br> #}
+      <input type="hidden" name="MAX_FILE_SIZE" />
+      Modifier:<br> <input type="file" name="monfichier" id="fichier" accept="image/jpeg,image/gif,image/png,image/svg+xml" /><br>
+      {# <h5 class="admin__manage-subtitle">Cv de l'admin:</h5>
+      <input type="hidden" name="MAX_FILE_SIZE" />
+      Modifier:<br> <input type="file" name="monfichier" id="fichier" accept="application/pdf" /><br> #}
       <br>
       <button type="submit" class="btn btn-primary">Modifier</button>
     </form>

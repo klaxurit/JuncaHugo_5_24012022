@@ -63,13 +63,13 @@ class AdminManager extends Manager
     SET admin.avatar_url=:monfichier, admin.cv_url=:cv_url
     WHERE admin.id=:id";
 
-    $req = $this->pdo->prepare($sql);
-    $req->bindValue(':monfichier', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
-    $req->bindValue(':cv_url', $adminDatas->getCvUrl(), PDO::PARAM_STR);
-    $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
-    $req->execute();
+$req = $this->pdo->prepare($sql);
+$req->bindValue(':monfichier', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
+$req->bindValue(':cv_url', $adminDatas->getCvUrl(), PDO::PARAM_STR);
+$req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
+$req->execute();
+// var_dump($adminDatas->getAvatarUrl(), "manager");
+// die();
 
-    var_dump($adminDatas->getAvatarUrl(), "manager");
-    die();
-  }
+}
 }

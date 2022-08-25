@@ -14,12 +14,19 @@
   flex-direction: column;
   padding: 5%;
 }
+
 .admin__manage-title {
   margin-bottom: 2em;
 }
+
+.admin__manage-subtitle {
+  margin-top: 2em;
+}
+
 li {
   list-style: none;
 }
+
 .update__button {
   margin-right: 1em;
 }

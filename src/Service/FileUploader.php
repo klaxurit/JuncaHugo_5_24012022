@@ -16,7 +16,7 @@ class FileUploader
         "png" => "image/png",
         "pdf" => "application/pdf"
       ];
-
+      
       $fileName = $_FILES["monfichier"]["name"];
       $fileType = $_FILES["monfichier"]["type"];
       $fileSize = $_FILES["monfichier"]["size"];
