@@ -30,7 +30,6 @@ class CommentManager extends Manager
 
     $req = $this->pdo->prepare($sql);
     $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
-    // die(var_dump($comment));
     $req->bindValue(':userId', $comment->getAuthor()->getId(), PDO::PARAM_STR);
     $req->bindValue(':postId', $postId, PDO::PARAM_STR);
     $req->execute();

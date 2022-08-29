@@ -16,8 +16,6 @@ class AdminProfile
   }
 
   public function updateFiles($adminDatas){
-    // var_dump($adminDatas, "ici");
-    // die();
     $validate = new ValidationForm();
     if (!$validate->errors) {
       (new AdminManager())->updateAdminFiles($adminDatas);

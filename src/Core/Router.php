@@ -33,7 +33,6 @@ class Router
         // Get and parse url params and path
         $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
         $user = $this->session->get("user");
-        // var_dump($uri);
         foreach ($routes as $route) {
             // Search in route config file if we have match between requested URI and Routes in routes.yml
             if (preg_match("#^" . $route["uri"] . "$#", $uri, $matches)) {

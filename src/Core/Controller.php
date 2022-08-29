@@ -22,7 +22,6 @@ class Controller
     public function __construct(string $action, array $params = [])
     {
         $this->session = new PHPSession;
-        // var_dump($this->session->get("id"));
         $this->flash = new FlashMessage($this->session);
         $this->action = $action;
         $this->params = $params;

@@ -57,19 +57,27 @@ class AdminManager extends Manager
     $req->execute();
   }
 
-  public function updateAdminFiles($adminDatas)
+  public function updateAdminAvatar($adminDatas)
   {
     $sql = "UPDATE admin
-    SET admin.avatar_url=:monfichier, admin.cv_url=:cv_url
+    SET admin.avatar_url=:avatar_url
     WHERE admin.id=:id";
 
-$req = $this->pdo->prepare($sql);
-$req->bindValue(':monfichier', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
-$req->bindValue(':cv_url', $adminDatas->getCvUrl(), PDO::PARAM_STR);
-$req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
-$req->execute();
-// var_dump($adminDatas->getAvatarUrl(), "manager");
-// die();
+  $req = $this->pdo->prepare($sql);
+  $req->bindValue(':monfichier', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
+  $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
+  $req->execute();
+  }
 
-}
+  public function updateAdminCv($adminDatas)
+  {
+    $sql = "UPDATE admin
+    SET admin.cv_url=:cv_url
+    WHERE admin.id=:id";
+
+  $req = $this->pdo->prepare($sql);
+  $req->bindValue(':cv_url', $adminDatas->getCvUrl(), PDO::PARAM_STR);
+  $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
+  $req->execute();
+  }
 }
