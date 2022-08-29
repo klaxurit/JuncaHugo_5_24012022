@@ -64,7 +64,7 @@ class AdminManager extends Manager
     WHERE admin.id=:id";
 
   $req = $this->pdo->prepare($sql);
-  $req->bindValue(':monfichier', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
+  $req->bindValue(':avatar_url', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
   $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
   $req->execute();
   }

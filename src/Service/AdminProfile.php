@@ -15,11 +15,20 @@ class AdminProfile
     return $validate->errors;
   }
 
-  public function updateFiles($adminDatas){
+  public function updateCv($adminDatas){
     $validate = new ValidationForm();
     if (!$validate->errors) {
-      (new AdminManager())->updateAdminFiles($adminDatas);
+      (new AdminManager())->updateAdminCv($adminDatas);
+    }
+    return $validate->errors;
+  }
+
+  public function updateAvatar($adminDatas){
+    $validate = new ValidationForm();
+    if (!$validate->errors) {
+      (new AdminManager())->updateAdminAvatar($adminDatas);
     }
     return $validate->errors;
   }
 }
+
