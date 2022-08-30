@@ -66,8 +66,8 @@ class AdminController extends Controller
         if (!empty($_POST)) {
             if (isset($_FILES["avatar_url"])) {
                 $file = $_FILES["avatar_url"];
+                var_dump($_FILES["avatar_url"]["type"]);
                     (new FileUploader())->uploadFile($file, $adminDatas);
-                    var_dump($filePath);
                 // elseif ($file["error"] === 1) {
                 //     $this->flash->set('Fichier trop volumineux. (Maximum 1Mo)', 'error');
                 //     return header("Location: /admin");
@@ -85,8 +85,8 @@ class AdminController extends Controller
             if (isset($_FILES["cv_url"])) {
                 $file = $_FILES["cv_url"];
                 (new FileUploader())->uploadFile($file, $adminDatas);
-                }
             }
+        }
 
         return $this->twig->display(
             'admin/pages/profile/updateFiles.html.twig',
@@ -225,7 +225,7 @@ class AdminController extends Controller
         }
 
         return $this->twig->display(
-            'admin/pages/socials/form.html.twig',
+            'admin/pages/socials/create.html.twig',
             [
                 'errors' => $errors ?? []
             ]
@@ -263,7 +263,7 @@ class AdminController extends Controller
         }
 
         return $this->twig->display(
-            'admin/pages/socials/form.html.twig',
+            'admin/pages/socials/update.html.twig',
             [
                 'social' => $socialDatas,
                 'errors' => $errors ?? []

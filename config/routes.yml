@@ -34,7 +34,7 @@ manageSocials:
   action: manageSocials
   parameters: []
 createSocial:
-  uri: /admin/socials/form
+  uri: /admin/socials/create
   controller: AdminController
   action: adminCreateSocial
   parameters: []
@@ -44,7 +44,7 @@ deleteSocial:
   action: adminDeleteSocial
   parameters: ["id"]
 updateSocial:
-  uri: /admin/socials/form/([0-9]+)
+  uri: /admin/socials/update/([0-9]+)
   controller: AdminController
   action: adminUpdateSocial
   parameters: ["id"]

@@ -1,23 +1,4 @@
-{% extends "admin/base.html.twig" %}
-
-{% block title %}
-{% if social is empty %}
-	Blog - Ajout d'un réseau social
-	{% else %}
-	Blog - Modification d'un réseau social
-{% endif %}
-
-{% endblock %}
 {% block body %}
-	<div class="admin-container">
-	{% if social is empty %}
-		<h3 class="admin__manage-title">Create socialUpdate social
-		</h3>
-	{% else %}
-			<h3 class="admin__manage-title">Update social
-		</h3>
-	{% endif %}
-			{# place le form dans un fichier _form et creer une page create et update #}
 		<form method="post" action="">
 			<div class="form-group">
 				<label for="iconName">Icon name*</label>
@@ -43,5 +24,4 @@
 			</div>
 			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
-	</div>
 {% endblock %}

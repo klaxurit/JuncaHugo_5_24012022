@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="admin-container">
 		<h3 class="admin__manage-title">Manage socials</h3>
-		<a href="/admin/socials/form" class="btn btn-sm btn-primary mb-4">Ajouter un réseau social</a>
+		<a href="/admin/socials/create" class="btn btn-sm btn-primary mb-4">Ajouter un réseau social</a>
 		<table class="table table-striped">
 			<thead>
 				<th>ID</th>
@@ -23,7 +23,7 @@
 						<td>{{ social.url }}</td>
 						<td>{{ social.name }}</td>
 						<td class="mt-2 pt-2">
-							<a href="/admin/socials/form/{{ social.id }}" class="btn btn-sm btn-warning">Modifier</a>
+							<a href="/admin/socials/update/{{ social.id }}" class="btn btn-sm btn-warning">Modifier</a>
 							<a href="/admin/socials/delete/{{ social.id }}" onclick="return confirm('Ettes-vous sûr de vouloir supprimer ce réseau social ?')" class="btn btn-sm btn-danger">Supprimer</a>
 						</td>
 						<td>
