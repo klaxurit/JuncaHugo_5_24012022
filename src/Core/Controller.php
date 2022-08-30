@@ -34,7 +34,12 @@ class Controller
         $this->twig->addExtension(new FlashExtension($flashMessage));
         $this->setGlobals();
     }
-
+    
+    /**
+     * setGlobals
+     *
+     * @return void
+     */
     public function setGlobals()
     {
         
@@ -54,7 +59,12 @@ class Controller
     }
 
 
-
+    
+    /**
+     * execute
+     *
+     * @return void
+     */
     public function execute()
     {
         $method = $this->action;

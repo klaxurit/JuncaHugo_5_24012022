@@ -51,7 +51,7 @@ class UserManager extends Manager
   }
 
   /**
-   * Create user
+   * Add user in database
    *
    * @return void
    */

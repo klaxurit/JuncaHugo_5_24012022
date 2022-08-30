@@ -18,14 +18,25 @@ class FlashExtension extends \Twig\Extension\AbstractExtension
   {
     $this->flashMessage = $flashMessage;
   }
-
+  
+  /**
+   * getFunctions
+   *
+   * @return array
+   */
   public function getFunctions(): array
   {
     return [
       new \Twig\TwigFunction('flash', [$this, 'getFlash'])
     ];
   }
-
+  
+  /**
+   * getFlash
+   *
+   * @param  mixed $type
+   * @return string
+   */
   public function getFlash($type): ?string
   {
     return $this->flashMessage->get($type);

@@ -25,7 +25,7 @@ class FlashMessage
 
     
     /**
-     * set
+     * Set information in session
      *
      * @param  mixed $message
      * @param  mixed $type

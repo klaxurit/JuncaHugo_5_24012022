@@ -4,7 +4,14 @@ namespace App\Service;
 
 class FileUploader
 {
-
+    
+    /**
+     * Verify, secure and upload file
+     *
+     * @param  mixed $file
+     * @param  mixed $adminDatas
+     * @return void
+     */
     public function uploadFile($file, $adminDatas)
     {
         if ($file["error"] === 0) {

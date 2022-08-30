@@ -18,12 +18,22 @@ class Router
         $this->session = new PHPSession;
         $this->controller = $this->setController();
     }
-
+    
+    /**
+     * getController
+     *
+     * @return void
+     */
     public function getController()
     {
         return $this->controller;
     }
-
+    
+    /**
+     * setController
+     *
+     * @return void
+     */
     public function setController()
     {
         $routesFile = CONF_DIR . "/routes.yml";

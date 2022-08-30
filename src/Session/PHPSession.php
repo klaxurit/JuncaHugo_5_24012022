@@ -7,6 +7,8 @@ use App\Session\SessionInterface;
 class PHPSession implements SessionInterface
 {
   /**
+   * Get session
+   * 
    * @param  mixed $key
    * @param  mixed $default
    * @return void
@@ -20,6 +22,8 @@ class PHPSession implements SessionInterface
   }
 
   /**
+   * Set session
+   * 
    * @param  mixed $key
    * @param  mixed $value
    * @return void
@@ -30,6 +34,8 @@ class PHPSession implements SessionInterface
   }
 
   /**
+   * Delete session
+   * 
    * @param  mixed $key
    * @return void
    */

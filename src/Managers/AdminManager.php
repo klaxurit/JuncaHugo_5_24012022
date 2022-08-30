@@ -38,7 +38,13 @@ class AdminManager extends Manager
 
     return $admin;
   }
-
+  
+  /**
+   * Update admin infos in database
+   *
+   * @param  mixed $adminDatas
+   * @return void
+   */
   public function updateAdminInfos($adminDatas)
   {
     $sql = "UPDATE admin 
@@ -56,7 +62,13 @@ class AdminManager extends Manager
     $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
     $req->execute();
   }
-
+  
+  /**
+   * Update admin avatar in database
+   *
+   * @param  mixed $adminDatas
+   * @return void
+   */
   public function updateAdminAvatar($adminDatas)
   {
     $sql = "UPDATE admin
@@ -68,7 +80,13 @@ class AdminManager extends Manager
   $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
   $req->execute();
   }
-
+  
+  /**
+   * Update admin cv in database
+   *
+   * @param  mixed $adminDatas
+   * @return void
+   */
   public function updateAdminCv($adminDatas)
   {
     $sql = "UPDATE admin

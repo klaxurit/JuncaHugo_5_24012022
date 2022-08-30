@@ -14,17 +14,33 @@ class PostManager extends Manager
   {
     parent::__construct();
   }
-
+  
+  /**
+   * Add a post in database
+   *
+   * @param  mixed $post
+   * @return void
+   */
   public function createPost($post)
   {
     //
   }
-
+  
+  /**
+   * Update a post in database
+   *
+   * @return void
+   */
   public function updatePost()
   {
     //
   }
-
+  
+  /**
+   * Delete a post in database
+   *
+   * @return void
+   */
   public function deletePost()
   {
     //

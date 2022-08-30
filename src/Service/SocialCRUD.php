@@ -7,7 +7,14 @@ use App\Managers\SocialManager;
 use App\Model\Social;
 
 class SocialCRUD
-{
+{  
+  
+  /**
+   * Check errors and send data to manager
+   *
+   * @param  mixed $socialDatas
+   * @return void
+   */
   public function addSocial($socialDatas)
   {
     $validate = new ValidationForm();
@@ -17,7 +24,13 @@ class SocialCRUD
     }
     return $validate->errors;
   }
-
+  
+  /**
+   * Check errors and send data to manager
+   *
+   * @param  mixed $socialDatas
+   * @return void
+   */
   public function modifySocial($socialDatas)
   {
     $validate = new ValidationForm();

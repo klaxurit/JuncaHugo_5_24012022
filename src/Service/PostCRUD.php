@@ -7,13 +7,24 @@ use App\Managers\SocialManager;
 use App\Service\ValidationForm;
 
 class PostCRUD
-{
+{  
+  /**
+   * Check errors and send data to manager
+   *
+   * @return void
+   */
   public function addPost()
   {
     //
   }
-
-  public function modifyPost(int $id)
+  
+  /**
+   * Check errors and send data to manager
+   *
+   * @param  mixed $id
+   * @return void
+   */
+  public function updatePost(int $id)
   {
     //
   }

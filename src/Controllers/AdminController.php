@@ -36,7 +36,12 @@ class AdminController extends Controller
             );
         }
     }
-
+    
+    /**
+     * Update admin informations
+     *
+     * @return void
+     */
     public function updateAdminInfos()
     {
         $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
@@ -59,7 +64,12 @@ class AdminController extends Controller
             ]
         );
     }
-
+    
+    /**
+     * Update admin avatar and cv (files)
+     *
+     * @return void
+     */
     public function updateAdminFiles()
     {
         $adminDatas = (new AdminManager())->findAdmin($this->params['id']);

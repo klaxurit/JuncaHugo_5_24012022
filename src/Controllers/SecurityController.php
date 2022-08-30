@@ -77,7 +77,12 @@ class SecurityController extends Controller
       ]
     );
   }
-
+  
+  /**
+   * logout
+   *
+   * @return void
+   */
   public function logout()
   {
     // Unset the user session
