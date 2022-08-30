@@ -23,7 +23,28 @@ class PostManager extends Manager
    */
   public function createPost($post)
   {
-    //
+    $post = new Post($post);
+
+    $sql = "INSERT INTO `post`(`title`, `caption`, `content`, `cover_image`, `alt_cover_image`, `slug`) VALUES (:title, :caption, :content, :cover_image, :alt_cover_image, :slug)";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+    $req->bindValue(':caption', $post->getCaption(), PDO::PARAM_STR);
+    $req->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
+    $req->bindValue(':cover_image', $post->getCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':alt_cover_image', $post->getAltCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':slug', $post->getSlug(), PDO::PARAM_STR);
+    $req->execute();
+
+    $id = $this->pdo->lastInsertId();
+
+    $sql = "SELECT * FROM post WHERE id = :id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+
+    return $post;
   }
   
   /**
@@ -31,9 +52,19 @@ class PostManager extends Manager
    *
    * @return void
    */
-  public function updatePost()
+  public function updatePost($post)
   {
-    //
+    $sql = "UPDATE `social_network` SET `title`=:title, `caption`=:caption, `content`=:content, `cover_image`=:cover_image, `alt_cover_image`=:alt_cover_image, `slug`=:slug WHERE `id`=:id";
+    
+    $req = $this->pdo->prepare($sql);
+    $req->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+    $req->bindValue(':caption', $post->getCaption(), PDO::PARAM_STR);
+    $req->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
+    $req->bindValue(':cover_image', $post->getCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':alt_cover_image', $post->getAltCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':slug', $post->getSlug(), PDO::PARAM_STR);
+    $req->bindValue(':id', $post->getId(), PDO::PARAM_STR);
+    $req->execute();
   }
   
   /**
@@ -147,6 +178,27 @@ class PostManager extends Manager
 
     // Add Author by associating user and post
     $post->setAuthor($author);
+
+    return $post;
+  }
+
+    /**
+   * Find post by id
+   *
+   * @param  mixed $id
+   * @return void
+   */
+  public function findOnePost(int $id)
+  {
+    $sql = "SELECT * FROM post WHERE id=:id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+
+    $data = $req->fetch();
+
+    $post = new Post($data);
 
     return $post;
   }

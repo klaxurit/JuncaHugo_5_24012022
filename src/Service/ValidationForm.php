@@ -121,6 +121,10 @@ class ValidationForm
    */
   public function checkAddPost($form)
   {
-    //
+    $this->checkEmpty($form["title"], "title");
+    $this->checkEmpty($form["caption"], "caption");
+    $this->checkEmpty($form["content"], "content");
+    $this->checkEmpty($form["alt_cover_image"], "alt_cover_image");
+    $this->checkEmpty($form["slug"], "slug");
   }
 }

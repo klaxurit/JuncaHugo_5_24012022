@@ -9,6 +9,7 @@ use Twig\Error\RuntimeError;
 use App\Managers\PostManager;
 use App\Service\ValidationForm;
 use App\Managers\CommentManager;
+use App\Service\PostCRUD;
 
 class BlogController extends Controller
 {
@@ -73,7 +74,22 @@ class BlogController extends Controller
      */
     public function createPost()
     {
-        $this->twig->display('admin/pages/blog/create.html.twig');
+        if (!empty($_POST)) {
+            $postDatas = $_POST;
+            $errors = (new PostCRUD())->addPost($postDatas);
+            if (empty($errors)) {
+                $this->flash->set('L\article a bien été créé.', 'success');
+                return header("Location: /admin/posts");
+            }
+            $this->flash->set('L\article n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.', 'error');
+        }
+
+        return $this->twig->display(
+            'admin/pages/posts/create.html.twig',
+            [
+                'errors' => $errors ?? []
+            ]
+        );
     }
 
     /**
@@ -83,7 +99,24 @@ class BlogController extends Controller
      */
     public function updatePost()
     {
-        $this->twig->display('admin/pages/blog/update.html.twig');
+        $postDatas = (new PostManager())->findOnePost($this->params['id']);
+        if (!empty($_POST)) {
+            $postDatas->hydrate($_POST);
+            $errors = (new PostCRUD())->updatePost($postDatas);
+            if (empty($errors)) {
+                $this->flash->set('L\'article a bien été modifié.', 'success');
+                return header('Location: /admin/posts');
+            }
+        }
+
+        return $this->twig->display(
+            'admin/pages/socials/update.html.twig',
+            [
+                'social' => $postDatas,
+                'errors' => $errors ?? []
+            ]
+        );
+        $this->twig->display('admin/pages/posts/update.html.twig');
     }
 
     /**

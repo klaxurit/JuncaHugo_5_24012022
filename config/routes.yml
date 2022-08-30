@@ -79,12 +79,12 @@ posts:
   action: listPosts
   parameters: []
 create:
-  uri: /admin/blog/create
+  uri: /admin/posts/create
   controller: BlogController
   action: createPost
   parameters: []
 update:
-  uri: /admin/blog/update/([a-zA-Z0-9-]+)
+  uri: /admin/posts/update/([a-zA-Z0-9-]+)
   controller: BlogController
   action: updatePost
   parameters: ["slug"]

@@ -13,9 +13,14 @@ class PostCRUD
    *
    * @return void
    */
-  public function addPost()
+  public function addPost($postDatas)
   {
-    //
+    $validate = new ValidationForm();
+    $validate->checkAddSocial($postDatas);
+    if (!$validate->errors) {
+      (new PostManager())->CreatePost($postDatas);
+    }
+    return $validate->errors;
   }
   
   /**
@@ -24,8 +29,12 @@ class PostCRUD
    * @param  mixed $id
    * @return void
    */
-  public function updatePost(int $id)
+  public function updatePost($postDatas)
   {
-    //
+    $validate = new ValidationForm();
+    if (!$validate->errors) {
+      (new PostManager())->updatePost($postDatas);
+    }
+    return $validate->errors;
   }
 }
