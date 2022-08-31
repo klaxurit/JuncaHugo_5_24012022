@@ -16,7 +16,7 @@ class PostCRUD
   public function addPost($postDatas)
   {
     $validate = new ValidationForm();
-    $validate->checkAddSocial($postDatas);
+    $validate->checkAddPost($postDatas);
     if (!$validate->errors) {
       (new PostManager())->CreatePost($postDatas);
     }

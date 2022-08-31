@@ -2,6 +2,10 @@
 
 namespace App\Service;
 
+use App\Exceptions\WrongFileTypeException;
+use App\Exceptions\WrongFileSizeException;
+use App\Exceptions\DownloadFileFailedException;
+
 class FileUploader
 {
 
@@ -9,10 +13,9 @@ class FileUploader
      * Verify, secure and upload file
      *
      * @param  mixed $file
-     * @param  mixed $adminDatas
      * @return void
      */
-    public function uploadFile($file, $adminDatas)
+    public function uploadFile($file)
     {
         if ($file["error"] === 0) {
             // On a recu le fichier
@@ -36,15 +39,17 @@ class FileUploader
             // On vérifie l'absence de l'extension dans les clefs $allowed ou l'absence du type mime dans les valeurs
             if (!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
                 // Ici soit l'extension soit le type est incorrect
-                $this->flash->set('Type de fichier non pris en compte.', 'error');
-                return header("Location: /admin");
+                throw new WrongFileTypeException();
+                // $this->flash->set('Type de fichier non pris en compte.', 'error');
+                // return header("Location: /admin");
             }
 
             // Ici le type est correct
             // On limite a 1Mo
             if ($fileSize > 1024 * 1024) {
-                $this->flash->set('Fichier trop volumineux.', 'error');
-                return header("Location: /admin");
+                throw new WrongFileSizeException();
+                // $this->flash->set('Fichier trop volumineux.', 'error');
+                // return header("Location: /admin");
             }
 
             // On génère un nom unique
@@ -54,21 +59,16 @@ class FileUploader
             $filePath = ROOT_DIR . "/public/uploads/$newName.$extension";
 
             if (!move_uploaded_file($file["tmp_name"], $filePath)) {
-                $this->flash->set('Le téléchargement du fichier a échoué.', 'error');
-                return header("Location: /admin");
+                // déclancher une exxception et la gérer dans le controller
+                throw new DownloadFileFailedException();
+                // $this->flash->set('Le téléchargement du fichier a échoué.', 'error');
+                // return header("Location: /admin");
             }
 
             // On protège l'utiliseur d'un éventuel script
             chmod($filePath, 0644);
 
-            if ($extension === "jpg" || $extension === "jpeg" || $extension === "png" || $extension === "svg") {
-                $adminDatas->setAvatarUrl("$newName.$extension");
-                return (new AdminProfile())->updateAvatar($adminDatas);
-            }
-            if ($extension === "pdf") {
-                $adminDatas->setCvUrl("$newName.$extension");
-                return (new AdminProfile())->updateCv($adminDatas);
-            }
+            return array($extension, $newName);
         }
     }
 }

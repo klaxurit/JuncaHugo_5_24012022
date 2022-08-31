@@ -74,27 +74,21 @@ class AdminController extends Controller
     {
         $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
         if (!empty($_POST)) {
-            if (isset($_FILES["avatar_url"])) {
+            if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "" ) {
                 $file = $_FILES["avatar_url"];
-                var_dump($_FILES["avatar_url"]["type"]);
-                (new FileUploader())->uploadFile($file, $adminDatas);
-                // elseif ($file["error"] === 1) {
-                //     $this->flash->set('Fichier trop volumineux. (Maximum 1Mo)', 'error');
-                //     return header("Location: /admin");
-                // } elseif ($file["error"] === 2) {
-                //     $this->flash->set('Fichier trop volumineux. (Maximum 1Mo)', 'error');
-                //     return header("Location: /admin");
-                // } elseif ($file["error"] === 3) {
-                //     $this->flash->set('Problème lors du téléchargement du fichier.', 'error');
-                //     return header("Location: /admin");
-                // } elseif ($file["error"] === 4) {
-                //     $this->flash->set('Aucun fichier n\'a été téléchargé.', 'error');
-                //     return header("Location: /admin");
-                // }
+                list($extension, $newName) = (new FileUploader())->uploadFile($file);
+                if ($extension === "jpg" || $extension === "jpeg" || $extension === "png" || $extension === "svg") {
+                    $adminDatas->setAvatarUrl("$newName.$extension");
+                    (new AdminProfile())->updateAvatar($adminDatas);
+                }
             }
-            if (isset($_FILES["cv_url"])) {
+            if (isset($_FILES["cv_url"]) && $_FILES["cv_url"]["name"] !== "") {
                 $file = $_FILES["cv_url"];
-                (new FileUploader())->uploadFile($file, $adminDatas);
+                list($extension, $newName) = (new FileUploader())->uploadFile($file);
+                if ($extension === "pdf") {
+                    $adminDatas->setCvUrl("$newName.$extension");
+                    (new AdminProfile())->updateCv($adminDatas);
+                }
             }
         }
 

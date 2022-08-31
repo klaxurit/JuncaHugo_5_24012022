@@ -89,10 +89,10 @@ update:
   action: updatePost
   parameters: ["id"]
 delete:
-  uri: /admin/blog/delete/([a-zA-Z0-9-]+)
+  uri: /admin/posts/delete/([0-9]+)
   controller: BlogController
   action: deletePost
-  parameters: ["slug"]
+  parameters: ["id"]
 switchStatus:
   uri: /admin/switchStatus/([0-9]+)
   controller: AdminController

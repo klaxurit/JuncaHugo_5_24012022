@@ -23,8 +23,7 @@
   </div>
   <div class="form-group">
     <label for="cover_image">Cover Image</label><br>
-    <input type="hidden" name="MAX_FILE_SIZE" />
-    <input type="file" name="cover_image" id="cover_image" accept="image/jpeg,image/gif,image/png,image/svg+xml" />
+    <input type="file" name="cover_image" id="cover_image" />
   </div>
   <div class="form-group">
     <label for="alt_cover_image">Alt Cover Image</label>
@@ -40,6 +39,9 @@
       <p class="form_error">{{ errors['slug'] }}</p>
     {% endif %}
   </div>
+  <pre>
+    {{ dump(post) }}
+  </pre>
   <button type="submit" class="btn btn-primary">{{ post is empty ? "Create" : "Update" }}</button>
 </form>
 {% endblock %}

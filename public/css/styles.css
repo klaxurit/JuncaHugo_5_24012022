@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 body {
   background-color: #000;
@@ -76,14 +77,13 @@ body.dark {
 
 }
 
-p.home__profile-description > svg:nth-child(1) {
+p.home__profile-description>svg:nth-child(1) {
   margin: 0;
 }
 
-p.home__profile-description > svg:nth-child(2) {
+p.home__profile-description>svg:nth-child(2) {
   margin: 0;
 }
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF LOGIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -216,7 +216,8 @@ p.home__profile-description > svg:nth-child(2) {
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 6em;/* SALE */
+  bottom: 6em;
+  /* SALE */
   width: 1400px;
 }
 
@@ -330,13 +331,7 @@ form {
   flex-direction: column;
 }
 
-/* .form_error {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-} */
-
-.form_error > p {
+.form_error>p {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -345,14 +340,14 @@ form {
   color: rgb(212, 0, 0);
 }
 
-.form_error-password  {
+.form_error-password {
   display: flex;
   align-items: flex-start;
   margin: 0;
   padding: 0;
 }
 
-.form_error-password > p {
+.form_error-password>p {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -455,7 +450,7 @@ form {
   padding: 0.5em;
 }
 
-.article__content > p {
+.article__content>p {
   hyphens: auto;
   text-align: justify;
   letter-spacing: -0.4px;
@@ -469,7 +464,7 @@ form {
   border-left: 0.4em solid;
 }
 
-.article__content-axurit-separator > .iconify {
+.article__content-axurit-separator>.iconify {
   margin-top: 0;
 }
 
@@ -557,7 +552,6 @@ form {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 .article__preview {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -586,12 +580,13 @@ form {
   font-weight: 600;
 }
 
-.article__illustration { 
-  height: 250px; 
-  overflow: hidden; 
+.article__illustration {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.article__illustration, img {
+.article__illustration,
+img {
   margin: auto;
   width: 600px;
 }
@@ -620,9 +615,6 @@ form {
   flex-wrap: wrap;
   justify-content: center;
 }
-
-
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
@@ -653,13 +645,11 @@ form {
   }
 }
 
-
 .form__button {
   display: flex;
   margin: auto;
   margin-top: 1em;
 }
-
 
 .modal-container.show {
   display: flex;

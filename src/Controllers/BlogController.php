@@ -7,9 +7,12 @@ use App\Managers\AdminManager;
 use App\Service\AddComment;
 use Twig\Error\RuntimeError;
 use App\Managers\PostManager;
-use App\Service\ValidationForm;
 use App\Managers\CommentManager;
 use App\Service\PostCRUD;
+use App\Service\FileUploader;
+use App\Exceptions\WrongFileTypeException;
+use App\Exceptions\WrongFileSizeException;
+use App\Exceptions\DownloadFileFailedException;
 
 class BlogController extends Controller
 {
@@ -76,12 +79,37 @@ class BlogController extends Controller
     {
         if (!empty($_POST)) {
             $postDatas = $_POST;
-            $errors = (new PostCRUD())->addPost($postDatas);
+            // var_dump(isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== null);
+            // die();
+            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== null) {
+                $file = $_FILES["cover_image"];
+                try {
+                    list($extension, $newName) = (new FileUploader())->uploadFile($file);
+                    // var_dump("allo");
+                    // die();
+                } catch (WrongFileTypeException $e) {
+                    $this->flash->set($e->getMessage(), 'error');
+                    return header("Location: /admin");
+                } catch (WrongFileSizeException $e) {
+                    $this->flash->set($e->getMessage(), 'error');
+                    return header("Location: /admin");
+                } catch(DownloadFileFailedException $e) {
+                    $this->flash->set($e->getMessage(), 'error');
+                    return header("Location: /admin");
+                }
+
+                if ($extension === "jpg" || $extension === "jpeg" || $extension === "png" || $extension === "svg") {
+                    $admin = (new AdminManager())->findAdmin();
+                    $postDatas["cover_image"] = "$newName.$extension";
+                    $postDatas["user_id"] = $admin->getUserId();
+                    (new PostCRUD())->addPost($postDatas);
+                }
+            }
             if (empty($errors)) {
-                $this->flash->set('L\article a bien été créé.', 'success');
+                $this->flash->set('L\'article a bien été créé.', 'success');
                 return header("Location: /admin/posts");
             }
-            $this->flash->set('L\article n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.', 'error');
+            $this->flash->set('L\'article n\'a pas été créé. Veuillez prendre en compte les différentes erreurs sous les champs concerné.', 'error');
         }
 
         return $this->twig->display(
@@ -102,7 +130,14 @@ class BlogController extends Controller
         $postDatas = (new PostManager())->findOnePost($this->params['id']);
         if (!empty($_POST)) {
             $postDatas->hydrate($_POST);
-            $errors = (new PostCRUD())->updatePost($postDatas);
+            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "") {
+                $file = $_FILES["cover_image"];
+                list($extension, $newName) = (new FileUploader())->uploadFile($file);
+                if ($extension === "jpg" || $extension === "jpeg" || $extension === "png" || $extension === "svg") {
+                    $postDatas->setCoverImage("$newName.$extension");
+                    (new PostCRUD())->updatePost($postDatas);
+                }
+            }
             if (empty($errors)) {
                 $this->flash->set('L\'article a bien été modifié.', 'success');
                 return header('Location: /admin/posts');
@@ -126,6 +161,9 @@ class BlogController extends Controller
      */
     public function deletePost()
     {
-        $this->twig->display('admin/pages/blog/delete.html.twig');
+        (new PostManager())->deletePost($this->params['id']);
+        $this->flash->set('L\'article a bien été supprimé.', 'success');
+
+        return header('Location: /admin/posts');
     }
 }
