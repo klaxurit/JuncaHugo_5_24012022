@@ -12,7 +12,7 @@ class PaginationService
   {
     $this->pdo = (new PDOFactory())->getSQLConnexion();
   }
-  
+
   /**
    * Get total of posts to organize pagination
    *

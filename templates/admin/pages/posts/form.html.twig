@@ -40,6 +40,6 @@
       <p class="form_error">{{ errors['slug'] }}</p>
     {% endif %}
   </div>
-  <button type="submit" class="btn btn-primary">Create</button>
+  <button type="submit" class="btn btn-primary">{{ post is empty ? "Create" : "Update" }}</button>
 </form>
 {% endblock %}

@@ -14,7 +14,7 @@ class PostManager extends Manager
   {
     parent::__construct();
   }
-  
+
   /**
    * Add a post in database
    *
@@ -46,7 +46,7 @@ class PostManager extends Manager
 
     return $post;
   }
-  
+
   /**
    * Update a post in database
    *
@@ -55,7 +55,7 @@ class PostManager extends Manager
   public function updatePost($post)
   {
     $sql = "UPDATE `social_network` SET `title`=:title, `caption`=:caption, `content`=:content, `cover_image`=:cover_image, `alt_cover_image`=:alt_cover_image, `slug`=:slug WHERE `id`=:id";
-    
+
     $req = $this->pdo->prepare($sql);
     $req->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
     $req->bindValue(':caption', $post->getCaption(), PDO::PARAM_STR);
@@ -66,7 +66,7 @@ class PostManager extends Manager
     $req->bindValue(':id', $post->getId(), PDO::PARAM_STR);
     $req->execute();
   }
-  
+
   /**
    * Delete a post in database
    *
@@ -76,7 +76,7 @@ class PostManager extends Manager
   {
     //
   }
-  
+
   /**
    * Count all posts in db
    *
@@ -182,7 +182,7 @@ class PostManager extends Manager
     return $post;
   }
 
-    /**
+  /**
    * Find post by id
    *
    * @param  mixed $id

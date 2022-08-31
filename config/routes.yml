@@ -84,10 +84,10 @@ create:
   action: createPost
   parameters: []
 update:
-  uri: /admin/posts/update/([a-zA-Z0-9-]+)
+  uri: /admin/posts/update/([0-9]+)
   controller: BlogController
   action: updatePost
-  parameters: ["slug"]
+  parameters: ["id"]
 delete:
   uri: /admin/blog/delete/([a-zA-Z0-9-]+)
   controller: BlogController

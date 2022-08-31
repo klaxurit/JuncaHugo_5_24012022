@@ -23,7 +23,7 @@ class FlashMessage
         $this->session = $session;
     }
 
-    
+
     /**
      * Set information in session
      *
@@ -46,7 +46,7 @@ class FlashMessage
      */
     public function get(string $type)
     {
-        if (is_null($this->message)){
+        if (is_null($this->message)) {
             $this->message = $this->session->get($this->sessionKey, []);
             $this->session->delete($this->sessionKey);
         }

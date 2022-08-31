@@ -7,7 +7,7 @@ use App\Managers\SocialManager;
 use App\Service\ValidationForm;
 
 class PostCRUD
-{  
+{
   /**
    * Check errors and send data to manager
    *
@@ -22,7 +22,7 @@ class PostCRUD
     }
     return $validate->errors;
   }
-  
+
   /**
    * Check errors and send data to manager
    *

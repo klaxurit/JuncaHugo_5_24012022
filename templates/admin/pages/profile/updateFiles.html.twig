@@ -7,18 +7,21 @@
 	<div class="admin-container">
 		<h3 class="admin__manage-title">Update admin files
 		</h3>
-    <form enctype="multipart/form-data" action="" method="post">
-      <h5>Logo de l'admin:</h5>
-      <img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ admin.avatarUrl }}" alt=""> <br>
-      <input type="hidden" name="MAX_FILE_SIZE" />
-      Modifier:<br> <input type="file" name="avatar_url" id="fichier" accept="image/jpeg,image/gif,image/png,image/svg+xml" /><br>
+		<form enctype="multipart/form-data" action="" method="post">
+			<h5>Logo de l'admin:</h5>
+			<img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ admin.avatarUrl }}" alt="">
+			<br>
+			<input type="hidden" name="MAX_FILE_SIZE"/>
+			Modifier:<br>
+			<input type="file" name="avatar_url" id="fichier" accept="image/jpeg,image/gif,image/png,image/svg+xml"/><br>
 
-      <h5 class="admin__manage-subtitle">Cv de l'admin:</h5>
-      <p>{{ admin.cvUrl }}</p>
-      <input type="hidden" name="MAX_FILE_SIZE" />
-      Modifier:<br> <input type="file" name="cv_url" id="fichier" accept="application/pdf" /><br>
-      <br>
-      <button type="submit" class="btn btn-primary">Modifier</button>
-    </form>
+			<h5 class="admin__manage-subtitle">Cv de l'admin:</h5>
+			<p>{{ admin.cvUrl }}</p>
+			<input type="hidden" name="MAX_FILE_SIZE"/>
+			Modifier:<br>
+			<input type="file" name="cv_url" id="fichier" accept="application/pdf"/><br>
+			<br>
+			<button type="submit" class="btn btn-primary">Modifier</button>
+		</form>
 	</div>
 {% endblock %}

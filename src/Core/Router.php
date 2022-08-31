@@ -18,7 +18,7 @@ class Router
         $this->session = new PHPSession;
         $this->controller = $this->setController();
     }
-    
+
     /**
      * getController
      *
@@ -28,7 +28,7 @@ class Router
     {
         return $this->controller;
     }
-    
+
     /**
      * setController
      *
@@ -52,11 +52,11 @@ class Router
                 $params = array_combine($route["parameters"], array_slice($matches, 1));
                 // Check if uri contain /admin and if current user is admin
                 $admin = (new AdminManager())->findAdmin();
-                if (strpos($uri, "/admin") === 0 &&
+                if (
+                    strpos($uri, "/admin") === 0 &&
                     (
                         ($user !== null && $user->getId() !== $admin->getUserId())
-                            || $user == null
-                    )
+                        || $user == null)
                 ) {
                     return $controller = new ErrorController("show403");
                 }

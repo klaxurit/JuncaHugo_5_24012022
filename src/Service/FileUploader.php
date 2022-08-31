@@ -4,7 +4,7 @@ namespace App\Service;
 
 class FileUploader
 {
-    
+
     /**
      * Verify, secure and upload file
      *

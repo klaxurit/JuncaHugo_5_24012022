@@ -36,7 +36,7 @@ class AdminController extends Controller
             );
         }
     }
-    
+
     /**
      * Update admin informations
      *
@@ -64,7 +64,7 @@ class AdminController extends Controller
             ]
         );
     }
-    
+
     /**
      * Update admin avatar and cv (files)
      *
@@ -77,7 +77,7 @@ class AdminController extends Controller
             if (isset($_FILES["avatar_url"])) {
                 $file = $_FILES["avatar_url"];
                 var_dump($_FILES["avatar_url"]["type"]);
-                    (new FileUploader())->uploadFile($file, $adminDatas);
+                (new FileUploader())->uploadFile($file, $adminDatas);
                 // elseif ($file["error"] === 1) {
                 //     $this->flash->set('Fichier trop volumineux. (Maximum 1Mo)', 'error');
                 //     return header("Location: /admin");
@@ -133,7 +133,7 @@ class AdminController extends Controller
     {
         // Find the current page
         if (isset($_GET['page']) && !empty($_GET['page'])) {
-            $currentPage = (int)strip_tags($_GET['page']);
+            $currentPage = (int) strip_tags($_GET['page']);
         } else {
             $currentPage = 1;
         }
@@ -156,7 +156,7 @@ class AdminController extends Controller
     {
         // Find the current page
         if (isset($_GET['page']) && !empty($_GET['page'])) {
-            $currentPage = (int)strip_tags($_GET['page']);
+            $currentPage = (int) strip_tags($_GET['page']);
         } else {
             $currentPage = 1;
         }

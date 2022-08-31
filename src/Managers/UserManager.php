@@ -28,7 +28,7 @@ class UserManager extends Manager
 
     return $users;
   }
-  
+
   /**
    * Find one user by id
    *

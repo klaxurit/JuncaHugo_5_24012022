@@ -34,7 +34,7 @@ class Controller
         $this->twig->addExtension(new FlashExtension($flashMessage));
         $this->setGlobals();
     }
-    
+
     /**
      * setGlobals
      *
@@ -42,7 +42,7 @@ class Controller
      */
     public function setGlobals()
     {
-        
+
         $this->twig->addGlobal("uri", $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . "/");
         if (null !== $this->session->get("user")) {
             $currentUser = $this->session->get("user");
@@ -59,7 +59,7 @@ class Controller
     }
 
 
-    
+
     /**
      * execute
      *

@@ -43,8 +43,8 @@ class SocialManager extends Manager
     return $social;
   }
 
-  
-  
+
+
   /**
    * Update a social network
    *
@@ -54,7 +54,7 @@ class SocialManager extends Manager
   public function updateSocial($socialDatas)
   {
     $sql = "UPDATE `social_network` SET `icon_name`=:iconName, `url`=:url, `name`=:name WHERE `id`=:id";
-    
+
     $req = $this->pdo->prepare($sql);
     $req->bindValue(':iconName', $socialDatas->getIconName(), PDO::PARAM_STR);
     $req->bindValue(':url', $socialDatas->getUrl(), PDO::PARAM_STR);

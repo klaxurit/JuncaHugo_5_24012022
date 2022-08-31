@@ -42,7 +42,7 @@ class BlogController extends Controller
         ]);
     }
 
-    
+
     /**
      * Return articles's list
      *
@@ -52,7 +52,7 @@ class BlogController extends Controller
     {
         // Find the current page
         if (isset($_GET['page']) && !empty($_GET['page'])) {
-            $currentPage = (int)strip_tags($_GET['page']);
+            $currentPage = (int) strip_tags($_GET['page']);
         } else {
             $currentPage = 1;
         }
@@ -110,9 +110,9 @@ class BlogController extends Controller
         }
 
         return $this->twig->display(
-            'admin/pages/socials/update.html.twig',
+            'admin/pages/posts/update.html.twig',
             [
-                'social' => $postDatas,
+                'post' => $postDatas,
                 'errors' => $errors ?? []
             ]
         );

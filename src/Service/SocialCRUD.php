@@ -7,8 +7,8 @@ use App\Managers\SocialManager;
 use App\Model\Social;
 
 class SocialCRUD
-{  
-  
+{
+
   /**
    * Check errors and send data to manager
    *
@@ -24,7 +24,7 @@ class SocialCRUD
     }
     return $validate->errors;
   }
-  
+
   /**
    * Check errors and send data to manager
    *

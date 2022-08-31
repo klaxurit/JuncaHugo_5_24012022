@@ -14,7 +14,7 @@ class AdminManager extends Manager
     parent::__construct();
   }
 
-    
+
   /**
    * Find admin
    *
@@ -38,7 +38,7 @@ class AdminManager extends Manager
 
     return $admin;
   }
-  
+
   /**
    * Update admin infos in database
    *
@@ -62,7 +62,7 @@ class AdminManager extends Manager
     $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
     $req->execute();
   }
-  
+
   /**
    * Update admin avatar in database
    *
@@ -75,12 +75,12 @@ class AdminManager extends Manager
     SET admin.avatar_url=:avatar_url
     WHERE admin.id=:id";
 
-  $req = $this->pdo->prepare($sql);
-  $req->bindValue(':avatar_url', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
-  $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
-  $req->execute();
+    $req = $this->pdo->prepare($sql);
+    $req->bindValue(':avatar_url', $adminDatas->getAvatarUrl(), PDO::PARAM_STR);
+    $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
+    $req->execute();
   }
-  
+
   /**
    * Update admin cv in database
    *
@@ -93,9 +93,9 @@ class AdminManager extends Manager
     SET admin.cv_url=:cv_url
     WHERE admin.id=:id";
 
-  $req = $this->pdo->prepare($sql);
-  $req->bindValue(':cv_url', $adminDatas->getCvUrl(), PDO::PARAM_STR);
-  $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
-  $req->execute();
+    $req = $this->pdo->prepare($sql);
+    $req->bindValue(':cv_url', $adminDatas->getCvUrl(), PDO::PARAM_STR);
+    $req->bindValue(':id', $adminDatas->getId(), PDO::PARAM_STR);
+    $req->execute();
   }
 }

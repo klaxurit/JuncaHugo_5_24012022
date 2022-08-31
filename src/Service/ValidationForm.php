@@ -7,7 +7,7 @@ class ValidationForm
   const stringRegex = "/^[0-9a-zA-Z']*$/";
   const passwordRegex = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,25}$/';
   public $errors = [];
-  
+
   /**
    * Check if field is empty and put an error message in $errors array
    *
@@ -21,7 +21,7 @@ class ValidationForm
       $this->errors[$fieldName] = "Ce champ est requis";
     }
   }
-  
+
   /**
    * Check if field is a string and put an error message in $errors array
    *
@@ -38,7 +38,7 @@ class ValidationForm
     }
     return array_push($this->errors);
   }
-  
+
   /**
    * Check if field is an email and put an error message in $errors array
    *
@@ -55,7 +55,7 @@ class ValidationForm
     }
     return array_push($this->errors);
   }
-  
+
   /**
    * Check if field is a password and put an error message in $errors array
    *
@@ -72,7 +72,7 @@ class ValidationForm
     }
     return array_push($this->errors);
   }
-  
+
   /**
    * Verify register form and send error if needed
    *
@@ -88,7 +88,7 @@ class ValidationForm
     $this->checkPassword($form["password"], "password", "mot de passe");
     $this->checkEmpty($form["password_confirmation"], "password_confirmation", "confirmation du mdp");
   }
-  
+
   /**
    * Verify add social form and send error if needed
    *
@@ -101,7 +101,7 @@ class ValidationForm
     $this->checkEmpty($form["url"], "url");
     $this->checkEmpty($form["name"], "name");
   }
-  
+
   /**
    * Verify add comment form and send error if needed
    *
@@ -112,7 +112,7 @@ class ValidationForm
   {
     $this->checkEmpty($form["content"], "content");
   }
-  
+
   /**
    * Verify add post form and send error if needed
    *
