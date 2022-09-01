@@ -13,6 +13,7 @@ use App\Service\FileUploader;
 use App\Exceptions\WrongFileTypeException;
 use App\Exceptions\WrongFileSizeException;
 use App\Exceptions\DownloadFileFailedException;
+use Cocur\Slugify\Slugify;
 
 class BlogController extends Controller
 {
@@ -81,7 +82,7 @@ class BlogController extends Controller
             $postDatas = $_POST;
             // var_dump(isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== null);
             // die();
-            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== null) {
+            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "" ) {
                 $file = $_FILES["cover_image"];
                 try {
                     list($extension, $newName) = (new FileUploader())->uploadFile($file);
@@ -89,14 +90,17 @@ class BlogController extends Controller
                     // die();
                 } catch (WrongFileTypeException $e) {
                     $this->flash->set($e->getMessage(), 'error');
-                    return header("Location: /admin");
+                    return header("Location: /admin/posts");
                 } catch (WrongFileSizeException $e) {
                     $this->flash->set($e->getMessage(), 'error');
-                    return header("Location: /admin");
+                    return header("Location: /admin/posts");
                 } catch(DownloadFileFailedException $e) {
                     $this->flash->set($e->getMessage(), 'error');
-                    return header("Location: /admin");
+                    return header("Location: /admin/posts");
                 }
+
+                $slugify = new Slugify();
+                $postDatas["slug"] = $slugify->slugify($postDatas["slug"]);
 
                 if ($extension === "jpg" || $extension === "jpeg" || $extension === "png" || $extension === "svg") {
                     $admin = (new AdminManager())->findAdmin();

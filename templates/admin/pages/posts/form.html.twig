@@ -16,18 +16,20 @@
   </div>
   <div class="form-group">
     <label for="content">Content</label>
-    <textarea name="content" class="form-control admin__update-textarea" id="content" >{{ admin.content }}</textarea>
+    <textarea name="content" class="form-control admin__update-textarea" id="content" >{{ post is empty ? _post.content : post.content }}</textarea>
     {% if errors['content'] is defined %}
       <p class="form_error">{{ errors['content'] }}</p>
     {% endif %}
   </div>
   <div class="form-group">
     <label for="cover_image">Cover Image</label><br>
-    <input type="file" name="cover_image" id="cover_image" />
+    <img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ post.coverImage }}" alt=""><br>
+    <input type="hidden" name="MAX_FILE_SIZE"/>
+    <input type="file" name="cover_image" id="fichier" accept="image/jpeg,image/gif,image/png,image/svg+xml"/>
   </div>
   <div class="form-group">
     <label for="alt_cover_image">Alt Cover Image</label>
-    <input type="text" name="alt_cover_image" class="form-control" id="alt_cover_image" value="{{ post is empty ? _post.alt_cover_image : post.alt_cover_image }}">
+    <input type="text" name="alt_cover_image" class="form-control" id="alt_cover_image" value="{{ post is empty ? _post.altCoverImage : post.altCoverImage }}">
     {% if errors['alt_cover_image'] is defined %}
       <p class="form_error">{{ errors['alt_cover_image'] }}</p>
     {% endif %}
@@ -41,6 +43,9 @@
   </div>
   <pre>
     {{ dump(post) }}
+  </pre>
+  <pre>
+    {{ dump(post.cover_image) }}
   </pre>
   <button type="submit" class="btn btn-primary">{{ post is empty ? "Create" : "Update" }}</button>
 </form>
