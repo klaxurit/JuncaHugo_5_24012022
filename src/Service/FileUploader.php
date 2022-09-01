@@ -33,7 +33,7 @@ class FileUploader
             "svg" => "image/svg+xml",
             "pdf" => "application/pdf"
         ];
-        
+
         // On vérifie l'absence de l'extension dans les clefs $allowed ou l'absence du type mime dans les valeurs
         if (!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
             // Ici soit l'extension soit le type est incorrect

@@ -82,7 +82,7 @@ class BlogController extends Controller
             $postDatas = $_POST;
             // var_dump(isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== null);
             // die();
-            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "" ) {
+            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
                     list($extension, $newName) = (new FileUploader())->uploadFile($file);
@@ -94,7 +94,7 @@ class BlogController extends Controller
                 } catch (WrongFileSizeException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");
-                } catch(DownloadFileFailedException $e) {
+                } catch (DownloadFileFailedException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");
                 }
