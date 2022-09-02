@@ -6,6 +6,7 @@ define("ROOT_DIR", realPath(dirname(__DIR__)));
 define("CONF_DIR", ROOT_DIR . "/config");
 
 require ROOT_DIR . "/vendor/autoload.php";
+@session_start();
 
 use App\Controllers\ErrorController;
 use App\Core\Router;

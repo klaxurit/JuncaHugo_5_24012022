@@ -15,9 +15,81 @@ class PostManager extends Manager
     parent::__construct();
   }
 
+  /**
+   * Add a post in database
+   *
+   * @param  mixed $post
+   * @return void
+   */
+  public function createPost($post)
+  {
+    $post = new Post($post);
+
+    $sql = "INSERT INTO `post`(`title`, `caption`, `content`, `cover_image`, `alt_cover_image`, `slug`, `user_id`) VALUES (:title, :caption, :content, :cover_image, :alt_cover_image, :slug, :user_id)";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+    $req->bindValue(':caption', $post->getCaption(), PDO::PARAM_STR);
+    $req->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
+    $req->bindValue(':cover_image', $post->getCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':alt_cover_image', $post->getAltCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':slug', $post->getSlug(), PDO::PARAM_STR);
+    $req->bindValue(':user_id', $post->getUserId(), PDO::PARAM_STR);
+    $req->execute();
+
+    $id = $this->pdo->lastInsertId();
+
+    $sql = "SELECT * FROM post WHERE id = :id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+
+    return $post;
+  }
+
+  /**
+   * Update a post in database
+   *
+   * @return void
+   */
+  public function updatePost($post)
+  {
+    $sql = "UPDATE `post` SET `title`=:title, `caption`=:caption, `content`=:content, `cover_image`=:cover_image, `alt_cover_image`=:alt_cover_image, `slug`=:slug WHERE `id`=:id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+    $req->bindValue(':caption', $post->getCaption(), PDO::PARAM_STR);
+    $req->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
+    $req->bindValue(':cover_image', $post->getCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':alt_cover_image', $post->getAltCoverImage(), PDO::PARAM_STR);
+    $req->bindValue(':slug', $post->getSlug(), PDO::PARAM_STR);
+    $req->bindValue(':id', $post->getId(), PDO::PARAM_STR);
+    $req->execute();
+  }
+
+  /**
+   * Delete a post in database
+   *
+   * @return void
+   */
+  public function deletePost(int $id)
+  {
+    $sql = "DELETE FROM post WHERE id=:id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+  }
+
+  /**
+   * Count all posts in db
+   *
+   * @return void
+   */
   public function countPosts()
   {
-    // count the total of posts
+    // Count the total of posts
     $sql2 = "SELECT COUNT(*) AS total_posts from `post`;";
     $req = $this->pdo->prepare($sql2);
     $req->execute();
@@ -28,19 +100,20 @@ class PostManager extends Manager
 
 
   /**
-   * find all posts in db
+   * Find all posts
    *
    * @return void
    */
   public function findAllPosts($limit, $first_post)
   {
-    // calcul the first post of the page
+    // Calcul the first post of the page
     $offset = ($first_post * $limit) - $limit;
 
-    // find all posts
+    // Find all posts
     $sql = "SELECT *, 
     p.created_at as post_created_at, u.created_at as user_created_at, 
-    p.updated_at as post_updated_at, u.updated_at as user_updated_at
+    p.updated_at as post_updated_at, u.updated_at as user_updated_at,
+    p.id as post_id, u.id as user_id
     FROM post as p
     LEFT OUTER JOIN user as u
     ON p.user_id = u.id
@@ -53,44 +126,84 @@ class PostManager extends Manager
     $req->execute();
     $datas = $req->fetchAll();
 
-
     $posts = [];
 
     foreach ($datas as $data) {
       $data['createdAt'] = $data['post_created_at'];
       $data['updatedAt'] = $data['post_updated_at'];
+      $data['id'] = $data['post_id'];
       $post = new Post($data);
 
       $data['createdAt'] = $data['user_created_at'];
       $data['updatedAt'] = $data['user_updated_at'];
+      $data['id'] = $data['user_id'];
       $author = new User($data);
 
       $post->setAuthor($author);
       array_push($posts, $post);
     }
 
+
     return $posts;
   }
 
 
+
   /**
-   * find one post by slug
+   * Get post by slug
    *
    * @param  mixed $slug
    * @return void
    */
   public function getPostBySlug(string $slug)
   {
-    // using slug to find the post
-    $sql = "SELECT p.*, u.username, u.id as userId
-    FROM post AS p
-    INNER JOIN user as u ON u.id = p.user_id 
+    $sql = "SELECT *, 
+    p.created_at as post_created_at, u.created_at as user_created_at, 
+    p.updated_at as post_updated_at, u.updated_at as user_updated_at,
+    p.id as post_id, u.id as user_id
+    FROM post as p
+    LEFT OUTER JOIN user as u
+    ON p.user_id = u.id
     WHERE p.slug = :slug";
 
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':slug', $slug);
     $req->execute();
-    $post = $req->fetch();
+    $data = $req->fetch();
+
+    $data['createdAt'] = $data['post_created_at'];
+    $data['updatedAt'] = $data['post_updated_at'];
+    $data['id'] = $data['post_id'];
+    $post = new Post($data);
+
+    $data['createdAt'] = $data['user_created_at'];
+    $data['updatedAt'] = $data['user_updated_at'];
+    $data['id'] = $data['user_id'];
+    $author = new User($data);
+
+    // Add Author by associating user and post
+    $post->setAuthor($author);
+
+    return $post;
+  }
+
+  /**
+   * Find post by id
+   *
+   * @param  mixed $id
+   * @return void
+   */
+  public function findOnePost(int $id)
+  {
+    $sql = "SELECT * FROM post WHERE id=:id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+
+    $data = $req->fetch();
+
+    $post = new Post($data);
 
     return $post;
   }

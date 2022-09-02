@@ -1,15 +1,19 @@
 {% extends "client/base.html.twig" %}
 
 {% block title %}
-	Article - {{parent()}}
+	Article -
+	{{parent()}}
 {% endblock %}
 {% block body %}
 	<article>
 		<section class="article__head">
 			<h1 class="article__head-title">{{ post.title }}</h1>
 			<hr class="article__head-separator">
-			<p class="article__head-date">mise à jour le {{ post.updatedAt | date("d/m/Y") }}</p>
-			<p class="article__head-author">{{ post.author.username }} - {{ post.title }}</p>
+			<p class="article__head-date">mise à jour le
+				{{ post.updatedAt | date("d/m/Y") }}</p>
+			<p class="article__head-author">{{ post.author.username }}
+				-
+				{{ post.title }}</p>
 			<hr class="article__head-separator">
 		</section>
 		<section class="article__illustration">
@@ -51,21 +55,35 @@
 					<!-- Titre du fieldset -->
 					<legend>Laisser votre commentaire ci-dessous:</legend>
 					<div class="form__comment">
-						<textarea name="message" id="mytextarea" cols="40" rows="6"></textarea>
-						<button class="form__button">Envoyer</button>
+						<textarea name="content" id="content" value="{{ _post.content }}" cols="40" rows="6"></textarea>
+						{% if user is not defined %}
+							<p class="form_error">Vous devez être connecté pour poster un commentaire.</p>
+						{% endif %}
+						{% if errors['content'] is defined %}
+							<p class="form_error">{{ errors['content'] }}</p>
+						{% endif %}
+						{% if user is not defined %}
+							<button class="form__button"><a href="/login">Se connecter</a></button>
+						{% else %}
+							<button type="submit" class="form__button">Envoyer</button>
+						{% endif %}
+						
 					</div>
 				</fieldset>
 			</form>
 		</section>
 
 		<section class="article__comments">
-		{% for comment in comments %}
-			<div class="article__user-comment">
-				<p class="artcile__comment-author">{{ comment.username }} le
-					<i>{{ comment.title }}</i>:</p>
-				<p class="article__comment-content">{{ comment.content }}</p>
-			</div>
-		{% endfor %}
+			{% for comment in comments %}
+			{% if comment.status is same as("1") %}
+				<div class="article__user-comment">
+					<p class="artcile__comment-author">{{ comment.author.username }}
+						le
+						<i>{{ comment.createdAt | date("d/m/Y") }}</i>:</p>
+					<p class="article__comment-content">{{ comment.content }}</p>
+				</div>
+				{% endif %}
+			{% endfor %}
 		</section>
 
 		<section class="article__footer">

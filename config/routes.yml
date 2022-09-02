@@ -3,6 +3,46 @@ home:
   controller: IndexController
   action: showHome
   parameters: []
+admin:
+  uri: /admin
+  controller: AdminController
+  action: index
+  parameters: []
+updateAdmin:
+  uri: /admin/profile/update/([0-9]+)
+  controller: AdminController
+  action: updateAdmin
+  parameters: ["id"]
+managePosts:
+  uri: /admin/posts
+  controller: AdminController
+  action: managePosts
+  parameters: []
+manageComments:
+  uri: /admin/comments
+  controller: AdminController
+  action: manageComments
+  parameters: []
+manageSocials:
+  uri: /admin/socials
+  controller: AdminController
+  action: manageSocials
+  parameters: []
+createSocial:
+  uri: /admin/socials/create
+  controller: AdminController
+  action: adminCreateSocial
+  parameters: []
+deleteSocial:
+  uri: /admin/socials/delete/([0-9]+)
+  controller: AdminController
+  action: adminDeleteSocial
+  parameters: ["id"]
+updateSocial:
+  uri: /admin/socials/update/([0-9]+)
+  controller: AdminController
+  action: adminUpdateSocial
+  parameters: ["id"]
 login:
   uri: /login
   controller: SecurityController
@@ -34,17 +74,27 @@ posts:
   action: listPosts
   parameters: []
 create:
-  uri: /admin/blog/create
+  uri: /admin/posts/create
   controller: BlogController
   action: createPost
   parameters: []
 update:
-  uri: /admin/blog/update/([a-zA-Z0-9-]+)
+  uri: /admin/posts/update/([0-9]+)
   controller: BlogController
   action: updatePost
-  parameters: ["slug"]
+  parameters: ["id"]
 delete:
-  uri: /admin/blog/delete/([a-zA-Z0-9-]+)
+  uri: /admin/posts/delete/([0-9]+)
   controller: BlogController
   action: deletePost
-  parameters: ["slug"]
+  parameters: ["id"]
+switchStatus:
+  uri: /admin/switchStatus/([0-9]+)
+  controller: AdminController
+  action: switchStatus
+  parameters: ["id"]
+adminDeleteComment:
+  uri: /admin/delete/([0-9]+)
+  controller: AdminController
+  action: adminDeleteComment
+  parameters: ["id"]

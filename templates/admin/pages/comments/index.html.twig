@@ -1,0 +1,37 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+	Blog - Gestion des commentaires
+{% endblock %}
+{% block body %}
+	<div class="admin-container">
+		<h3 class="admin__manage-title">Gestion des commentaires
+		</h3>
+		<table class="table table-striped">
+			<thead>
+				<th>Contenu</th>
+				<th>ID de l'article</th>
+				<th>ID du commentaire</th>
+				<th>Action</th>
+			</thead>
+			<tbody>
+				{% for comment in comments %}
+					<tr>
+						<td>{{ comment.content }}</td>
+						<td>{{ comment.postId }}</td>
+						<td>{{ comment.id }}</td>
+						<td class="mt-2 pt-2">
+              {% if comment.status is same as("0") %}
+                <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-sm btn-secondary">Rendre actif</a>
+              {% else %}
+                <a href="/admin/switchStatus/{{ comment.id }}" class="btn btn-sm btn-success">Rendre inactif</a>
+							{% endif %}
+							<a href="/admin/delete/{{ comment.id }}" class="btn btn-sm btn-danger">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<input type="button" class="btn btn-sm btn-secondary" value="Retour" onClick="javascript:history.go(-1)" />
+	</div>
+{% endblock %}

@@ -2,16 +2,15 @@
 
 namespace App\Model;
 
-use App\Model\Post;
 use App\Core\Entity;
 
 class Comment extends Entity
 {
   private $user_id;
   private $post_id;
-  private $title;
   private $content;
   private $status;
+  private User $author;
 
   /**
    * Get the value of status
@@ -54,26 +53,6 @@ class Comment extends Entity
   }
 
   /**
-   * Get the value of title
-   */
-  public function getTitle()
-  {
-    return $this->title;
-  }
-
-  /**
-   * Set the value of title
-   *
-   * @return  self
-   */
-  public function setTitle($title)
-  {
-    $this->title = $title;
-
-    return $this;
-  }
-
-  /**
    * Get the value of post_id
    */
   public function getPostId()
@@ -109,6 +88,23 @@ class Comment extends Entity
   public function setUserId($user_id)
   {
     $this->user_id = $user_id;
+
+    return $this;
+  }
+  /**
+   * Get the value of author
+   */
+  public function getAuthor(): User
+  {
+    return $this->author;
+  }
+
+  /**
+   * Set the value of author
+   */
+  public function setAuthor(User $author): self
+  {
+    $this->author = $author;
 
     return $this;
   }

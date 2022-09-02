@@ -1,8 +1,10 @@
-{% extends "client/base.html.twig" %}
+{% extends "admin/base.html.twig" %}
 
-{% block title %}
-	Blog - Création d'un article
+{% block title %}Blog - Ajout d'un article
 {% endblock %}
 {% block body %}
-    <h1>POST CREATE</h1>
+	<div class="admin-container">
+		<h3 class="admin__manage-title">Ajout d'un article</h3>
+		{% include "admin/pages/posts/_form.html.twig" %}
+	</div>
 {% endblock %}

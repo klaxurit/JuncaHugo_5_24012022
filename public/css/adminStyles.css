@@ -1,0 +1,59 @@
+.container {
+  margin-top: 1em;
+}
+
+.admin__update-textarea {
+  width: 400px !important;
+  height: 150px !important;
+}
+
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 5%;
+}
+
+.admin__manage-title {
+  margin-bottom: 2em;
+}
+
+.admin__manage-subtitle {
+  margin-top: 2em;
+}
+
+li {
+  list-style: none;
+}
+
+.update__button {
+  margin-right: 1em;
+}
+
+.home__profile-logo {
+  margin: 1em;
+  max-width: 100px;
+  padding: 0;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.social__info {
+  margin-top: 1em;
+  font-size: small;
+  font-weight: 700;
+  color: #4c4c4c;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.form_error {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0;
+  margin: 0;
+  color: rgb(212, 0, 0);
+}

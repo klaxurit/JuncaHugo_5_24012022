@@ -28,7 +28,7 @@ class Entity
       $method = "set" . str_replace("_", "", ucwords($key, "_"));
 
       if (is_callable([$this, $method])) {
-        $this->$method($value);
+        $this->$method(strip_tags($value));
       }
     }
   }

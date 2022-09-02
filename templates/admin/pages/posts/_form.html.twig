@@ -1,0 +1,42 @@
+{% block body %}
+<form enctype="multipart/form-data" action="" method="post">
+  <div class="form-group">
+    <label for="title">Titre</label>
+    <input type="text" name="title" class="form-control" id="title" value="{{ post is empty ? _post.title : post.title }}">
+    {% if errors['title'] is defined %}
+      <p class="form_error">{{ errors['title'] }}</p>
+    {% endif %}
+  </div>
+  <div class="form-group">
+    <label for="caption">Légende</label>
+    <input type="text" name="caption" class="form-control" id="caption" value="{{ post is empty ? _post.caption : post.caption }}">
+    {% if errors['caption'] is defined %}
+      <p class="form_error">{{ errors['caption'] }}</p>
+    {% endif %}
+  </div>
+  <div class="form-group">
+    <label for="content">Contenu</label>
+    <textarea name="content" class="form-control admin__update-textarea" id="content" >{{ post is empty ? _post.content : post.content }}</textarea>
+    {% if errors['content'] is defined %}
+      <p class="form_error">{{ errors['content'] }}</p>
+    {% endif %}
+  </div>
+  <div class="form-group">
+    <label for="cover_image">Image de couverture</label><br>
+    {% if post is not empty %}
+    <img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ post.coverImage }}" alt=""><br>
+    {% endif %}
+    <input type="hidden" name="MAX_FILE_SIZE"/>
+    <input type="file" name="cover_image" id="fichier" accept="image/jpeg,image/gif,image/png,image/svg+xml"/>
+  </div>
+  <div class="form-group">
+    <label for="alt_cover_image">Description de l'image</label>
+    <input type="text" name="alt_cover_image" class="form-control" id="alt_cover_image" value="{{ post is empty ? _post.altCoverImage : post.altCoverImage }}">
+    {% if errors['alt_cover_image'] is defined %}
+      <p class="form_error">{{ errors['alt_cover_image'] }}</p>
+    {% endif %}
+  </div>
+  <button type="submit" class="btn btn-primary">{{ post is empty ? "Ajouter" : "Modifier" }}</button>
+  <input type="button" class="btn btn-secondary" value="Retour" onClick="javascript:history.go(-1)" />
+</form>
+{% endblock %}

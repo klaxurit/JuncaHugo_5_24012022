@@ -1,0 +1,20 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+  Administration -
+	{{parent()}}
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+  <h3 class="">Adminnistration du site par {{ admin.user.firstname }} "{{ admin.user.username }}" {{ admin.user.lastname }}</h3>
+  <div class="admin__pannel">
+    <ul>
+      <li><a href="/admin/profile/update/{{ admin.id }}">Gestion de l'admin</a></li>
+      <li><a href="/admin/posts">Gestion des articles</a></li>
+      <li><a href="/admin/comments">Gestion des commentaires</a></li>
+      <li><a href="/admin/socials">Gestion des réseaux sociaux</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock body %}

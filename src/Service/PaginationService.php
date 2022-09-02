@@ -13,6 +13,11 @@ class PaginationService
     $this->pdo = (new PDOFactory())->getSQLConnexion();
   }
 
+  /**
+   * Get total of posts to organize pagination
+   *
+   * @return void
+   */
   public function paginate()
   {
     $sql = "SELECT COUNT(id) as totalPosts FROM post";

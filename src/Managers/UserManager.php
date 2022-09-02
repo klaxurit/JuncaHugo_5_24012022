@@ -14,7 +14,7 @@ class UserManager extends Manager
   }
 
   /**
-   * find all users in db
+   * Find all users
    *
    * @return void
    */
@@ -24,35 +24,73 @@ class UserManager extends Manager
     $req = $this->pdo->prepare($sql);
     $req->execute();
     $datas = $req->fetchAll(PDO::FETCH_COLUMN, 2);
-    return $datas;
+    $users = new User($datas);
+
+    return $users;
   }
 
   /**
-   * add a new user in db
+   * Find one user by id
+   *
+   * @param  mixed $id
+   * @return void
+   */
+  public function findOneUser(int $id)
+  {
+    $sql = "SELECT * FROM user WHERE id=:id";
+
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+
+    $data = $req->fetch();
+
+    $user = new User($data);
+
+    return $user;
+  }
+
+  /**
+   * Add user in database
    *
    * @return void
    */
-  public function createUser()
+  public function createUser($user)
   {
+    $user = new User($user);
     // hash password using password ARGON2ID 
     // (ARGON2ID algorithm most powerfull than BCRYPT and ARGON2I)
-    $password = password_hash($_POST["password"], PASSWORD_ARGON2ID);
+    $password = password_hash($user->getPassword(), PASSWORD_ARGON2ID);
 
-    $sql = "INSERT INTO `user`(`firstname`, `lastname`, `username`, `email`, `password`) VALUES (:nom, :prenom, :surnom, :email, '$password')";
+    $sql = "INSERT INTO `user`(`firstname`, `lastname`, `username`, `email`, `password`) VALUES (:lastName, :firstName, :username, :email, :pass)";
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':nom', $_POST["nom"], PDO::PARAM_STR);
-    $req->bindParam(':prenom', $_POST["prenom"], PDO::PARAM_STR);
-    $req->bindParam(':surnom', $_POST["surnom"], PDO::PARAM_STR);
-    $req->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
+    $req->bindValue(':lastName', $user->getLastname(), PDO::PARAM_STR);
+    $req->bindValue(':firstName', $user->getFirstname(), PDO::PARAM_STR);
+    $req->bindValue(':username', $user->getUsername(), PDO::PARAM_STR);
+    $req->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
+    $req->bindValue(':pass', $password, PDO::PARAM_STR);
 
     $req->execute();
 
     // get new user's id
     $id = $this->pdo->lastInsertId();
 
-    return $id;
+    $sql = "SELECT * FROM user WHERE id = :id";
+    $req = $this->pdo->prepare($sql);
+    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->execute();
+    $datas = $req->fetch();
+
+    $user = new User($datas);
+
+    return $user;
   }
 
+  /**
+   * Log-in an user
+   *
+   * @return void
+   */
   public function loginUser()
   {
     $sql = "SELECT * FROM `user` WHERE `email` = :email";
