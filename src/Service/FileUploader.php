@@ -65,7 +65,8 @@ class FileUploader
 
         // On protège l'utiliseur d'un éventuel script
         chmod($filePath, 0644);
+        $filePath = str_replace("/var/www/domain1.com/public_html/P05_junca_hugo/public/", "", $filePath);
 
-        return array($extension, $filePath);
+        return array($filePath);
     }
 }

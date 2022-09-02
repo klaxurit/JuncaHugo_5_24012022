@@ -4,6 +4,7 @@ body {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 body {
   background-color: #000;
   font-family: "Roboto Mono", monospace;
@@ -14,16 +15,18 @@ body {
 
 body.light {
   background-color: #fff;
-  color: #222222;
+  color: #222;
 }
 
 body.dark {
   background-color: #000;
-  color: #ffffff;
+  color: #fff;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF BODY~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .home {
   height: calc(100% - 76px - 48px);
 }
@@ -74,19 +77,20 @@ body.dark {
 .home__profile-email {
   font-style: italic;
   letter-spacing: 0.4px;
-
 }
 
-p.home__profile-description>svg:nth-child(1) {
+p.home__profile-description> svg:nth-child(1) {
   margin: 0;
 }
 
-p.home__profile-description>svg:nth-child(2) {
+p.home__profile-description> svg:nth-child(2) {
   margin: 0;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF LOGIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .login {
   height: calc(100% - 76px - 48px);
   display: flex;
@@ -104,9 +108,11 @@ p.home__profile-description>svg:nth-child(2) {
   text-transform: uppercase;
   width: 100%;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF LOGIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF REGISTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .register {
   height: calc(100% - 76px - 48px);
   display: flex;
@@ -153,9 +159,11 @@ p.home__profile-description>svg:nth-child(2) {
   text-transform: uppercase;
   width: 100%;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF REGISTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .header__brand {
   display: flex;
   text-decoration: none;
@@ -183,9 +191,6 @@ p.home__profile-description>svg:nth-child(2) {
 .header__nav {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
-  --gray: #4c4c4c;
-  --background: #000;
-  --color: #fff;
   font: 400 14px/18px Roboto Mono;
   position: relative;
   border-bottom: 2px solid;
@@ -209,15 +214,16 @@ p.home__profile-description>svg:nth-child(2) {
   color: #aaaaaa;
   font-weight: 800;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF PAGINATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .pagination {
   display: flex;
   justify-content: center;
   position: fixed;
   bottom: 6em;
-  /* SALE */
   width: 1400px;
 }
 
@@ -263,15 +269,14 @@ p.home__profile-description>svg:nth-child(2) {
 .nav__pagination a[aria-current="page"] {
   color: #fff;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF PAGINATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 footer {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
-  --gray: #4c4c4c;
-  --background: #000;
-  --color: #fff;
   font: 400 14px/18px Roboto Mono;
   margin: 4rem 0 0;
   font-size: 1.3rem;
@@ -293,9 +298,11 @@ a {
   color: #aaaaaa;
   font-weight: 800;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 form {
   align-items: center;
   display: flex;
@@ -364,9 +371,11 @@ form {
   margin: 0;
   color: rgb(212, 0, 0);
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .article__head {
   word-break: break-word;
   hyphens: auto;
@@ -381,7 +390,6 @@ form {
 .article__head-separator {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
-  --color: white;
   text-align: center;
   box-sizing: content-box;
   display: block;
@@ -400,7 +408,6 @@ form {
   position: relative;
   top: -14px;
   padding: 0 10px;
-  /* background: #f0f0f0; */
   color: #424242;
   font-size: 20px;
   -webkit-transform: rotate(60deg);
@@ -476,7 +483,6 @@ form {
   font-size: 14px;
   word-break: break-word;
   hyphens: auto;
-  /* text-align: justify; */
   letter-spacing: -0.4px;
   display: block;
   max-width: 600px;
@@ -492,7 +498,6 @@ form {
 .article__comments {
   word-break: break-word;
   hyphens: auto;
-  /* text-align: justify; */
   display: block;
   max-width: 600px;
   margin: 0 auto;
@@ -536,7 +541,6 @@ form {
   position: relative;
   top: -14px;
   padding: 0 10px;
-  /* background: #f0f0f0; */
   color: #424242;
   font-size: 20px;
   -webkit-transform: rotate(60deg);
@@ -549,14 +553,15 @@ form {
   margin-bottom: 4em;
   text-align: center;
 }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .article__preview {
   margin-left: 0.5em;
   margin-right: 0.5em;
   margin-top: 1em;
-  /* margin-bottom: 2em; */
   width: 30%;
 }
 
@@ -617,6 +622,7 @@ img {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF ARTICLE-PREVIEW~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   .modal-container {
     position: fixed;

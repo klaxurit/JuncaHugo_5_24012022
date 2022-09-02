@@ -55,7 +55,7 @@ class PostManager extends Manager
    */
   public function updatePost($post)
   {
-    $sql = "UPDATE `post` SET `title`=:title, `caption`=:caption, `content`=:content, `cover_image`=:cover_image, `alt_cover_image`=:alt_cover_image, `slug`=:slug WHERE `id`=:id";
+    $sql = "UPDATE `post` SET `title`=:title, `caption`=:caption, `content`=:content, `cover_image`=:cover_image, `alt_cover_image`=:alt_cover_image, `slug`=:slug, `user_id`=:user_id WHERE `id`=:id";
 
     $req = $this->pdo->prepare($sql);
     $req->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
@@ -65,6 +65,7 @@ class PostManager extends Manager
     $req->bindValue(':alt_cover_image', $post->getAltCoverImage(), PDO::PARAM_STR);
     $req->bindValue(':slug', $post->getSlug(), PDO::PARAM_STR);
     $req->bindValue(':id', $post->getId(), PDO::PARAM_STR);
+    $req->bindValue(':user_id', $post->getUserId(), PDO::PARAM_STR);
     $req->execute();
   }
 

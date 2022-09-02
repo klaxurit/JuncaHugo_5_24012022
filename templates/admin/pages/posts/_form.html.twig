@@ -24,7 +24,7 @@
   <div class="form-group">
     <label for="cover_image">Image de couverture</label><br>
     {% if post is not empty %}
-    <img class="home__profile-logo" src="{{ uri ~ "uploads/" ~ post.coverImage }}" alt=""><br>
+    <img class="home__profile-logo" src="{{ uri ~ post.coverImage }}" alt="{{ post.altCoverImage }}"><br>
     {% endif %}
     <input type="hidden" name="MAX_FILE_SIZE"/>
     <input type="file" name="cover_image" id="fichier" accept="image/jpeg,image/gif,image/png,image/svg+xml"/>

@@ -92,7 +92,7 @@ class BlogController extends Controller
                 $slugify = new Slugify();
                 $postDatas["slug"] = $slugify->slugify($postDatas["title"]);
                 $admin = (new AdminManager())->findAdmin();
-                $postDatas["cover_image"] = "$filePath.$extension";
+                $postDatas["cover_image"] = "$filePath";
                 $postDatas["user_id"] = $admin->getUserId();
                 (new PostCRUD())->addPost($postDatas);
             }
@@ -124,8 +124,7 @@ class BlogController extends Controller
             if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
-                    list($extension, $filePath) = (new FileUploader())->uploadFile($file, "image");
-                    
+                    list($filePath) = (new FileUploader())->uploadFile($file, "image");
                 } catch (WrongFileTypeException | WrongFileSizeException | DownloadFileFailedException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");
@@ -133,7 +132,9 @@ class BlogController extends Controller
 
                 $slugify = new Slugify();
                 $postDatas->setSlug($slugify->slugify($postDatas->getTitle()));
-                $postDatas->setCoverImage("$filePath.$extension");
+                $admin = (new AdminManager())->findAdmin();
+                $postDatas->setCoverImage($filePath);
+                $postDatas->setUserId($admin->getUserId());
                 (new PostCRUD())->updatePost($postDatas);
             }
             if (empty($errors)) {
