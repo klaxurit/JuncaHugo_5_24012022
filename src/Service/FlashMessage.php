@@ -16,8 +16,6 @@ class FlashMessage
 
     private $message;
 
-    private $type;
-
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;

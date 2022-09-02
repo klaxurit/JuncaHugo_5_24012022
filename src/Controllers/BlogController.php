@@ -41,7 +41,6 @@ class BlogController extends Controller
         ]);
     }
 
-
     /**
      * Return articles's list
      *

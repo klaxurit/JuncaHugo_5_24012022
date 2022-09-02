@@ -47,7 +47,7 @@ class ValidationForm
    * @param  mixed $message
    * @return void
    */
-  public function checkEmail($field, $fieldName, $message)
+  public function checkEmail($field, $fieldName)
   {
     $this->checkEmpty($field, $fieldName);
     if (!filter_var($field, FILTER_VALIDATE_EMAIL)) {
@@ -74,6 +74,23 @@ class ValidationForm
   }
 
   /**
+   * Check if 2 entered passwords or identical
+   *
+   * @param  mixed $field
+   * @param  mixed $fieldName
+   * @param  mixed $message
+   * @return void
+   */
+  public function checkPasswordsAreSame($field1, $field2, $fieldName)
+  {
+    $this->checkEmpty($field1, $field2, $fieldName);
+    if (strcmp($field1, $field2) !== 0) {
+      $this->errors[$fieldName] = "Les mots de passes entrés ne sont pas identiques.";
+    }
+    return array_push($this->errors);
+  }
+
+  /**
    * Verify register form and send error if needed
    *
    * @param  mixed $form
@@ -87,6 +104,7 @@ class ValidationForm
     $this->checkEmail($form["email"], "email", "email");
     $this->checkPassword($form["password"], "password", "mot de passe");
     $this->checkEmpty($form["password_confirmation"], "password_confirmation", "confirmation du mdp");
+    $this->checkPasswordsAreSame($form["password"], $form["password_confirmation"], "password_confirmation");
   }
 
   /**

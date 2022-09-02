@@ -2,11 +2,6 @@
   margin-top: 1em;
 }
 
-.admin__update-textarea {
-  width: 400px !important;
-  height: 150px !important;
-}
-
 .admin-container {
   display: flex;
   justify-content: center;
