@@ -63,11 +63,7 @@ class SecurityController extends Controller
     // Manage form errors
     if (!empty($_POST)) {
       $validate->checkRegister($_POST);
-
-      // Check if entered password are the same
-      if ($_POST["password_confirmation"] != $_POST["password"]) {
-        $errors["passwords_are_same"] = "Les mots de passes entrés ne sont pas identiques.";
-      }
+      
       if (!$validate->errors) {
         $user = (new UserManager())->createUser($_POST);
         $this->session->set("user", $user);
