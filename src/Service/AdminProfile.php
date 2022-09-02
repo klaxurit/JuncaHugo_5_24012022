@@ -17,7 +17,7 @@ class AdminProfile
   {
     $validate = new ValidationForm();
     if (!$validate->errors) {
-      (new AdminManager())->updateAdminInfos($adminDatas);
+      (new AdminManager())->updateAdmin($adminDatas);
     }
     return $validate->errors;
   }

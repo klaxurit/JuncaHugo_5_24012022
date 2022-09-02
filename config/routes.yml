@@ -8,15 +8,10 @@ admin:
   controller: AdminController
   action: index
   parameters: []
-updateAdminInfos:
+updateAdmin:
   uri: /admin/profile/update/([0-9]+)
   controller: AdminController
-  action: updateAdminInfos
-  parameters: ["id"]
-updateAdminFiles:
-  uri: /admin/profile/updateFiles/([0-9]+)
-  controller: AdminController
-  action: updateAdminFiles
+  action: updateAdmin
   parameters: ["id"]
 managePosts:
   uri: /admin/posts

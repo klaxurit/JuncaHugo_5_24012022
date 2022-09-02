@@ -4,22 +4,22 @@
 		<p>Axurit</p>
 	</a>
 	<nav>
-		<a class="header__nav-item" href="/">Home</a>
+		<a class="header__nav-item" href="/">Accueil</a>
 		<span class="header__nav-item__divider">|</span>
-		<a class="header__nav-item" href="/blog">Posts</a>
+		<a class="header__nav-item" href="/blog">Blog</a>
 		<span class="header__nav-item__divider">|</span>
 		{% if user is empty %}
-		<a class="header__nav-item" href="/login">Login</a>
+		<a class="header__nav-item" href="/login">Connexion</a>
 		<span class="header__nav-item__divider">|</span>
-		<a class="header__nav-item" href="/register">Register</a>
+		<a class="header__nav-item" href="/register">Inscription</a>
 		<span class="header__nav-item__divider">|</span>
 		{% else %}
-		<a class="header__nav-item" href="/logout">Logout</a>
+		<a class="header__nav-item" href="/logout">Déconnexion</a>
 		<span class="header__nav-item__divider">|</span>
 		{% endif %}
-		<a class="switchLight header__nav-item" href="#">Light</a>
+		<a class="switchLight header__nav-item" href="#">Clair</a>
 		<span class="header__nav-item__divider">|</span>
-		<a class="switchDark header__nav-item" href="#">Dark</a>
+		<a class="switchDark header__nav-item" href="#">Sombre</a>
 		{% if adminAccess %}
 		<span class="header__nav-item__divider">|</span>
 		<a class="switchDark header__nav-item" href="/admin">Administration</a>

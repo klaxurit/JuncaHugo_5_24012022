@@ -1,9 +1,9 @@
 {% block body %}
 	<form method="post" action="">
 		<div class="form-group">
-			<label for="iconName">Icon name*</label>
+			<label for="iconName">Nom de l'icône*</label>
 			<input type="text" name="iconName" class="form-control" id="iconName" value="{{ social is empty ? _post.iconName : social.iconName }}">
-			<p class="social__info">*To find the "Icon name" go on https://icones.js.org/ and click on the icon needed.<br>Example for instagram logo: icon-park-outline:instagram
+			<p class="social__info">*Chercher votre icône sur https://icones.js.org/ et cliquez dessus pour obtenir le nom de celui-ci.<br>Un exemple de nom d'icône, pour instagram: icon-park-outline:instagram
 			</p>
 			{% if errors['iconName'] is defined %}
 				<p class="form_error">{{ errors['iconName'] }}</p>
@@ -17,12 +17,13 @@
 			{% endif %}
 		</div>
 		<div class="form-group">
-			<label for="socialName">Name</label>
+			<label for="socialName">Nom du réseau social</label>
 			<input type="text" name="name" class="form-control" id="socialName" value="{{ social is empty ? _post.name : social.name }}">
 			{% if errors['name'] is defined %}
 				<p class="form_error">{{ errors['name'] }}</p>
 			{% endif %}
 		</div>
-		<button type="submit" class="btn btn-primary" value="{{ post is empty ? "Create" : "Update" }}"></button>
+		<button type="submit" class="btn btn-primary">{{ post is empty ? "Ajouter" : "Modifier" }}</button>
+		<input type="button" class="btn btn-secondary" value="Retour" onClick="javascript:history.go(-1)" />
 	</form>
 {% endblock %}

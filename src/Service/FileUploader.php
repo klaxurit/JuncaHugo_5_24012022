@@ -14,7 +14,7 @@ class FileUploader
      * @param  mixed $file
      * @return void
      */
-    public function uploadFile($file)
+    public function uploadFile($file, $type)
     {
         // On a recu le fichier
         // On procède aux vérifications
@@ -25,14 +25,20 @@ class FileUploader
 
         $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-        // Tableau des extension / type mime accepté
-        $allowed = [
-            "jpg" => "image/jpeg",
-            "jpeg" => "image/jpeg",
-            "png" => "image/png",
-            "svg" => "image/svg+xml",
-            "pdf" => "application/pdf"
-        ];
+        if ($type === "image") {
+            $allowed = [
+                "jpg" => "image/jpeg",
+                "jpeg" => "image/jpeg",
+                "png" => "image/png",
+                "svg" => "image/svg+xml",
+            ];
+        }
+
+        if ($type === "document") {
+            $allowed = [
+                "pdf" => "application/pdf"
+            ];
+        }
 
         // On vérifie l'absence de l'extension dans les clefs $allowed ou l'absence du type mime dans les valeurs
         if (!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
@@ -60,6 +66,6 @@ class FileUploader
         // On protège l'utiliseur d'un éventuel script
         chmod($filePath, 0644);
 
-        return array($extension, $newName);
+        return array($extension, $filePath);
     }
 }

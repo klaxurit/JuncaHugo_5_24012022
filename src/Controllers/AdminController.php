@@ -38,20 +38,32 @@ class AdminController extends Controller
     }
 
     /**
-     * Update admin informations
+     * Update admin
      *
      * @return void
      */
-    public function updateAdminInfos()
+    public function updateAdmin()
     {
         $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
         $userDatas = (new UserManager())->findOneUser($adminDatas->getUserId());
         $adminDatas->setUser($userDatas);
         if (!empty($_POST)) {
             $adminDatas->hydrate($_POST);
+            if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "" ) {
+                $file = $_FILES["avatar_url"];
+                list($extension, $filePath) = (new FileUploader())->uploadFile($file, "image");
+                $adminDatas->setAvatarUrl("$filePath.$extension");
+                (new AdminProfile())->updateAvatar($adminDatas);
+            }
+            if (isset($_FILES["cv_url"]) && $_FILES["cv_url"]["name"] !== "") {
+                $file = $_FILES["cv_url"];
+                list($extension, $filePath) = (new FileUploader())->uploadFile($file, "document");
+                $adminDatas->setCvUrl("$filePath.$extension");
+                (new AdminProfile())->updateCv($adminDatas);
+            }
             $errors = (new AdminProfile())->updateInfos($adminDatas);
             if (empty($errors)) {
-                $this->flash->set('Le réseau social a bien été modifié.', 'success');
+                $this->flash->set('L\'admin a bien été modifié.', 'success');
                 return header('Location: /admin');
             }
         }
@@ -64,43 +76,6 @@ class AdminController extends Controller
             ]
         );
     }
-
-    /**
-     * Update admin avatar and cv (files)
-     *
-     * @return void
-     */
-    public function updateAdminFiles()
-    {
-        $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
-        if (!empty($_POST)) {
-            if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "" ) {
-                $file = $_FILES["avatar_url"];
-                list($extension, $newName) = (new FileUploader())->uploadFile($file);
-                if ($extension === "jpg" || $extension === "jpeg" || $extension === "png" || $extension === "svg") {
-                    $adminDatas->setAvatarUrl("$newName.$extension");
-                    (new AdminProfile())->updateAvatar($adminDatas);
-                }
-            }
-            if (isset($_FILES["cv_url"]) && $_FILES["cv_url"]["name"] !== "") {
-                $file = $_FILES["cv_url"];
-                list($extension, $newName) = (new FileUploader())->uploadFile($file);
-                if ($extension === "pdf") {
-                    $adminDatas->setCvUrl("$newName.$extension");
-                    (new AdminProfile())->updateCv($adminDatas);
-                }
-            }
-        }
-
-        return $this->twig->display(
-            'admin/pages/profile/updateFiles.html.twig',
-            [
-                'admin' => $adminDatas,
-                'errors' => $errors ?? []
-            ]
-        );
-    }
-
 
     /**
      * Check if current user is admin

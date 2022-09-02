@@ -5,14 +5,14 @@
 {% endblock %}
 {% block body %}
 	<div class="admin-container">
-		<h3 class="admin__manage-title">Manage socials</h3>
+		<h3 class="admin__manage-title">Gestion des réseaux sociaux</h3>
 		<a href="/admin/socials/create" class="btn btn-sm btn-primary mb-4">Ajouter un réseau social</a>
 		<table class="table table-striped">
 			<thead>
 				<th>ID</th>
-				<th>Icon name</th>
+				<th>Nom de l'icône</th>
 				<th>URL</th>
-				<th>Name</th>
+				<th>Nom du résau social</th>
 				<th>Action</th>
 			</thead>
 			<tbody>
@@ -32,5 +32,6 @@
 				{% endfor %}
 			</tbody>
 		</table>
+		<input type="button" class="btn btn-sm btn-secondary" value="Retour" onClick="javascript:history.go(-1)" />
 	</div>
 {% endblock %}

@@ -45,7 +45,7 @@ class AdminManager extends Manager
    * @param  mixed $adminDatas
    * @return void
    */
-  public function updateAdminInfos($adminDatas)
+  public function updateAdmin($adminDatas)
   {
     $sql = "UPDATE admin 
     INNER JOIN user 
