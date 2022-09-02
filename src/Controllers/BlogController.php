@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Managers\AdminManager;
 use App\Service\AddComment;
-use Twig\Error\RuntimeError;
 use App\Managers\PostManager;
 use App\Managers\CommentManager;
 use App\Service\PostCRUD;
@@ -18,20 +17,16 @@ use Cocur\Slugify\Slugify;
 class BlogController extends Controller
 {
     const PER_PAGE = 6;
-
+    
     /**
-     * Return article view
+     * Return view of a post and comments
      *
      * @return void
-     * @throws \Twig\Error\LoaderError
-     * @throws RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
     public function showPost()
     {
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $comments = (new CommentManager())->getCommentsByPostId($post->getId());
-        $admin = (new AdminManager())->findAdmin();
         if (null !== $this->session->get("user")) {
             if (!empty($_POST)) {
                 $commentDatas = $_POST;
@@ -80,10 +75,10 @@ class BlogController extends Controller
     {
         if (!empty($_POST)) {
             $postDatas = $_POST;
-            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "") {
+            if (isset($_FILES["cover_image"]) && isset($_FILES["cover_image"]["name"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
-                    list($extension, $filePath) = (new FileUploader())->uploadFile($file, "image");
+                    list($filePath) = (new FileUploader())->uploadFile($file, "image");
                 } catch (WrongFileTypeException | WrongFileSizeException | DownloadFileFailedException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");

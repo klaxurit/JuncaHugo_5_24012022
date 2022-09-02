@@ -23,15 +23,19 @@ class SecurityController extends Controller
     if (!empty($_POST)) {
       try {
         // check if email exist and valid
-        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) throw (new \Error("identifiants incorrects !"));
+        if (isset($_POST["email"])) {
+          if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) throw (new \Error("identifiants incorrects !"));
+        }
         // email ok => get user with email
         $user = (new UserManager())->loginUser();
-        if ($user && password_verify($_POST["password"], $user->getPassword())) {
-          // if user ok and password correct user connect and redirect.
-          $this->session->set("user", $user);
-          header("Location: /");
-        } else {
-          throw (new \Error("Identifiants incorrects !"));
+        if (isset($_POST["password"])) {
+            if ($user && password_verify($_POST["password"], $user->getPassword())) {
+                // if user ok and password correct user connect and redirect.
+                $this->session->set("user", $user);
+                header("Location: /");
+            } else {
+                throw (new \Error("Identifiants incorrects !"));
+            }
         }
       } catch (\Error $error) {
         $this->twig->display(

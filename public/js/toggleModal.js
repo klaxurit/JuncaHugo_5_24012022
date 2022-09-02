@@ -1,12 +1,12 @@
-const modal_container = document.getElementById('modal_container');
-const open = document.getElementById('open');
-const close = document.getElementById('close');
+const modalContainer = document.getElementById("modal_container");
+const open = document.getElementById("open");
+const close = document.getElementById("close");
 
-open.addEventListener('click', () => {
-  modal_container.classList.add('show');
+open.addEventListener("click", () => {
+  modalContainer.classList.add("show");
 
 });
 
-close.addEventListener('click', () => {
-  modal_container.classList.remove('show');
+close.addEventListener("click", () => {
+  modalContainer.classList.remove("show");
 });
