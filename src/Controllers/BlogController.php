@@ -88,8 +88,8 @@ class BlogController extends Controller
                 $admin = (new AdminManager())->findAdmin();
                 $postDatas["cover_image"] = "$filePath";
                 $postDatas["user_id"] = $admin->getUserId();
-                (new PostCRUD())->addPost($postDatas);
             }
+            $errors = (new PostCRUD())->addPost($postDatas);
             if (empty($errors)) {
                 $this->flash->set('L\'article a bien été créé.', 'success');
                 return header("Location: /admin/posts");
@@ -129,8 +129,8 @@ class BlogController extends Controller
                 $admin = (new AdminManager())->findAdmin();
                 $postDatas->setCoverImage($filePath);
                 $postDatas->setUserId($admin->getUserId());
-                (new PostCRUD())->updatePost($postDatas);
             }
+            $errors = (new PostCRUD())->updatePost($postDatas);
             if (empty($errors)) {
                 $this->flash->set('L\'article a bien été modifié.', 'success');
                 return header('Location: /admin/posts');

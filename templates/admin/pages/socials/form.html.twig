@@ -7,6 +7,8 @@
 			</p>
 			{% if errors['iconName'] is defined %}
 				<p class="form_error">{{ errors['iconName'] }}</p>
+			{% elseif errors['iconNameMaxChars'] is defined %}
+				<p class="form_error">{{ errors['iconNameMaxChars'] }}</p>
 			{% endif %}
 		</div>
 		<div class="form-group">
@@ -21,6 +23,8 @@
 			<input type="text" name="name" class="form-control" id="socialName" value="{{ social is empty ? _post.name : social.name }}">
 			{% if errors['name'] is defined %}
 				<p class="form_error">{{ errors['name'] }}</p>
+			{% elseif errors['socialNameMaxChars'] is defined %}
+				<p class="form_error">{{ errors['socialNameMaxChars'] }}</p>
 			{% endif %}
 		</div>
 		<button type="submit" class="btn btn-primary">{{ post is empty ? "Ajouter" : "Modifier" }}</button>

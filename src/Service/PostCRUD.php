@@ -32,6 +32,7 @@ class PostCRUD
   public function updatePost($postDatas)
   {
     $validate = new ValidationForm();
+    $validate->checkUpdatePost($postDatas);
     if (!$validate->errors) {
       (new PostManager())->updatePost($postDatas);
     }

@@ -19,6 +19,8 @@
 								<input type="text" name="lastName" id="lastName" value="{{ _post.lastname }}"/>
 								{% if errors['lastName'] is defined %}
 									<p class="form_error">{{ errors['lastName'] }}</p>
+								{% elseif errors['lastNameMaxChars'] is defined %}
+									<p class="form_error">{{ errors['lastNameMaxChars'] }}</p>
 								{% endif %}
 							</p>
 						</div>
@@ -28,6 +30,8 @@
 								<input type="text" name="firstName" id="firstName" value="{{ _post.firstname }}"/>
 								{% if errors['firstName'] is defined %}
 									<p class="form_error">{{ errors['firstName'] }}</p>
+								{% elseif errors['firstNameMaxChars'] is defined %}
+									<p class="form_error">{{ errors['firstNameMaxChars'] }}</p>
 								{% endif %}
 							</p>
 						</div>
@@ -39,6 +43,8 @@
 								<input type="text" name="username" id="username" value="{{ _post.username }}"/>
 								{% if errors['username'] is defined %}
 									<p class="form_error">{{ errors['username'] }}</p>
+								{% elseif errors['usernameMaxChars'] is defined %}
+									<p class="form_error">{{ errors['usernameMaxChars'] }}</p>
 								{% endif %}
 							</p>
 						</div>
@@ -48,6 +54,8 @@
 								<input type="email" name="email" id="email" value="{{ _post.email }}"/>
 								{% if errors['email'] is defined %}
 									<p class="form_error">{{ errors['email'] }}</p>
+								{% elseif errors['emailMaxChars'] is defined %}
+									<p class="form_error">{{ errors['emailMaxChars'] }}</p>
 								{% endif %}
 							</p>
 						</div>

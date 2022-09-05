@@ -5,6 +5,8 @@
     <input type="text" name="title" class="form-control" id="title" value="{{ post is empty ? _post.title : post.title }}">
     {% if errors['title'] is defined %}
       <p class="form_error">{{ errors['title'] }}</p>
+    {% elseif errors['titleMaxChars'] is defined %}
+			<p class="form_error">{{ errors['titleMaxChars'] }}</p>
     {% endif %}
   </div>
   <div class="form-group">
@@ -16,7 +18,7 @@
   </div>
   <div class="form-group">
     <label for="content">Contenu</label>
-    <textarea name="content" class="form-control admin__update-textarea" id="content" >{{ post is empty ? _post.content : post.content }}</textarea>
+    <textarea name="content" rows="10" class="form-control admin__update-textarea" id="content" >{{ post is empty ? _post.content : post.content }}</textarea>
     {% if errors['content'] is defined %}
       <p class="form_error">{{ errors['content'] }}</p>
     {% endif %}
@@ -34,6 +36,8 @@
     <input type="text" name="alt_cover_image" class="form-control" id="alt_cover_image" value="{{ post is empty ? _post.altCoverImage : post.altCoverImage }}">
     {% if errors['alt_cover_image'] is defined %}
       <p class="form_error">{{ errors['alt_cover_image'] }}</p>
+    {% elseif errors['altCoverImageMaxChars'] is defined %}
+			<p class="form_error">{{ errors['altCoverImageMaxChars'] }}</p>
     {% endif %}
   </div>
   <button type="submit" class="btn btn-primary">{{ post is empty ? "Ajouter" : "Modifier" }}</button>

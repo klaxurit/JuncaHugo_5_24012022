@@ -6,6 +6,7 @@ class ValidationForm
 {
   const stringRegex = "/^[0-9a-zA-Z']*$/";
   const passwordRegex = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,25}$/';
+  const numberOfChars = '#^.{5,255}$#';
   public $errors = [];
 
   /**
@@ -19,6 +20,13 @@ class ValidationForm
   {
     if (empty($field)) {
       $this->errors[$fieldName] = "Ce champ est requis";
+    }
+  }
+
+  public function checkNumbersOfChars($field, $fieldName)
+  {
+    if (!preg_match(self::numberOfChars, $field)) {
+      $this->errors[$fieldName] = "Ce champ ne peux contenir que 255 charactères maximum.";
     }
   }
 
@@ -99,9 +107,13 @@ class ValidationForm
   public function checkRegister($form)
   {
     $this->checkString($form["lastName"], "lastName", "nom");
+    $this->checkNumbersOfChars($form["lastName"], "lastNameMaxChars");
     $this->checkString($form["firstName"], "firstName", "prenom");
+    $this->checkNumbersOfChars($form["firstName"], "firstNameMaxChars");
     $this->checkString($form["username"], "username", "surnom");
+    $this->checkNumbersOfChars($form["username"], "usernameMaxChars");
     $this->checkEmail($form["email"], "email", "email");
+    $this->checkNumbersOfChars($form["email"], "emailMaxChars");
     $this->checkPassword($form["password"], "password", "mot de passe");
     $this->checkEmpty($form["password_confirmation"], "password_confirmation", "confirmation du mdp");
     $this->checkPasswordsAreSame($form["password"], $form["password_confirmation"], "password_confirmation");
@@ -116,8 +128,25 @@ class ValidationForm
   public function checkAddSocial($form)
   {
     $this->checkEmpty($form["iconName"], "iconName");
+    $this->checkNumbersOfChars($form["iconName"], "iconNameMaxChars");
     $this->checkEmpty($form["url"], "url");
     $this->checkEmpty($form["name"], "name");
+    $this->checkNumbersOfChars($form["name"], "socialNameMaxChars");
+  }
+
+    /**
+   * Verify update social form and send error if needed
+   *
+   * @param  mixed $form
+   * @return void
+   */
+  public function checkUpdateSocial($form)
+  {
+    $this->checkEmpty($form->getIconName(), "iconName");
+    $this->checkNumbersOfChars($form->getIconName(), "iconNameMaxChars");
+    $this->checkEmpty($form->getUrl(), "url");
+    $this->checkEmpty($form->getName(), "name");
+    $this->checkNumbersOfChars($form->getName(), "socialNameMaxChars");
   }
 
   /**
@@ -140,9 +169,44 @@ class ValidationForm
   public function checkAddPost($form)
   {
     $this->checkEmpty($form["title"], "title");
+    $this->checkNumbersOfChars($form["title"], "titleMaxChars");
     $this->checkEmpty($form["caption"], "caption");
     $this->checkEmpty($form["content"], "content");
     $this->checkEmpty($form["alt_cover_image"], "alt_cover_image");
+    $this->checkNumbersOfChars($form["alt_cover_image"], "altCoverImageMaxChars");
     $this->checkEmpty($form["slug"], "slug");
+  }
+
+  /**
+   * Verify update post form and send error if needed
+   *
+   * @param  mixed $form
+   * @return void
+   */
+  public function checkUpdatePost($form)
+  {
+    $this->checkEmpty($form->getTitle(), "title");
+    $this->checkNumbersOfChars($form->getTitle(), "titleMaxChars");
+    $this->checkEmpty($form->getCaption(), "caption");
+    $this->checkEmpty($form->getContent(), "content");
+    $this->checkEmpty($form->getAltCoverImage(), "alt_cover_image");
+    $this->checkNumbersOfChars($form->getAltCoverImage(), "altCoverImageMaxChars");
+    $this->checkEmpty($form->getSlug(), "slug");
+  }
+
+  /**
+   * Verify update admin form and send error if needed
+   *
+   * @param  mixed $form
+   * @return void
+   */
+  public function checkUpdateAdmin($form)
+  {
+    $this->checkEmpty($form->getFirstName(), "firstname");
+    $this->checkNumbersOfChars($form->getFirstName(), "firstNameMaxChars");
+    $this->checkEmpty($form->getLastName(), "lastname");
+    $this->checkNumbersOfChars($form->getLastName(), "lastNameMaxChars");
+    $this->checkEmpty($form->getUsername(), "username");
+    $this->checkNumbersOfChars($form->getUsername(), "usernameMaxChars");
   }
 }

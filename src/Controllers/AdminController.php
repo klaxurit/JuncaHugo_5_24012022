@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Core\Router;
 use App\Service\SocialCRUD;
 use App\Managers\PostManager;
 use App\Managers\AdminManager;
@@ -12,7 +11,6 @@ use App\Managers\CommentManager;
 use App\Managers\UserManager;
 use App\Service\AdminProfile;
 use App\Service\FileUploader;
-use App\Session\PHPSession;
 
 class AdminController extends Controller
 {
@@ -62,6 +60,7 @@ class AdminController extends Controller
                 (new AdminProfile())->updateCv($adminDatas);
             }
             $errors = (new AdminProfile())->updateInfos($adminDatas);
+            var_dump($errors);
             if (empty($errors)) {
                 $this->flash->set('L\'admin a bien été modifié.', 'success');
                 return header('Location: /admin');

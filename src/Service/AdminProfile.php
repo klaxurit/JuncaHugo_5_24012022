@@ -16,6 +16,7 @@ class AdminProfile
   public function updateInfos($adminDatas)
   {
     $validate = new ValidationForm();
+    $validate->checkUpdateAdmin($adminDatas);
     if (!$validate->errors) {
       (new AdminManager())->updateAdmin($adminDatas);
     }
