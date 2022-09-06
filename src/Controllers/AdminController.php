@@ -60,7 +60,6 @@ class AdminController extends Controller
                 (new AdminProfile())->updateCv($adminDatas);
             }
             $errors = (new AdminProfile())->updateInfos($adminDatas);
-            var_dump($errors);
             if (empty($errors)) {
                 $this->flash->set('L\'admin a bien été modifié.', 'success');
                 return header('Location: /admin');

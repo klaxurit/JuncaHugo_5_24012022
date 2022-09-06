@@ -29,8 +29,9 @@ class AdminManager extends Manager
     $admin = new Admin($datas);
 
 
-    $sql = "SELECT * FROM user WHERE id=" . $admin->getUserId();
+    $sql = "SELECT * FROM user WHERE id=:id";
     $req = $this->pdo->prepare($sql);
+    $req->bindValue(':id', $admin->getUserId(), PDO::PARAM_STR);
     $req->execute();
     $dataUser = $req->fetch();
     $user = new User($dataUser);
