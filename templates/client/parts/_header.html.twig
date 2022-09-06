@@ -1,28 +1,42 @@
 <header class="header__nav">
-	<a class="header__brand" href="/">
-		<span class="iconify" data-icon="healthicons:animal-donkey" data-width="30"></span>
-		<p>Axurit</p>
-	</a>
 	<nav>
-		<a class="header__nav-item" href="/">Accueil</a>
-		<span class="header__nav-item__divider">|</span>
-		<a class="header__nav-item" href="/blog">Blog</a>
-		<span class="header__nav-item__divider">|</span>
-		{% if user is empty %}
-		<a class="header__nav-item" href="/login">Connexion</a>
-		<span class="header__nav-item__divider">|</span>
-		<a class="header__nav-item" href="/register">Inscription</a>
-		<span class="header__nav-item__divider">|</span>
-		{% else %}
-		<a class="header__nav-item" href="/logout">Déconnexion</a>
-		<span class="header__nav-item__divider">|</span>
-		{% endif %}
-		<a class="switchLight header__nav-item" href="#">Clair</a>
-		<span class="header__nav-item__divider">|</span>
-		<a class="switchDark header__nav-item" href="#">Sombre</a>
-		{% if adminAccess %}
-		<span class="header__nav-item__divider">|</span>
-		<a class="switchDark header__nav-item" href="/admin">Administration</a>
-		{% endif %}
+		<input type="checkbox" id="nav__check">
+		<div class="nav__header">
+			<div class="nav__title">
+				<a href="/">
+					<span class="iconify" data-icon="healthicons:animal-donkey" data-width="30"></span>
+					Axurit
+				</a>
+			</div>
+		</div>
+		<div class="nav__btn">
+			<label for="nav__check">
+				<span></span>
+				<span></span>
+				<span></span>
+			</label>
+  	</div>
+		<div class="nav__links">
+			<a class="header__nav-item" href="/">Accueil</a>
+			<span class="header__nav-item__divider">|</span>
+			<a class="header__nav-item" href="/blog">Blog</a>
+			<span class="header__nav-item__divider">|</span>
+			{% if user is empty %}
+			<a class="header__nav-item" href="/login">Connexion</a>
+			<span class="header__nav-item__divider">|</span>
+			<a class="header__nav-item" href="/register">Inscription</a>
+			<span class="header__nav-item__divider">|</span>
+			{% else %}
+			<a class="header__nav-item" href="/logout">Déconnexion</a>
+			<span class="header__nav-item__divider">|</span>
+			{% endif %}
+			<a class="switchLight header__nav-item" href="#">Clair</a>
+			<span class="header__nav-item__divider">|</span>
+			<a class="switchDark header__nav-item" href="#">Sombre</a>
+			{% if adminAccess %}
+			<span class="header__nav-item__divider">|</span>
+			<a class="switchDark header__nav-item" href="/admin">Administration</a>
+			{% endif %}
+		</div>
 	</nav>
 </header>

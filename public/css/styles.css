@@ -9,7 +9,6 @@ body {
   background-color: #000;
   font-family: "Roboto Mono", monospace;
   color: white;
-  width: 1400px;
   margin: auto;
 }
 
@@ -162,30 +161,111 @@ p.home__profile-description> svg:nth-child(2) {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF REGISTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF NAV~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.header__brand {
+nav {
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.nav__title > a {
   display: flex;
-  text-decoration: none;
-  color: inherit;
-  font-size: 28px;
+  align-items: center;
+}
+
+.nav__title > a > svg {
+  margin-right: 0.5em;
+}
+
+nav > .nav__header {
+  display: inline;
+}
+
+nav > .nav__header > .nav__title {
+  display: inline-block;
   letter-spacing: 0.1em;
   font-weight: 500;
-  font-family: "Crimson Pro", serif;
+  font-size: 22px;
+  padding: 10px 10px 10px 10px;
 }
 
-.header__brand:hover {
-  color: #aaaaaa;
+nav > .nav__header > .nav__title:hover {
+  color: #aaa;
 }
 
-.iconify {
-  margin-top: 20px;
-  margin-right: 2px;
+nav > .nav__btn {
+  display: none;
 }
 
-.header__logo {
-  width: 100%;
-  height: 100%;
+nav > .nav__links {
+  display: inline;
+  float: right;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+nav > .nav__links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+}
+
+nav > .nav__links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+nav > #nav__check {
+  display: none;
+}
+
+@media (max-width:1200px) {
+  nav > .nav__btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  nav > .nav__btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  nav > .nav__btn > label:hover,nav  #nav__check:checked ~ .nav__btn > label {
+    cursor: pointer;
+  }
+  #nav__check:checked ~ .nav__links > span {
+    display: none;
+  }
+  nav > .nav__btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid;
+  }
+  nav > .nav__links {
+    position: absolute;
+    display: block;
+    width: auto;
+    background-color: #aaa;
+    height: auto;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    right: 0px;
+  }
+  nav > .nav__links > a {
+    display: block;
+    width: 100%;
+  }
+  nav > #nav__check:not(:checked) ~ .nav__links {
+    height: 0px;
+  }
+  nav > #nav__check:checked ~ .nav__links {
+    overflow: hidden;
+  }
 }
 
 .header__nav {
@@ -197,8 +277,10 @@ p.home__profile-description> svg:nth-child(2) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 90%;
   font-weight: 600;
   font-size: 16px;
+  margin: auto;
 }
 
 .header__nav-item__divider {
@@ -211,11 +293,11 @@ p.home__profile-description> svg:nth-child(2) {
 }
 
 .header__nav-item:hover {
-  color: #aaaaaa;
+  color: #aaa;
   font-weight: 800;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF NAV~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~START OF PAGINATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -282,7 +364,8 @@ footer {
   font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
-  width: 1400px;
+  align-items: center;
+  width: 90%;
   margin: auto;
   border-top: 2px solid;
   font-size: 14px;
@@ -297,6 +380,20 @@ a {
 .footer__social-icon__link:hover {
   color: #aaaaaa;
   font-weight: 800;
+}
+
+.footer__social-icon__link {
+  margin-left: 0.5em;
+}
+
+.footer__text {
+  margin-right: 0.5em;
+}
+
+@media (max-width:1000px) {
+  .footer__text-hidden-on-smartphone {
+    display: none;
+  }
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~END OF FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
