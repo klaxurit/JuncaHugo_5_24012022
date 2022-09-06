@@ -1,0 +1,8 @@
+{
+  "name": "Axurit Blog 2022",
+  "short_name": "AxuBlog 2022",
+  "start_url": "/domain.com",
+  "theme_color": "#ffffff",
+  "background_color": "#000000",
+  "display": "standalone"
+}

@@ -3,16 +3,13 @@
 namespace App\Core;
 
 use App\Exceptions\ConfigNotFound;
-use App\Controllers\ErrorController;
-
-// use PDO;
 
 class PDOFactory
 {
 
   private array $config;
 
-  function __construct()
+  public function __construct()
   {
     $this->config = $this->getConfig();
   }

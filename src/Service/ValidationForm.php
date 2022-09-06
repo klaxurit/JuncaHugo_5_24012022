@@ -4,9 +4,9 @@ namespace App\Service;
 
 class ValidationForm
 {
-  const stringRegex = "/^[0-9a-zA-Z']*$/";
-  const passwordRegex = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,25}$/';
-  const numberOfChars = '#^.{5,255}$#';
+  const STRING_REGEX = "/^[0-9a-zA-Z']*$/";
+  const PASSWORD_REGEX = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,25}$/';
+  const NUMBERS_OF_CHARS = '#^.{5,255}$#';
   public $errors = [];
 
   /**
@@ -25,7 +25,7 @@ class ValidationForm
 
   public function checkNumbersOfChars($field, $fieldName)
   {
-    if (!preg_match(self::numberOfChars, $field)) {
+    if (!preg_match(self::NUMBERS_OF_CHARS, $field)) {
       $this->errors[$fieldName] = "Ce champ ne peux contenir que 255 charactères maximum.";
     }
   }
@@ -41,7 +41,7 @@ class ValidationForm
   public function checkString($field, $fieldName, $message)
   {
     $this->checkEmpty($field, $fieldName);
-    if (!preg_match(self::stringRegex, $field)) {
+    if (!preg_match(self::STRING_REGEX, $field)) {
       $this->errors[$fieldName] = "Le champ " . $message . " est incorrect.";
     }
     return array_push($this->errors);
@@ -75,7 +75,7 @@ class ValidationForm
   public function checkPassword($field, $fieldName, $message)
   {
     $this->checkEmpty($field, $fieldName);
-    if (!preg_match(self::passwordRegex, $field)) {
+    if (!preg_match(self::PASSWORDREGEX, $field)) {
       $this->errors[$fieldName] = "Le champ " . $message . " est incorrect.";
     }
     return array_push($this->errors);
@@ -140,7 +140,7 @@ class ValidationForm
    * @param  mixed $form
    * @return void
    */
-  public function checkUpdateSocial($form)
+  public function checkUpdateSocial(object $form)
   {
     $this->checkEmpty($form->getIconName(), "iconName");
     $this->checkNumbersOfChars($form->getIconName(), "iconNameMaxChars");
@@ -183,7 +183,7 @@ class ValidationForm
    * @param  mixed $form
    * @return void
    */
-  public function checkUpdatePost($form)
+  public function checkUpdatePost(object $form)
   {
     $this->checkEmpty($form->getTitle(), "title");
     $this->checkNumbersOfChars($form->getTitle(), "titleMaxChars");
@@ -200,7 +200,7 @@ class ValidationForm
    * @param  mixed $form
    * @return void
    */
-  public function checkUpdateAdmin($form)
+  public function checkUpdateAdmin(object $form)
   {
     $this->checkEmpty($form->getFirstName(), "firstname");
     $this->checkNumbersOfChars($form->getFirstName(), "firstNameMaxChars");

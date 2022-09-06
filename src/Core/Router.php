@@ -56,7 +56,7 @@ class Router
                     strpos($uri, "/admin") === 0 &&
                     (
                         ($user !== null && $user->getId() !== $admin->getUserId())
-                        || $user == null)
+                        || $user === null)
                 ) {
                     return $controller = new ErrorController("show403");
                 }
