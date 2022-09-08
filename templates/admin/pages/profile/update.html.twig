@@ -49,6 +49,27 @@
 					<p class="form_error">{{ errors['usernameMaxChars'] }}</p>
 				{% endif %}
 			</div>
+			<div class="form-group">
+				<label for="password">Mot de passe</label>
+				<input type="password" name="password" id="password" class="form-control"/>
+				<div class="form_error-password">
+					{% if errors['password'] is defined %}
+						<p>{{ errors['password'] }}</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password">Confirmez le mot de passe</label>
+				<input type="password" name="password_confirmation" id="password_confirmation" class="form-control"/>
+				<div class="form_error-password">
+					{% if errors['password_confirmation'] is defined %}
+						<p>{{ errors['password_confirmation'] }}</p>
+					{% endif %}
+				</div>
+					{% if errors['passwords_are_same'] is defined %}
+						<p class="form_error">{{ errors['passwords_are_same'] }}</p>
+					{% endif %}
+			</div>
 			<h5>Logo de l'admin:</h5>
 			<img class="home__profile-logo" src="{{ uri ~ admin.avatarUrl }}" alt="">
 			<br>

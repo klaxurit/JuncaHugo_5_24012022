@@ -2,9 +2,6 @@
 
 namespace App\Service;
 
-use App\Exceptions\WrongFileTypeException;
-use App\Exceptions\WrongFileSizeException;
-use App\Exceptions\DownloadFileFailedException;
 use App\Exceptions\FileException;
 
 class FileUploader
