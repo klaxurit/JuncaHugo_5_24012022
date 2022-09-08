@@ -24,7 +24,7 @@ The version of **PHP** used is **8.0**
 
 *twig/twig* [![Latest Stable Version](http://poser.pugx.org/twig/twig/v)](https://packagist.org/packages/twig/twig) [![Total Downloads](http://poser.pugx.org/twig/twig/downloads)](https://packagist.org/packages/twig/twig) [![License](http://poser.pugx.org/twig/twig/license)](https://packagist.org/packages/twig/twig) [![PHP Version Require](http://poser.pugx.org/twig/twig/require/php)](https://packagist.org/packages/twig/twig)
 
-*mailhog/mailhog* [![Packaging status](https://repology.org/badge/vertical-allrepos/mailhog.svg)](https://repology.org/project/mailhog/versions)
+*mailhog/mailhog* [![latest packaged version(s)](https://repology.org/badge/latest-versions/mailhog.svg)](https://repology.org/project/mailhog/versions)
 
 ---
 
