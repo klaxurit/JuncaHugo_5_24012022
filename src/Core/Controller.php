@@ -9,6 +9,7 @@ use App\Managers\UserManager;
 use App\Service\FlashMessage;
 use App\Managers\AdminManager;
 use Twig\Loader\FilesystemLoader;
+use \Twig\Extra\String\StringExtension;
 
 class Controller
 {
@@ -29,6 +30,7 @@ class Controller
         $this->twig = new Environment($this->loader, [
             'debug' => true,
         ]);
+        $this->twig->addExtension(new StringExtension());
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
         $flashMessage = new FlashMessage($this->session);
         $this->twig->addExtension(new FlashExtension($flashMessage));

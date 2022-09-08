@@ -32,6 +32,7 @@ class BlogController extends Controller
         if (null !== $this->session->get("user")) {
             if (!empty($_POST)) {
                 $commentDatas = $_POST;
+                $commentDatas["content"] = htmlspecialchars_decode($commentDatas["content"]);
                 $errors = (new AddComment())->add($post->getId(), $commentDatas);
             }
         }

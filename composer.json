@@ -3,7 +3,8 @@
     "require": {
         "twig/twig": "3.3.8",
         "cocur/slugify": "^4.1",
-        "phpmailer/phpmailer": "^6.5"
+        "phpmailer/phpmailer": "^6.5",
+        "twig/string-extra": "^3.4"
     },
     "autoload": {
         "psr-4": {

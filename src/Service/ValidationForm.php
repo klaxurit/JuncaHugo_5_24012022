@@ -6,7 +6,7 @@ class ValidationForm
 {
   const STRING_REGEX = "/^[0-9a-zA-Z']*$/";
   const PASSWORD_REGEX = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,25}$/';
-  const NUMBERS_OF_CHARS = '#^.{5,255}$#';
+  const NUMBERS_OF_CHARS = '#^.{1,255}$#';
   public $errors = [];
 
   /**
@@ -75,7 +75,7 @@ class ValidationForm
   public function checkPassword($field, $fieldName, $message)
   {
     $this->checkEmpty($field, $fieldName);
-    if (!preg_match(self::PASSWORDREGEX, $field)) {
+    if (!preg_match(self::PASSWORD_REGEX, $field)) {
       $this->errors[$fieldName] = "Le champ " . $message . " est incorrect.";
     }
     return array_push($this->errors);

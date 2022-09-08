@@ -30,7 +30,13 @@ class SendMail {
     $config = yaml_parse_file($dir);
     return $config;
   }
-
+  
+  /**
+   * set up mail and send it
+   *
+   * @param  mixed $mailDatas
+   * @return void
+   */
   public function newMail($mailDatas) {
     $mail = new PHPMailer(true);
 
@@ -56,14 +62,9 @@ class SendMail {
       $mail->isHTML(true);
       $mail->Subject = "Nouveau message du Blog Axurit";
       $mail->Body = ("<h3>Nouveau message de " . $mailDatas["nom"] . " " . $mailDatas["prenom"] . "</h3> </br>" . "<p>" . $mailDatas["message"] . "</p>");
-      // echo "<pre>";
-      // var_dump($mailDatas, $mail);
-      // die();
-      // echo "</pre>";
       $mail->send();
       
     }catch(Exception $e){
-      die($mail->ErrorInfo);
       echo "Message non envoyé. Erreur: {$mail->ErrorInfo}";
     }
   }
