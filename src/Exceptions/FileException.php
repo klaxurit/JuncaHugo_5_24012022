@@ -11,7 +11,7 @@ class FileException extends Exception
    *
    * @return void
    */
-  public static function WrongFileTypeException()
+  public static function wrongFileTypeException()
   {
     return new static("Type de fichier erroné.");
   }
@@ -21,7 +21,7 @@ class FileException extends Exception
    *
    * @return void
    */
-  public static function WrongFileSizeException()
+  public static function wrongFileSizeException()
   {
     return new static("Fichier trop lourd, 1Mo maximum.");
   }
@@ -31,7 +31,7 @@ class FileException extends Exception
    *
    * @return void
    */
-  public static function DownloadFileFailedException()
+  public static function downloadFileFailedException()
   {
     return new static("Le fichier n'a pas été téléchargé correctement.");
   }
@@ -41,7 +41,7 @@ class FileException extends Exception
    *
    * @return void
    */
-  public static function MaxSizeException()
+  public static function maxSizeException()
   {
     return new static("Taille de fichier imposé par php.ini dépassé.");
   }

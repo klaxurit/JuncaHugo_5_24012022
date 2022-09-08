@@ -120,7 +120,7 @@ class BlogController extends Controller
                 $file = $_FILES["cover_image"];
                 try {
                     list($filePath) = (new FileUploader())->uploadFile($file, "image");
-                } catch (WrongFileTypeException | WrongFileSizeException | DownloadFileFailedException $e) {
+                } catch (FileException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");
                 }

@@ -40,19 +40,19 @@ class FileUploader
 
         // On gère les erreurs pouvant être lié a la config du php.ini
         if ($file["error"] === 1) {
-            throw FileException::MaxSizeException();
+            throw FileException::maxSizeException();
         }
 
         // On vérifie l'absence de l'extension dans les clefs $allowed ou l'absence du type mime dans les valeurs
         if (!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
             // Ici soit l'extension soit le type est incorrect
-            throw FileException::WrongFileTypeException();
+            throw FileException::wrongFileTypeException();
         }
 
         // Ici le type est correct
         // On limite a 1Mo
         if ($fileSize > 1024 * 1024) {
-            throw FileException::WrongFileSizeException();
+            throw FileException::wrongFileSizeException();
         }
 
         // On génère un nom unique
@@ -63,7 +63,7 @@ class FileUploader
 
         if (!move_uploaded_file($file["tmp_name"], $filePath)) {
             // déclancher une exxception et la gérer dans le controller
-            throw FileException::DownloadFileFailedException();
+            throw FileException::downloadFileFailedException();
         }
 
         // On protège l'utiliseur d'un éventuel script
