@@ -2,6 +2,8 @@
 
 ### Code review from SymfonyInsight [![SymfonyInsight](https://insight.symfony.com/projects/fc6b1990-e50a-44af-ac56-ab2f4dd66f28/mini.svg)](https://insight.symfony.com/projects/fc6b1990-e50a-44af-ac56-ab2f4dd66f28)
 
+---
+
 ### Welcome to my PHP from scratch blog 
 Hi! This is the readme of my **OCR** project number 5 named **"Create your first blog in PHP"**.  
 The version of **PHP** used is **8.0**
@@ -22,11 +24,13 @@ The version of **PHP** used is **8.0**
 
 *twig/twig* [![Latest Stable Version](http://poser.pugx.org/twig/twig/v)](https://packagist.org/packages/twig/twig) [![Total Downloads](http://poser.pugx.org/twig/twig/downloads)](https://packagist.org/packages/twig/twig) [![License](http://poser.pugx.org/twig/twig/license)](https://packagist.org/packages/twig/twig) [![PHP Version Require](http://poser.pugx.org/twig/twig/require/php)](https://packagist.org/packages/twig/twig)
 
+*mailhog/mailhog* [![Packaging status](https://repology.org/badge/vertical-allrepos/mailhog.svg)](https://repology.org/project/mailhog/versions)
+
 ---
 
 ### Install project
 
-##### Requierements:
+##### Requirements:
 - Apache server
 - PHP 8.1 (with somes packages: yaml, mysqli, pdo_mysql)
 - MySQL 8.0

@@ -13,6 +13,8 @@ use App\Exceptions\WrongFileTypeException;
 use App\Exceptions\WrongFileSizeException;
 use App\Exceptions\DownloadFileFailedException;
 use Cocur\Slugify\Slugify;
+use App\Service\SendMail;
+use PHPMailer\PHPMailer\Exception;
 
 class BlogController extends Controller
 {
@@ -158,5 +160,25 @@ class BlogController extends Controller
         $this->flash->set('L\'article a bien été supprimé.', 'success');
 
         return header('Location: /admin/posts');
+    }
+    
+    /**
+     * send contact email
+     *
+     * @return void
+     */
+    public function contactMe()
+    {
+        if (!empty($_POST)) {
+            $mailDatas = $_POST;
+            try {
+                (new SendMail())->newMail($mailDatas);
+            } catch (Exception $e) {
+                $this->flash->set($e->getMessage(), 'error');
+                return header("Location: /");
+            }
+        }
+        $this->flash->set("Message envoyé!", 'success');
+        return header("Location: /");
     }
 }

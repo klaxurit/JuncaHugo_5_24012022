@@ -3,6 +3,11 @@ home:
   controller: IndexController
   action: showHome
   parameters: []
+contactMe:
+  uri: /contactMe
+  controller: BlogController
+  action: contactMe
+  parameters: []
 admin:
   uri: /admin
   controller: AdminController
