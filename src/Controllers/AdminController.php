@@ -11,6 +11,7 @@ use App\Managers\CommentManager;
 use App\Managers\UserManager;
 use App\Service\AdminProfile;
 use App\Service\FileUploader;
+use App\Exceptions\FileException;
 
 class AdminController extends Controller
 {
@@ -49,13 +50,23 @@ class AdminController extends Controller
             $adminDatas->hydrate($_POST);
             if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "" ) {
                 $file = $_FILES["avatar_url"];
-                list($filePath) = (new FileUploader())->uploadFile($file, "image");
+                try {
+                    list($filePath) = (new FileUploader())->uploadFile($file, "image");
+                } catch (FileException $e) {
+                    $this->flash->set($e->getMessage(), 'error');
+                    return header("Location: /admin");
+                }
                 $adminDatas->setAvatarUrl($filePath);
                 (new AdminProfile())->updateAvatar($adminDatas);
             }
             if (isset($_FILES["cv_url"]) && $_FILES["cv_url"]["name"] !== "") {
                 $file = $_FILES["cv_url"];
-                list($filePath) = (new FileUploader())->uploadFile($file, "document");
+                try {
+                    list($filePath) = (new FileUploader())->uploadFile($file, "document");
+                } catch (FileException $e) {
+                    $this->flash->set($e->getMessage(), 'error');
+                    return header("Location: /admin");
+                }
                 $adminDatas->setCvUrl($filePath);
                 (new AdminProfile())->updateCv($adminDatas);
             }

@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Exceptions\WrongFileTypeException;
 use App\Exceptions\WrongFileSizeException;
 use App\Exceptions\DownloadFileFailedException;
+use App\Exceptions\FileException;
 
 class FileUploader
 {
@@ -40,16 +41,21 @@ class FileUploader
             ];
         }
 
+        // On gère les erreurs pouvant être lié a la config du php.ini
+        if ($file["error"] === 1) {
+            throw FileException::MaxSizeException();
+        }
+
         // On vérifie l'absence de l'extension dans les clefs $allowed ou l'absence du type mime dans les valeurs
         if (!array_key_exists($extension, $allowed) || !in_array($fileType, $allowed)) {
             // Ici soit l'extension soit le type est incorrect
-            throw new WrongFileTypeException();
+            throw FileException::WrongFileTypeException();
         }
 
         // Ici le type est correct
         // On limite a 1Mo
         if ($fileSize > 1024 * 1024) {
-            throw new WrongFileSizeException();
+            throw FileException::WrongFileSizeException();
         }
 
         // On génère un nom unique
@@ -60,7 +66,7 @@ class FileUploader
 
         if (!move_uploaded_file($file["tmp_name"], $filePath)) {
             // déclancher une exxception et la gérer dans le controller
-            throw new DownloadFileFailedException();
+            throw FileException::DownloadFileFailedException();
         }
 
         // On protège l'utiliseur d'un éventuel script

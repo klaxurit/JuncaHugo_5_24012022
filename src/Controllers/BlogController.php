@@ -9,9 +9,7 @@ use App\Managers\PostManager;
 use App\Managers\CommentManager;
 use App\Service\PostCRUD;
 use App\Service\FileUploader;
-use App\Exceptions\WrongFileTypeException;
-use App\Exceptions\WrongFileSizeException;
-use App\Exceptions\DownloadFileFailedException;
+use App\Exceptions\FileException;
 use Cocur\Slugify\Slugify;
 use App\Service\SendMail;
 use PHPMailer\PHPMailer\Exception;
@@ -81,7 +79,7 @@ class BlogController extends Controller
                 $file = $_FILES["cover_image"];
                 try {
                     list($filePath) = (new FileUploader())->uploadFile($file, "image");
-                } catch (WrongFileTypeException | WrongFileSizeException | DownloadFileFailedException $e) {
+                } catch (FileException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");
                 }
