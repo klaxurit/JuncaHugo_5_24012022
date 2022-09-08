@@ -21,3 +21,17 @@ The version of **PHP** used is **8.0**
 *twig/twig* [![Latest Stable Version](http://poser.pugx.org/twig/twig/v)](https://packagist.org/packages/twig/twig) [![Total Downloads](http://poser.pugx.org/twig/twig/downloads)](https://packagist.org/packages/twig/twig) [![License](http://poser.pugx.org/twig/twig/license)](https://packagist.org/packages/twig/twig) [![PHP Version Require](http://poser.pugx.org/twig/twig/require/php)](https://packagist.org/packages/twig/twig)
 
 ---
+
+### Install project
+
+##### Requierements:
+- Apache server
+- PHP 8.1 (with somes packages: yaml, mysqli, pdo_mysql)
+- MySQL 8.0
+- Composer 2
+
+##### Installation step by step:
+- Clone the git repository in your /var/www/your_domain/public_html/
+- Run composer install in the project folder.
+- Find the database.sql file at the project root and import it on your MySQL serv.
+- Check out the config folder at the project root, config them and remove the .example extension to use it.
