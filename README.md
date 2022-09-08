@@ -39,5 +39,6 @@ The version of **PHP** used is **8.0**
 ##### Installation step by step:
 - Clone the git repository in your /var/www/your_domain/public_html/
 - Run composer install in the project folder.
-- Find the database.sql file at the project root and import it on your MySQL serv.
+- Find the database.sql file at the project root and import it on your MySQL serv. 
+- ( *admin* mail: admin@admin.com pw: Admin1306- / *user* mail: user@user.com pw: User1306- )
 - Check out the config folder at the project root, config them and remove the .example extension to use it.
