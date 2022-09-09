@@ -97,9 +97,8 @@ class AdminController extends Controller
         $currentUser = $this->session->get("user");
         if (isset($currentUser) && ($currentUser->getId()) === $admin->getUserId()) {
             return true;
-        } else {
-            return header('Location: /');
         }
+        return header('Location: /');
     }
 
     /**

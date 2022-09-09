@@ -30,15 +30,15 @@ The version of **PHP** used is **8.0**
 
 ### Install project
 
-##### Requirements:
-- Apache server
-- PHP 8.1 (with somes packages: yaml, mysqli, pdo_mysql)
-- MySQL 8.0
-- Composer 2
+##### Requirements
+-  Apache server
+-  PHP 8.1 (with somes packages: yaml, mysqli, pdo_mysql)
+-  MySQL 8.0
+-  Composer 2
 
-##### Installation step by step:
-- Clone the git repository in your /var/www/your_domain/public_html/
-- Run composer install in the project folder.
-- Find the database.sql file at the project root and import it on your MySQL serv. 
-- ( *admin* mail: admin@admin.com pw: Admin1306- / *user* mail: user@user.com pw: User1306- )
-- Check out the config folder at the project root, config them and remove the .example extension to use it.
+##### Installation step by step
+-  Clone the git repository in your /var/www/your_domain/public_html/
+-  Run composer install in the project folder.
+-  Find the database.sql file at the project root and import it on your MySQL serv. 
+-  ( *admin* mail: admin@admin.com pw: Admin1306- / *user* mail: user@user.com pw: User1306- )
+-  Check out the config folder at the project root, config them and remove the .example extension to use it.
