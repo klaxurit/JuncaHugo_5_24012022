@@ -36,8 +36,8 @@ class PDOFactory
    */
   public function getSQLConnexion()
   {
-    $db = new \PDO('mysql:host=' . $this->config['db_host'] . ';dbname=' . $this->config['db_name'], $this->config['db_user'], $this->config['db_password']);
-    $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-    return $db;
+    $database = new \PDO('mysql:host=' . $this->config['db_host'] . ';dbname=' . $this->config['db_name'], $this->config['db_user'], $this->config['db_password']);
+    $database->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    return $database;
   }
 }

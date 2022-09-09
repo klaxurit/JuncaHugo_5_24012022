@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Managers\PostManager;
-use App\Managers\SocialManager;
 use App\Service\ValidationForm;
 
 class PostCRUD
