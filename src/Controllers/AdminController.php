@@ -51,7 +51,7 @@ class AdminController extends Controller
             if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "" ) {
                 $file = $_FILES["avatar_url"];
                 try {
-                    list($filePath) = (new FileUploader())->uploadFile($file, "image");
+                    $filePath = (new FileUploader())->uploadFile($file, "image");
                 } catch (FileException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin");
@@ -62,7 +62,7 @@ class AdminController extends Controller
             if (isset($_FILES["cv_url"]) && $_FILES["cv_url"]["name"] !== "") {
                 $file = $_FILES["cv_url"];
                 try {
-                    list($filePath) = (new FileUploader())->uploadFile($file, "document");
+                    $filePath = (new FileUploader())->uploadFile($file, "document");
                 } catch (FileException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin");

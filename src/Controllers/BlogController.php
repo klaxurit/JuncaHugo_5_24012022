@@ -78,7 +78,7 @@ class BlogController extends Controller
             if (isset($_FILES["cover_image"]) && isset($_FILES["cover_image"]["name"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
-                    list($filePath) = (new FileUploader())->uploadFile($file, "image");
+                    $filePath = (new FileUploader())->uploadFile($file, "image");
                 } catch (FileException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");
@@ -119,7 +119,7 @@ class BlogController extends Controller
             if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
-                    list($filePath) = (new FileUploader())->uploadFile($file, "image");
+                    $filePath = (new FileUploader())->uploadFile($file, "image");
                 } catch (FileException $e) {
                     $this->flash->set($e->getMessage(), 'error');
                     return header("Location: /admin/posts");

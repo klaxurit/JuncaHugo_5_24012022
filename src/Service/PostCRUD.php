@@ -16,7 +16,7 @@ class PostCRUD
   public function addPost($postDatas)
   {
     $validate = new ValidationForm();
-    $validate->checkAddPost($postDatas);
+    $validate->checkPost($postDatas);
     if (!$validate->errors) {
       (new PostManager())->CreatePost($postDatas);
     }
@@ -32,7 +32,7 @@ class PostCRUD
   public function updatePost($postDatas)
   {
     $validate = new ValidationForm();
-    $validate->checkUpdatePost($postDatas);
+    $validate->checkPost($postDatas);
     if (!$validate->errors) {
       (new PostManager())->updatePost($postDatas);
     }

@@ -58,8 +58,10 @@ class FileUploader
         // On génère un nom unique
         $newName = md5(uniqid());
 
+        $relativePath = "/public/uploads/$newName.$extension";
+
         // On génère le chemin complet
-        $filePath = ROOT_DIR . "/public/uploads/$newName.$extension";
+        $filePath = ROOT_DIR . $relativePath;
 
         if (!move_uploaded_file($file["tmp_name"], $filePath)) {
             // déclancher une exxception et la gérer dans le controller
@@ -68,8 +70,7 @@ class FileUploader
 
         // On protège l'utiliseur d'un éventuel script
         chmod($filePath, 0644);
-        $filePath = str_replace("/var/www/domain1.com/public_html/P05_junca_hugo/public/", "", $filePath);
 
-        return array($filePath);
+        return $relativePath;
     }
 }

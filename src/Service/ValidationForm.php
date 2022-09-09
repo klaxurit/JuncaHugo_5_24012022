@@ -134,7 +134,7 @@ class ValidationForm
     $this->checkNumbersOfChars($form["name"], "socialNameMaxChars");
   }
 
-    /**
+  /**
    * Verify update social form and send error if needed
    *
    * @param  mixed $form
@@ -166,7 +166,7 @@ class ValidationForm
    * @param  mixed $form
    * @return void
    */
-  public function checkAddPost($form)
+  public function checkPost($form)
   {
     $this->checkEmpty($form["title"], "title");
     $this->checkNumbersOfChars($form["title"], "titleMaxChars");
@@ -174,24 +174,6 @@ class ValidationForm
     $this->checkEmpty($form["content"], "content");
     $this->checkEmpty($form["alt_cover_image"], "alt_cover_image");
     $this->checkNumbersOfChars($form["alt_cover_image"], "altCoverImageMaxChars");
-    $this->checkEmpty($form["slug"], "slug");
-  }
-
-  /**
-   * Verify update post form and send error if needed
-   *
-   * @param  mixed $form
-   * @return void
-   */
-  public function checkUpdatePost(object $form)
-  {
-    $this->checkEmpty($form->getTitle(), "title");
-    $this->checkNumbersOfChars($form->getTitle(), "titleMaxChars");
-    $this->checkEmpty($form->getCaption(), "caption");
-    $this->checkEmpty($form->getContent(), "content");
-    $this->checkEmpty($form->getAltCoverImage(), "alt_cover_image");
-    $this->checkNumbersOfChars($form->getAltCoverImage(), "altCoverImageMaxChars");
-    $this->checkEmpty($form->getSlug(), "slug");
   }
 
   /**
