@@ -6,7 +6,6 @@ use PDO;
 use App\Model\Post;
 use App\Model\User;
 use App\Core\Manager;
-use App\Model\Comment;
 
 class PostManager extends Manager
 {
