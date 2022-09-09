@@ -36,12 +36,12 @@ class PostManager extends Manager
     $req->bindValue(':user_id', $post->getUserId(), PDO::PARAM_STR);
     $req->execute();
 
-    $id = $this->pdo->lastInsertId();
+    $postId = $this->pdo->lastInsertId();
 
     $sql = "SELECT * FROM post WHERE id = :id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $postId, PDO::PARAM_STR);
     $req->execute();
 
     return $post;
@@ -73,12 +73,12 @@ class PostManager extends Manager
    *
    * @return void
    */
-  public function deletePost(int $id)
+  public function deletePost(int $postId)
   {
     $sql = "DELETE FROM post WHERE id=:id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $postId, PDO::PARAM_STR);
     $req->execute();
   }
 
@@ -190,15 +190,15 @@ class PostManager extends Manager
   /**
    * Find post by id
    *
-   * @param  mixed $id
+   * @param  mixed $postId
    * @return void
    */
-  public function findOnePost(int $id)
+  public function findOnePost(int $postId)
   {
     $sql = "SELECT * FROM post WHERE id=:id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $postId, PDO::PARAM_STR);
     $req->execute();
 
     $data = $req->fetch();

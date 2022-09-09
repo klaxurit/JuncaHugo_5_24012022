@@ -34,11 +34,11 @@ class CommentManager extends Manager
     $req->bindValue(':postId', $postId, PDO::PARAM_STR);
     $req->execute();
 
-    $id = $this->pdo->lastInsertId();
+    $commentId = $this->pdo->lastInsertId();
 
     $sql = "SELECT * FROM comment WHERE id = :id";
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $commentId, PDO::PARAM_STR);
     $req->execute();
 
     return $comment;
@@ -47,30 +47,30 @@ class CommentManager extends Manager
   /**
    * Update a comment
    *
-   * @param  mixed $id
+   * @param  mixed $commentId
    * @param  mixed $status
    * @return void
    */
-  public function updateComment(int $id, int $status)
+  public function updateComment(int $commentId, int $status)
   {
     $sql = "UPDATE comment SET status=:status WHERE id=:id";
     $req = $this->pdo->prepare($sql);
     $req->bindParam(':status', $status, PDO::PARAM_STR);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $commentId, PDO::PARAM_STR);
     $req->execute();
   }
 
   /**
    * Delete a comment
    *
-   * @param  mixed $id
+   * @param  mixed $commentId
    * @return void
    */
-  public function deleteComment(int $id)
+  public function deleteComment(int $commentId)
   {
     $sql = "DELETE FROM comment WHERE id=:id";
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $commentId, PDO::PARAM_STR);
     $req->execute();
   }
 
@@ -127,14 +127,14 @@ class CommentManager extends Manager
   /**
    * Find one comment by id
    *
-   * @param  mixed $id
+   * @param  mixed $commentId
    * @return void
    */
-  public function findOneComment(int $id)
+  public function findOneComment(int $commentId)
   {
     $sql = "SELECT * FROM comment WHERE id = :id";
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $commentId, PDO::PARAM_STR);
     $req->execute();
 
     $data = $req->fetch();
@@ -147,10 +147,10 @@ class CommentManager extends Manager
   /**
    * Get comment by post id
    *
-   * @param  mixed $id
+   * @param  mixed $commentId
    * @return void
    */
-  public function getCommentsByPostId(int $id)
+  public function getCommentsByPostId(int $commentId)
   {
     $sql = "SELECT c.*, u.username,
     c.id as comment_id, u.id as user_id
@@ -159,7 +159,7 @@ class CommentManager extends Manager
     WHERE post_id = :id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id);
+    $req->bindParam(':id', $commentId);
     $req->execute();
     $datas = $req->fetchAll();
     $comments = [];

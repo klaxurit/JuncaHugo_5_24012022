@@ -32,12 +32,12 @@ class SocialManager extends Manager
     $req->bindValue(':name', $social->getName(), PDO::PARAM_STR);
     $req->execute();
 
-    $id = $this->pdo->lastInsertId();
+    $socialId = $this->pdo->lastInsertId();
 
     $sql = "SELECT * FROM social_network WHERE id = :id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $socialId, PDO::PARAM_STR);
     $req->execute();
 
     return $social;
@@ -66,15 +66,15 @@ class SocialManager extends Manager
   /**
    * Delete a social network
    *
-   * @param  mixed $id
+   * @param  mixed $socialId
    * @return void
    */
-  public function deleteSocial(int $id)
+  public function deleteSocial(int $socialId)
   {
     $sql = "DELETE FROM social_network WHERE id=:id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $socialId, PDO::PARAM_STR);
     $req->execute();
   }
 
@@ -105,15 +105,15 @@ class SocialManager extends Manager
   /**
    * Find social by id
    *
-   * @param  mixed $id
+   * @param  mixed $socialId
    * @return void
    */
-  public function findOneSocial(int $id)
+  public function findOneSocial(int $socialId)
   {
     $sql = "SELECT * FROM social_network WHERE id=:id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $socialId, PDO::PARAM_STR);
     $req->execute();
 
     $data = $req->fetch();

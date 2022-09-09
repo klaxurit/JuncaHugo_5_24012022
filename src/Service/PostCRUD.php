@@ -26,7 +26,7 @@ class PostCRUD
   /**
    * Check errors and send data to manager
    *
-   * @param  mixed $id
+   * @param  mixed $postDatas
    * @return void
    */
   public function updatePost($postDatas)

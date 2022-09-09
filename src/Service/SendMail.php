@@ -65,7 +65,6 @@ class SendMail {
       $mail->send();
       
     }catch(Exception $e){
-      echo "Message non envoyé. Erreur: {$mail->ErrorInfo}";
     }
   }
 }

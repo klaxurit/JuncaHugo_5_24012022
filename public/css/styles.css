@@ -186,6 +186,10 @@ nav {
   align-items: center;
 }
 
+.article__content-axurit-separator > .iconify {
+  margin-top: 0;
+}
+
 .nav__title > a > .iconify {
   margin-right: 0.5em;
 }
@@ -353,6 +357,12 @@ nav > #nav__check {
   margin: 0 1px;
 }
 
+footer, 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .nav__pagination a {
   padding: 0.5em 1em;
   border: 1px solid #999;
@@ -382,11 +392,6 @@ footer {
   margin-top: 2em;
   border-top: 2px solid;
   font-size: 14px;
-}
-
-footer, a {
-  text-decoration: none;
-  color: inherit;
 }
 
 .footer__social-icon__link {
@@ -580,10 +585,6 @@ article {
   margin: 1.6em 0 1.6em -2.2em;
   padding: 0 0 0 1.6em;
   border-left: 0.4em solid;
-}
-
-.article__content-axurit-separator > .iconify {
-  margin-top: 0;
 }
 
 .article__content-axurit-separator {

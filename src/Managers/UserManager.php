@@ -32,15 +32,15 @@ class UserManager extends Manager
   /**
    * Find one user by id
    *
-   * @param  mixed $id
+   * @param  mixed $userId
    * @return void
    */
-  public function findOneUser(int $id)
+  public function findOneUser(int $userId)
   {
     $sql = "SELECT * FROM user WHERE id=:id";
 
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $userId, PDO::PARAM_STR);
     $req->execute();
 
     $data = $req->fetch();
@@ -73,11 +73,11 @@ class UserManager extends Manager
     $req->execute();
 
     // get new user's id
-    $id = $this->pdo->lastInsertId();
+    $userId = $this->pdo->lastInsertId();
 
     $sql = "SELECT * FROM user WHERE id = :id";
     $req = $this->pdo->prepare($sql);
-    $req->bindParam(':id', $id, PDO::PARAM_STR);
+    $req->bindParam(':id', $userId, PDO::PARAM_STR);
     $req->execute();
     $datas = $req->fetch();
 
