@@ -15,7 +15,7 @@ use App\Exceptions\FileException;
 
 class AdminController extends Controller
 {
-    const PER_PAGE = 10;
+    public const PER_PAGE = 10;
 
     /**
      * Return admin panel
@@ -48,7 +48,7 @@ class AdminController extends Controller
         $adminDatas->setUser($userDatas);
         if (!empty($_POST)) {
             $adminDatas->hydrate($_POST);
-            if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "" ) {
+            if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "") {
                 $file = $_FILES["avatar_url"];
                 try {
                     $filePath = (new FileUploader())->uploadFile($file, "image");

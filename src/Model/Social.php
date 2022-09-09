@@ -4,7 +4,6 @@ namespace App\Model;
 
 use App\Core\Entity;
 
-
 class Social extends Entity
 {
     private $icon_name;
@@ -13,7 +12,7 @@ class Social extends Entity
 
     /**
      * Get the value of url
-     * 
+     *
      */
     public function getUrl()
     {
@@ -22,7 +21,7 @@ class Social extends Entity
 
     /**
      * Set the value of url
-     * 
+     *
      *  @return  self
      */
     public function setUrl($url)
@@ -42,7 +41,7 @@ class Social extends Entity
 
     /**
      * Set the value of name
-     * 
+     *
      *  @return  self
      */
     public function setName($name)
@@ -54,7 +53,7 @@ class Social extends Entity
 
     /**
      * Get the value of icon_name
-     * 
+     *
      *  @return  self
      */
     public function getIconName()

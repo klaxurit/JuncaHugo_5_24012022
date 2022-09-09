@@ -10,13 +10,13 @@ use App\Managers\CommentManager;
  */
 class AddComment
 {
-  public function add($postId, $commentDatas)
-  {
-    $validate = new ValidationForm();
-    $validate->checkAddComment($commentDatas);
-    if (!$validate->errors) {
-      (new CommentManager())->createComment($postId, $commentDatas);
+    public function add($postId, $commentDatas)
+    {
+        $validate = new ValidationForm();
+        $validate->checkAddComment($commentDatas);
+        if (!$validate->errors) {
+            (new CommentManager())->createComment($postId, $commentDatas);
+        }
+        return $validate->errors;
     }
-    return $validate->errors;
-  }
 }

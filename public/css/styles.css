@@ -250,8 +250,7 @@ nav > #nav__check {
     padding: 13px;
   }
 
-  nav > .nav__btn > label:hover, 
-  nav  #nav__check:checked ~ .nav__btn > label {
+  nav > .nav__btn > label:hover, nav  #nav__check:checked ~ .nav__btn > label {
     cursor: pointer;
   }
 
@@ -358,8 +357,7 @@ nav > #nav__check {
   margin: 0 1px;
 }
 
-footer, 
-a {
+footer, a {
   text-decoration: none;
   color: inherit;
 }

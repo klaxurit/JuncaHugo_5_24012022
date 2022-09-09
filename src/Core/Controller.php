@@ -9,7 +9,7 @@ use App\Managers\UserManager;
 use App\Service\FlashMessage;
 use App\Managers\AdminManager;
 use Twig\Loader\FilesystemLoader;
-use \Twig\Extra\String\StringExtension;
+use Twig\Extra\String\StringExtension;
 
 class Controller
 {
@@ -22,7 +22,7 @@ class Controller
 
     public function __construct(string $action, array $params = [])
     {
-        $this->session = new PHPSession;
+        $this->session = new PHPSession();
         $this->flash = new FlashMessage($this->session);
         $this->action = $action;
         $this->params = $params;

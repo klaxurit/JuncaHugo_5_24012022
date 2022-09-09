@@ -7,34 +7,34 @@ use App\Service\ValidationForm;
 
 class PostCRUD
 {
-  /**
-   * Check errors and send data to manager
-   *
-   * @return void
-   */
-  public function addPost($postDatas)
-  {
-    $validate = new ValidationForm();
-    $validate->checkPost($postDatas);
-    if (!$validate->errors) {
-      (new PostManager())->CreatePost($postDatas);
+    /**
+     * Check errors and send data to manager
+     *
+     * @return void
+     */
+    public function addPost($postDatas)
+    {
+        $validate = new ValidationForm();
+        $validate->checkPost($postDatas);
+        if (!$validate->errors) {
+            (new PostManager())->CreatePost($postDatas);
+        }
+        return $validate->errors;
     }
-    return $validate->errors;
-  }
 
-  /**
-   * Check errors and send data to manager
-   *
-   * @param  mixed $postDatas
-   * @return void
-   */
-  public function updatePost($postDatas)
-  {
-    $validate = new ValidationForm();
-    $validate->checkPost($postDatas);
-    if (!$validate->errors) {
-      (new PostManager())->updatePost($postDatas);
+    /**
+     * Check errors and send data to manager
+     *
+     * @param  mixed $postDatas
+     * @return void
+     */
+    public function updatePost($postDatas)
+    {
+        $validate = new ValidationForm();
+        $validate->checkPost($postDatas);
+        if (!$validate->errors) {
+            (new PostManager())->updatePost($postDatas);
+        }
+        return $validate->errors;
     }
-    return $validate->errors;
-  }
 }

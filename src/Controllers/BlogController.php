@@ -16,8 +16,8 @@ use PHPMailer\PHPMailer\Exception;
 
 class BlogController extends Controller
 {
-    const PER_PAGE = 6;
-    
+    public const PER_PAGE = 6;
+
     /**
      * Return view of a post and comments
      *
@@ -160,7 +160,7 @@ class BlogController extends Controller
 
         return header('Location: /admin/posts');
     }
-    
+
     /**
      * send contact email
      *

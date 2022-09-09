@@ -15,7 +15,7 @@ class Router
 
     public function __construct()
     {
-        $this->session = new PHPSession;
+        $this->session = new PHPSession();
         $this->controller = $this->setController();
     }
 
@@ -56,7 +56,8 @@ class Router
                     strpos($uri, "/admin") === 0 &&
                     (
                         ($user !== null && $user->getId() !== $admin->getUserId())
-                        || $user === null)
+                        || $user === null
+                    )
                 ) {
                     return $controller = new ErrorController("show403");
                 }

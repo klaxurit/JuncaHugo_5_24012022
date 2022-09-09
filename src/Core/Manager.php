@@ -8,13 +8,12 @@ use App\Session\PHPSession;
 
 class Manager
 {
+    protected PDO $pdo;
+    protected $session;
 
-  protected PDO $pdo;
-  protected $session;
-
-  public function __construct()
-  {
-    $this->pdo = (new PDOFactory())->getSQLConnexion();
-    $this->session = new PHPSession;
-  }
+    public function __construct()
+    {
+        $this->pdo = (new PDOFactory())->getSQLConnexion();
+        $this->session = new PHPSession();
+    }
 }

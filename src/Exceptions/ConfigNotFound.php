@@ -4,6 +4,6 @@ namespace App\Exceptions;
 
 use Exception;
 
-class ConfigNotFound extends Exception {
-  
+class ConfigNotFound extends Exception
+{
 }

@@ -10,7 +10,6 @@ use App\Model\Admin;
 
 class IndexController extends Controller
 {
-
     /**
      * Return home page
      *

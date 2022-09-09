@@ -6,7 +6,6 @@ use App\Session\SessionInterface;
 
 class FlashMessage
 {
-
     /**
      * @var SessionInterface
      */
@@ -48,7 +47,7 @@ class FlashMessage
             $this->message = $this->session->get($this->sessionKey, []);
             $this->session->delete($this->sessionKey);
         }
-        // Check if key exist 
+        // Check if key exist
         if (array_key_exists($type, $this->message)) {
             // Return message
             return $this->message[$type];

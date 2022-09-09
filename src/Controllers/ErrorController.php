@@ -6,7 +6,6 @@ use App\Core\Controller;
 
 class ErrorController extends Controller
 {
-
     /**
      * Return page 404
      *
