@@ -17,7 +17,7 @@ class PostCRUD
         $validate = new ValidationForm();
         $validate->checkPost($postDatas);
         if (!$validate->errors) {
-            (new PostManager())->CreatePost($postDatas);
+            (new PostManager())->createPost($postDatas);
         }
         return $validate->errors;
     }

@@ -17,7 +17,7 @@ class SocialCRUD
     public function addSocial($socialDatas)
     {
         $validate = new ValidationForm();
-        $validate->checkAddSocial($socialDatas);
+        $validate->checkSocial($socialDatas);
         if (!$validate->errors) {
             (new SocialManager())->createSocial($socialDatas);
         }
@@ -33,7 +33,7 @@ class SocialCRUD
     public function modifySocial($socialDatas)
     {
         $validate = new ValidationForm();
-        $validate->checkUpdateSocial($socialDatas);
+        $validate->checkSocial($socialDatas);
         if (!$validate->errors) {
             (new SocialManager())->updateSocial($socialDatas);
         }

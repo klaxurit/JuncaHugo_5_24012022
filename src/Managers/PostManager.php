@@ -22,8 +22,6 @@ class PostManager extends Manager
      */
     public function createPost($post)
     {
-        $post = new Post($post);
-
         $sql = "INSERT INTO `post`(`title`, `caption`, `content`, `cover_image`, `alt_cover_image`, `slug`, `user_id`) VALUES (:title, :caption, :content, :cover_image, :alt_cover_image, :slug, :user_id)";
 
         $req = $this->pdo->prepare($sql);

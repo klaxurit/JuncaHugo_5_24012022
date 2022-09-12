@@ -12,6 +12,7 @@ use App\Managers\UserManager;
 use App\Service\AdminProfile;
 use App\Service\FileUploader;
 use App\Exceptions\FileException;
+use App\Model\Social;
 
 class AdminController extends Controller
 {
@@ -203,7 +204,9 @@ class AdminController extends Controller
     {
         if (!empty($_POST)) {
             $socialDatas = $_POST;
-            $errors = (new SocialCRUD())->addSocial($socialDatas);
+            $social = new Social($socialDatas);
+            // créer l'objet ici au lieu de le faire dans le manager
+            $errors = (new SocialCRUD())->addSocial($social);
             if (empty($errors)) {
                 $this->flash->set('Le réseau social a bien été créé.', 'success');
                 return header("Location: /admin/socials");

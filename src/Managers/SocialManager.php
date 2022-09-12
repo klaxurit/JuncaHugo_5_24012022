@@ -21,8 +21,6 @@ class SocialManager extends Manager
      */
     public function createSocial($social)
     {
-        $social = new Social($social);
-
         $sql = "INSERT INTO `social_network`(`icon_name`, `url`, `name`) VALUES (:iconName, :url, :name)";
 
         $req = $this->pdo->prepare($sql);

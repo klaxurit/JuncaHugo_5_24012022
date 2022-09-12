@@ -71,6 +71,8 @@ class FileUploader
         // On protège l'utiliseur d'un éventuel script
         chmod($filePath, 0644);
 
-        return $relativePath;
+        $newPath = str_replace("/public/", "", $relativePath);
+
+        return $newPath;
     }
 }

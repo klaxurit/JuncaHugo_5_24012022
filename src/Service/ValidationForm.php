@@ -120,27 +120,12 @@ class ValidationForm
     }
 
     /**
-     * Verify add social form and send error if needed
+     * Verify add, update social form and send error if needed
      *
      * @param  mixed $form
      * @return void
      */
-    public function checkAddSocial($form)
-    {
-        $this->checkEmpty($form["iconName"], "iconName");
-        $this->checkNumbersOfChars($form["iconName"], "iconNameMaxChars");
-        $this->checkEmpty($form["url"], "url");
-        $this->checkEmpty($form["name"], "name");
-        $this->checkNumbersOfChars($form["name"], "socialNameMaxChars");
-    }
-
-    /**
-     * Verify update social form and send error if needed
-     *
-     * @param  mixed $form
-     * @return void
-     */
-    public function checkUpdateSocial(object $form)
+    public function checkSocial(object $form)
     {
         $this->checkEmpty($form->getIconName(), "iconName");
         $this->checkNumbersOfChars($form->getIconName(), "iconNameMaxChars");
@@ -161,19 +146,19 @@ class ValidationForm
     }
 
     /**
-     * Verify add post form and send error if needed
+     * Verify add, update post form and send error if needed
      *
      * @param  mixed $form
      * @return void
      */
     public function checkPost($form)
     {
-        $this->checkEmpty($form["title"], "title");
-        $this->checkNumbersOfChars($form["title"], "titleMaxChars");
-        $this->checkEmpty($form["caption"], "caption");
-        $this->checkEmpty($form["content"], "content");
-        $this->checkEmpty($form["alt_cover_image"], "alt_cover_image");
-        $this->checkNumbersOfChars($form["alt_cover_image"], "altCoverImageMaxChars");
+        $this->checkEmpty($form->getTitle(), "title");
+        $this->checkNumbersOfChars($form->getTitle(), "titleMaxChars");
+        $this->checkEmpty($form->getCaption(), "caption");
+        $this->checkEmpty($form->getContent(), "content");
+        $this->checkEmpty($form->getAltCoverImage(), "alt_cover_image");
+        $this->checkNumbersOfChars($form->getAltCoverImage(), "altCoverImageMaxChars");
     }
 
     /**

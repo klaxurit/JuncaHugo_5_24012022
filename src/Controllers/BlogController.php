@@ -13,6 +13,7 @@ use App\Exceptions\FileException;
 use Cocur\Slugify\Slugify;
 use App\Service\SendMail;
 use PHPMailer\PHPMailer\Exception;
+use App\Model\Post;
 
 class BlogController extends Controller
 {
@@ -75,6 +76,7 @@ class BlogController extends Controller
     {
         if (!empty($_POST)) {
             $postDatas = $_POST;
+            $post = new Post($postDatas);
             if (isset($_FILES["cover_image"]) && isset($_FILES["cover_image"]["name"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
@@ -85,12 +87,12 @@ class BlogController extends Controller
                 }
 
                 $slugify = new Slugify();
-                $postDatas["slug"] = $slugify->slugify($postDatas["title"]);
+                $post->setSlug($slugify->slugify($post->getSlug()));
                 $admin = (new AdminManager())->findAdmin();
-                $postDatas["cover_image"] = "$filePath";
-                $postDatas["user_id"] = $admin->getUserId();
+                $post->setCoverImage("$filePath");
+                $post->setUserId($admin->getUserId());
             }
-            $errors = (new PostCRUD())->addPost($postDatas);
+            $errors = (new PostCRUD())->addPost($post);
             if (empty($errors)) {
                 $this->flash->set('L\'article a bien été créé.', 'success');
                 return header("Location: /admin/posts");
