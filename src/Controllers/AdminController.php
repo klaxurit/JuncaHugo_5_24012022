@@ -48,12 +48,10 @@ class AdminController extends Controller
         $adminDatas = (new AdminManager())->findAdmin($this->params['id']);
         $userDatas = (new UserManager())->findOneUser($adminDatas->getUserId());
         $adminDatas->setUser($userDatas);
-        if (!empty($_POST)) {
-            $formDatas = $_POST;
-            $formFiles = $_FILES;
-            $adminDatas->hydrate($formDatas);
-            if (isset($formFiles["avatar_url"]) && $formFiles["avatar_url"]["name"] !== "") {
-                $file = $formFiles["avatar_url"];
+        if (!empty($this->formDatas)) {
+            $adminDatas->hydrate($this->formDatas);
+            if (isset($this->formFiles["avatar_url"]) && $this->formFiles["avatar_url"]["name"] !== "") {
+                $file = $this->formFiles["avatar_url"];
                 try {
                     $filePath = (new FileUploader())->uploadFile($file, "image");
                 } catch (FileException $e) {
@@ -63,8 +61,8 @@ class AdminController extends Controller
                 $adminDatas->setAvatarUrl($filePath);
                 (new AdminProfile())->updateAvatar($adminDatas);
             }
-            if (isset($formFiles["cv_url"]) && $formFiles["cv_url"]["name"] !== "") {
-                $file = $formFiles["cv_url"];
+            if (isset($this->formFiles["cv_url"]) && $this->formFiles["cv_url"]["name"] !== "") {
+                $file = $this->formFiles["cv_url"];
                 try {
                     $filePath = (new FileUploader())->uploadFile($file, "document");
                 } catch (FileException $e) {
@@ -74,8 +72,8 @@ class AdminController extends Controller
                 $adminDatas->setCvUrl($filePath);
                 (new AdminProfile())->updateCv($adminDatas);
             }
-            $adminPasswordConfirmation = $formDatas["password_confirmation"];
-            $errors = (new AdminProfile())->updateInfos($adminDatas, $adminPasswordConfirmation);
+            $adminPwdConf = $this->formDatas["password_confirmation"];
+            $errors = (new AdminProfile())->updateInfos($adminDatas, $adminPwdConf);
             if (empty($errors)) {
                 $this->flash->set('L\'admin a bien été modifié.', 'success');
                 return header('Location: /admin');
@@ -206,8 +204,8 @@ class AdminController extends Controller
      */
     public function adminCreateSocial()
     {
-        if (!empty($_POST)) {
-            $socialDatas = $_POST;
+        if (!empty($this->formDatas)) {
+            $socialDatas = $this->formDatas;
             $social = new Social($socialDatas);
             // créer l'objet ici au lieu de le faire dans le manager
             $errors = (new SocialCRUD())->addSocial($social);
@@ -247,8 +245,8 @@ class AdminController extends Controller
     public function adminUpdateSocial()
     {
         $socialDatas = (new SocialManager())->findOneSocial($this->params['id']);
-        if (!empty($_POST)) {
-            $socialDatas->hydrate($_POST);
+        if (!empty($this->formDatas)) {
+            $socialDatas->hydrate($this->formDatas);
             $errors = (new SocialCRUD())->modifySocial($socialDatas);
             if (empty($errors)) {
                 $this->flash->set('Le réseau social a bien été modifié.', 'success');

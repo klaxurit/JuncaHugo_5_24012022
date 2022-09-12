@@ -19,6 +19,8 @@ class Controller
     protected $twig;
     protected $session;
     protected $flash;
+    protected $formDatas;
+    protected $formFiles;
 
     public function __construct(string $action, array $params = [])
     {
@@ -26,6 +28,8 @@ class Controller
         $this->flash = new FlashMessage($this->session);
         $this->action = $action;
         $this->params = $params;
+        $this->formDatas = $_POST;
+        $this->formFiles = $_FILES;
         $this->loader = new FilesystemLoader(ROOT_DIR . '/templates');
         $this->twig = new Environment($this->loader, [
             'debug' => true,

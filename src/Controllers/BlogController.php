@@ -29,10 +29,9 @@ class BlogController extends Controller
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $comments = (new CommentManager())->getCommentsByPostId($post->getId());
         if (null !== $this->session->get("user")) {
-            $commentDatas = $_POST;
-            if (!empty($commentDatas)) {
-                $commentDatas["content"] = htmlspecialchars_decode($commentDatas["content"]);
-                $errors = (new AddComment())->add($post->getId(), $commentDatas);
+            if (!empty($this->formDatas)) {
+                $this->formDatas["content"] = htmlspecialchars_decode($this->formDatas["content"]);
+                $errors = (new AddComment())->add($post->getId(), $this->formDatas);
             }
         }
 
@@ -74,9 +73,8 @@ class BlogController extends Controller
      */
     public function createPost()
     {
-        if (!empty($_POST)) {
-            $postDatas = $_POST;
-            $post = new Post($postDatas);
+        if (!empty($this->formDatas)) {
+            $post = new Post($this->formDatas);
             if (isset($_FILES["cover_image"]) && isset($_FILES["cover_image"]["name"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
@@ -116,8 +114,8 @@ class BlogController extends Controller
     public function updatePost()
     {
         $postDatas = (new PostManager())->findOnePost($this->params['id']);
-        if (!empty($_POST)) {
-            $postDatas->hydrate($_POST);
+        if (!empty($this->formDatas)) {
+            $postDatas->hydrate($this->formDatas);
             if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "") {
                 $file = $_FILES["cover_image"];
                 try {
@@ -170,8 +168,8 @@ class BlogController extends Controller
      */
     public function contactMe()
     {
-        if (!empty($_POST)) {
-            $mailDatas = $_POST;
+        if (!empty($this->formDatas)) {
+            $mailDatas = $this->formDatas;
             try {
                 (new SendMail())->newMail($mailDatas);
             } catch (Exception $e) {

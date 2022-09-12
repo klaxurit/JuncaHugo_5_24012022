@@ -19,18 +19,18 @@ class SecurityController extends Controller
      */
     public function login()
     {
-        if (!empty($_POST)) {
+        if (!empty($this->formDatas)) {
             try {
                 // check if email exist and valid
-                if (isset($_POST["email"])) {
-                    if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                if (isset($this->formDatas["email"])) {
+                    if (!filter_var($this->formDatas["email"], FILTER_VALIDATE_EMAIL)) {
                         throw (new \Error("identifiants incorrects !"));
                     }
                 }
                 // email ok => get user with email
                 $user = (new UserManager())->loginUser();
-                if (isset($_POST["password"])) {
-                    if ($user && password_verify($_POST["password"], $user->getPassword())) {
+                if (isset($this->formDatas["password"])) {
+                    if ($user && password_verify($this->formDatas["password"], $user->getPassword())) {
                         // if user ok and password correct user connect and redirect.
                         $this->session->set("user", $user);
                         header("Location: /");
@@ -62,11 +62,11 @@ class SecurityController extends Controller
     {
         $validate = new ValidationForm();
         // Manage form errors
-        if (!empty($_POST)) {
-            $validate->checkRegister($_POST);
+        if (!empty($this->formDatas)) {
+            $validate->checkRegister($this->formDatas);
 
             if (!$validate->errors) {
-                $user = (new UserManager())->createUser($_POST);
+                $user = (new UserManager())->createUser($this->formDatas);
                 $this->session->set("user", $user);
                 header("Location: /");
             }
