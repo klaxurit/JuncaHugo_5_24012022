@@ -48,9 +48,11 @@ class AdminController extends Controller
         $userDatas = (new UserManager())->findOneUser($adminDatas->getUserId());
         $adminDatas->setUser($userDatas);
         if (!empty($_POST)) {
-            $adminDatas->hydrate($_POST);
-            if (isset($_FILES["avatar_url"]) && $_FILES["avatar_url"]["name"] !== "") {
-                $file = $_FILES["avatar_url"];
+            $formDatas = $_POST;
+            $formFiles = $_FILES;
+            $adminDatas->hydrate($formDatas);
+            if (isset($formFiles["avatar_url"]) && $formFiles["avatar_url"]["name"] !== "") {
+                $file = $formFiles["avatar_url"];
                 try {
                     $filePath = (new FileUploader())->uploadFile($file, "image");
                 } catch (FileException $e) {
@@ -60,8 +62,8 @@ class AdminController extends Controller
                 $adminDatas->setAvatarUrl($filePath);
                 (new AdminProfile())->updateAvatar($adminDatas);
             }
-            if (isset($_FILES["cv_url"]) && $_FILES["cv_url"]["name"] !== "") {
-                $file = $_FILES["cv_url"];
+            if (isset($formFiles["cv_url"]) && $formFiles["cv_url"]["name"] !== "") {
+                $file = $formFiles["cv_url"];
                 try {
                     $filePath = (new FileUploader())->uploadFile($file, "document");
                 } catch (FileException $e) {
