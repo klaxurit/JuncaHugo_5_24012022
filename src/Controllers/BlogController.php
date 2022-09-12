@@ -29,8 +29,8 @@ class BlogController extends Controller
         $post = (new PostManager())->getPostBySlug($this->params['slug']);
         $comments = (new CommentManager())->getCommentsByPostId($post->getId());
         if (null !== $this->session->get("user")) {
-            if (!empty($_POST)) {
-                $commentDatas = $_POST;
+            $commentDatas = $_POST;
+            if (!empty($commentDatas)) {
                 $commentDatas["content"] = htmlspecialchars_decode($commentDatas["content"]);
                 $errors = (new AddComment())->add($post->getId(), $commentDatas);
             }
