@@ -50,8 +50,8 @@ class BlogController extends Controller
     public function listPosts()
     {
         // Find the current page
-        if (isset($_GET['page']) && !empty($_GET['page'])) {
-            $currentPage = (int) strip_tags($_GET['page']);
+        if (isset($this->getUrl['page']) && !empty($this->getUrl['page'])) {
+            $currentPage = (int) strip_tags($this->getUrl['page']);
         } else {
             $currentPage = 1;
         }
@@ -75,8 +75,8 @@ class BlogController extends Controller
     {
         if (!empty($this->formDatas)) {
             $post = new Post($this->formDatas);
-            if (isset($_FILES["cover_image"]) && isset($_FILES["cover_image"]["name"]) && $_FILES["cover_image"]["name"] !== "") {
-                $file = $_FILES["cover_image"];
+            if (isset($this->formFiles["cover_image"]) && isset($this->formFiles["cover_image"]["name"]) && $this->formFiles["cover_image"]["name"] !== "") {
+                $file = $this->formFiles["cover_image"];
                 try {
                     $filePath = (new FileUploader())->uploadFile($file, "image");
                 } catch (FileException $e) {
@@ -85,7 +85,7 @@ class BlogController extends Controller
                 }
 
                 $slugify = new Slugify();
-                $post->setSlug($slugify->slugify($post->getSlug()));
+                $post->setSlug($slugify->slugify($post->getTitle()));
                 $admin = (new AdminManager())->findAdmin();
                 $post->setCoverImage("$filePath");
                 $post->setUserId($admin->getUserId());
@@ -116,8 +116,8 @@ class BlogController extends Controller
         $postDatas = (new PostManager())->findOnePost($this->params['id']);
         if (!empty($this->formDatas)) {
             $postDatas->hydrate($this->formDatas);
-            if (isset($_FILES["cover_image"]) && $_FILES["cover_image"]["name"] !== "") {
-                $file = $_FILES["cover_image"];
+            if (isset($this->formFiles["cover_image"]) && $this->formFiles["cover_image"]["name"] !== "") {
+                $file = $this->formFiles["cover_image"];
                 try {
                     $filePath = (new FileUploader())->uploadFile($file, "image");
                 } catch (FileException $e) {

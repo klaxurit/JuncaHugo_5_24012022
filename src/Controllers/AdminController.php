@@ -112,8 +112,8 @@ class AdminController extends Controller
     public function managePosts()
     {
         // Find the current page
-        if (isset($_GET['page']) && !empty($_GET['page'])) {
-            $currentPage = (int) strip_tags($_GET['page']);
+        if (isset($this->getUrl['page']) && !empty($this->getUrl['page'])) {
+            $currentPage = (int) strip_tags($this->getUrl['page']);
         } else {
             $currentPage = 1;
         }
@@ -135,8 +135,8 @@ class AdminController extends Controller
     public function manageComments()
     {
         // Find the current page
-        if (isset($_GET['page']) && !empty($_GET['page'])) {
-            $currentPage = (int) strip_tags($_GET['page']);
+        if (isset($this->getUrl['page']) && !empty($this->getUrl['page'])) {
+            $currentPage = (int) strip_tags($this->getUrl['page']);
         } else {
             $currentPage = 1;
         }

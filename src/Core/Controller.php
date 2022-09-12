@@ -21,6 +21,7 @@ class Controller
     protected $flash;
     protected $formDatas;
     protected $formFiles;
+    protected $getUrl;
 
     public function __construct(string $action, array $params = [])
     {
@@ -30,6 +31,7 @@ class Controller
         $this->params = $params;
         $this->formDatas = $_POST;
         $this->formFiles = $_FILES;
+        $this->getUrl = $_GET;
         $this->loader = new FilesystemLoader(ROOT_DIR . '/templates');
         $this->twig = new Environment($this->loader, [
             'debug' => true,
