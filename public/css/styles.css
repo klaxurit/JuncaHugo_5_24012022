@@ -250,7 +250,8 @@ nav > #nav__check {
     padding: 13px;
   }
 
-  nav > .nav__btn > label:hover, nav  #nav__check:checked ~ .nav__btn > label {
+  nav > .nav__btn > label:hover,
+  nav  #nav__check:checked ~ .nav__btn > label {
     cursor: pointer;
   }
 
@@ -357,10 +358,6 @@ nav > #nav__check {
   margin: 0 1px;
 }
 
-footer, a {
-  text-decoration: none;
-  color: inherit;
-}
 
 .nav__pagination a {
   padding: 0.5em 1em;
@@ -391,6 +388,12 @@ footer {
   margin-top: 2em;
   border-top: 2px solid;
   font-size: 14px;
+}
+
+footer,
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .footer__social-icon__link {
