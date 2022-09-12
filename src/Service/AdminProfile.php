@@ -13,10 +13,10 @@ class AdminProfile
      * @param  mixed $adminDatas
      * @return void
      */
-    public function updateInfos($adminDatas)
+    public function updateInfos($adminDatas, $adminPasswordConfirmation)
     {
         $validate = new ValidationForm();
-        $validate->checkUpdateAdmin($adminDatas);
+        $validate->checkUpdateAdmin($adminDatas ,$adminPasswordConfirmation);
         if (!$validate->errors) {
             (new AdminManager())->updateAdmin($adminDatas);
         }

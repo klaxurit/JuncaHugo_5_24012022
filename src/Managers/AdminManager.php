@@ -53,7 +53,7 @@ class AdminManager extends Manager
     ON user.id = admin.user_id 
     SET admin.description=:description, admin.tagline=:tagline, user.firstname=:firstname, user.lastname=:lastname, user.username=:username, user.password=:pass
     WHERE admin.id=:id";
-
+    
         $password = password_hash($adminDatas->getPassword(), PASSWORD_ARGON2ID);
         $req = $this->pdo->prepare($sql);
         $req->bindValue(':description', $adminDatas->getDescription(), PDO::PARAM_STR);

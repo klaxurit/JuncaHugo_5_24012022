@@ -12,6 +12,7 @@ use App\Managers\UserManager;
 use App\Service\AdminProfile;
 use App\Service\FileUploader;
 use App\Exceptions\FileException;
+use App\Model\Admin;
 use App\Model\Social;
 
 class AdminController extends Controller
@@ -73,7 +74,8 @@ class AdminController extends Controller
                 $adminDatas->setCvUrl($filePath);
                 (new AdminProfile())->updateCv($adminDatas);
             }
-            $errors = (new AdminProfile())->updateInfos($adminDatas);
+            $adminPasswordConfirmation = $formDatas["password_confirmation"];
+            $errors = (new AdminProfile())->updateInfos($adminDatas, $adminPasswordConfirmation);
             if (empty($errors)) {
                 $this->flash->set('L\'admin a bien été modifié.', 'success');
                 return header('Location: /admin');

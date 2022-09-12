@@ -167,7 +167,7 @@ class ValidationForm
      * @param  mixed $form
      * @return void
      */
-    public function checkUpdateAdmin(object $form)
+    public function checkUpdateAdmin(object $form, $adminPasswordConfirmation)
     {
         $this->checkEmpty($form->getFirstName(), "firstname");
         $this->checkNumbersOfChars($form->getFirstName(), "firstNameMaxChars");
@@ -175,5 +175,8 @@ class ValidationForm
         $this->checkNumbersOfChars($form->getLastName(), "lastNameMaxChars");
         $this->checkEmpty($form->getUsername(), "username");
         $this->checkNumbersOfChars($form->getUsername(), "usernameMaxChars");
+        $this->checkPassword($form->getPassword(), "password", "mot de passe");
+        $this->checkEmpty($adminPasswordConfirmation, "password_confirmation", "confirmation du mdp");
+        $this->checkPasswordsAreSame($form->getPassword(), $adminPasswordConfirmation, "password_confirmation");
     }
 }
