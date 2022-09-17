@@ -39,6 +39,10 @@ The version of **PHP** used is **8.0**
 #### Installation step by step
   - Clone the git repository in your /var/www/your_domain/public_html/
   - Install php-yaml and enable it in your php.ini. ( step 1: sudo apt-get install -y php-yaml , step 2: sudo service apache2 restart)
+  - Config files ( both files are located in the config directory )
+      - Rename the db-config.yml.example file into db-config.yml
+      - Rename the mail.yml.example file into mail.yml
+      - Edit both file as you need
   - Run composer install in the project folder.
   - Find the database.sql file at the project root and import it on your MySQL serv. 
   - ( *admin* mail: admin@admin.com pw: Admin1306- / *user* mail: user@user.com pw: User1306- )
