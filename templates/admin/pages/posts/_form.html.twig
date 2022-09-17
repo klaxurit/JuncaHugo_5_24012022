@@ -41,6 +41,6 @@
     {% endif %}
   </div>
   <button type="submit" class="btn btn-primary">{{ post is empty ? "Ajouter" : "Modifier" }}</button>
-  <input type="button" class="btn btn-secondary" value="Retour" onClick="javascript:history.go(-1)" />
+  <a class="btn btn-secondary" href="/admin/posts">Retour</a>
 </form>
 {% endblock %}
